@@ -24,7 +24,7 @@ module.exports = {
                     reject(error);
                     return;
                 }
-                const newUser = {login, password };
+                const newUser = {login, password};
 
                 resolve(newUser);
             });

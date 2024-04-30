@@ -1,4 +1,3 @@
-// script.js
 document.getElementById('userForm').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevent default form submission
 
@@ -8,13 +7,18 @@ document.getElementById('userForm').addEventListener('submit', async function(ev
     const password = formData.get('password');
 
     try {
+        const requestBody = new URLSearchParams();
+        requestBody.append('login', login);
+        requestBody.append('password', password);
+
         const response = await fetch('http://localhost:3306/api/users', {
             method: 'POST',
             headers: {
-                'Content-Type': 'http://localhost:3306/api/users'
-            },
-            body: JSON.stringify({login, password })
+                'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type
+            }, 
+            body: requestBody // Adjusted request body
         });
+
         if (!response.ok) {
             throw new Error('Failed to register user');
         }
