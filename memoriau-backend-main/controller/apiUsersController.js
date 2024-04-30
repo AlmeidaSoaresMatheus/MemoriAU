@@ -9,7 +9,7 @@ module.exports = {
 
             for (let i in users) {
                 json.users.push({
-                    name: users[i].nomeUsuario,
+                    id: users[i].id,
                     login: users[i].login
                 });
             }
@@ -22,14 +22,14 @@ module.exports = {
 
     createUser: async (req, res) => {
         try {
-            const { nameUser, login, password } = req.body;
+            const { login, password } = req.body;
 
-            if (!nameUser || !login || !password) {
+            if (!login || !password) {
                 console.log(nameUser)
                 return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }
 
-            const newUser = await userService.createUser(nameUser, login, password);
+            const newUser = await userService.createUser(login, password);
 
             res.status(201).json(newUser);
         } catch (error) {

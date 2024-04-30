@@ -1,5 +1,11 @@
 const { findAll } = require('../controller/apiPetsController');
 const db = require('../db');
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+// Permitindo todas as origens
+app.use(cors());
 
 module.exports = {
     findAll: (idLogin) => {

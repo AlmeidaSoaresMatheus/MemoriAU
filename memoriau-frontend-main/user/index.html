@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MemoriAU</title>
+    <title>User Registration</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Cadastro de usuário</h1>
-        <form id="userForm">
-            <input type="text" id="nameUser" placeholder="Name">
-            <input type="text" id="login" placeholder="Login">
-            <input type="password" id="password" placeholder="Password">
-            <button type="submit">Cadastrar</button>
-        </form>
-        <ul id="userList"></ul>
-    </div>
+    <h1>User Registration</h1>
+    <form id="userForm">
+        <label for="login">Login:</label>
+        <input type="text" id="login" name="login" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Register User</button>
+    </form>
+
+    <ul id="userList">
+        <!-- User list will be displayed here -->
+    </ul>
 
     <script src="script.js"></script>
 </body>
