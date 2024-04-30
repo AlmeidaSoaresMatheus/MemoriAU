@@ -16,13 +16,13 @@ module.exports = {
             for (let pet in pets) {
                 json.pets.push({
                     idLogin: pets[pet].idLogin,
-                    name: pets[pet].nome,
-                    breed: pets[pet].raca,
-                    size: pets[pet].porte,
-                    color: pets[pet].cor,
-                    Sex: pets[pet].sexo,
-                    Birth: pets[pet].nascimento,
-                    Death: pets[pet].falecimento
+                    name: pets[pet].name,
+                    breed: pets[pet].breed,
+                    size: pets[pet].size,
+                    color: pets[pet].color,
+                    sex: pets[pet].sex,
+                    birth: pets[pet].birth,
+                    death: pets[pet].death
                 });
             }
             res.json(json);
@@ -35,7 +35,7 @@ module.exports = {
     createPet: async (req, res) => {
         try {
             const {idLogin, name, breed, size, color, sex, birth, death} = req.body;
-
+        
             if (!idLogin || !name || !breed || !size || !color || !sex || !birth || !death) {
                 return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }

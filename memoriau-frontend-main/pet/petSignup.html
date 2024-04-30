@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoriAU</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Olá </h2><p id="userItem"></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var valor = localStorage.getItem('Login');
+            document.getElementById('userItem').innerText = valor;
+        });
+    </script>
+
+
+    <h3>Cadastre o seu pet</h3>
+    <form id="petForm">
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="breed">Raça:</label>
+        <input type="text" id="breed" name="breed" required><br><br>
+
+        <label for="size">Porte:</label>
+        <input type="text" id="size" name="size" required><br><br>
+
+        <label for="color">Cor:</label>
+        <input type="text" id="color" name="color" required><br><br>
+
+        <label for="sex">Sexo:</label>
+        <select id="sex" name="sex">
+            <option value="M">Macho</option>
+            <option value="F">Fêmea</option>
+        </select>
+
+        <br><br>
+        <label for="birth">Nascimento:</label>
+        <input type="date" id="birth" name="birth" required><br><br>
+
+        <label for="death">Falecimento:</label>
+        <input type="date" id="death" name="death" required><br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script src="petSignup.js"></script>
+</body>
+</html>

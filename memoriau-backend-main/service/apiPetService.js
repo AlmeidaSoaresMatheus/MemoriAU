@@ -18,7 +18,7 @@ module.exports = {
     createPet: (idLogin, name, breed, size, color, sex, birth, death) => {
         return new Promise((resolve, reject) => {
     
-            const sql = 'INSERT INTO animal (idLogin, nome, raça, porte, cor, sexo, nascimento, falecimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+            const sql = 'INSERT INTO animal (idLogin, name, breed, size, color, sex, birth, death) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
             
             db.query(sql, [idLogin, name, breed, size, color, sex, birth, death], (error, result) => {
                 if (error) {

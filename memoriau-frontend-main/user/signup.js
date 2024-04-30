@@ -23,6 +23,7 @@ document.getElementById('userForm').addEventListener('submit', async function(ev
         }
         const newUser = await response.json();
         addUserToList(newUser);
+        goToPetSignup(newUser) 
         this.reset(); // Limpa o formulário após o envio bem-sucedido
     } catch (error) {
         console.error('Error:', error);
@@ -49,3 +50,9 @@ function addUserToList(user) {
     listItem.textContent = `Login: ${user.login}`;
     userList.appendChild(listItem);
 }
+
+function goToPetSignup(user) {
+    window.location.href = "../pet/petSignup.html"; // Redireciona para página2.html
+    localStorage.setItem('Login', user.login);
+}
+
