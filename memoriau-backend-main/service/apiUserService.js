@@ -24,7 +24,10 @@ module.exports = {
                     reject(error);
                     return;
                 }
-                const newUser = {login, password };
+
+                const userId = result.insertId;
+
+                const newUser = { idLogin: userId, login, password };
 
                 resolve(newUser);
             });

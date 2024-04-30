@@ -22,10 +22,9 @@ module.exports = {
 
     createUser: async (req, res) => {
         try {
-            const { login, password } = req.body;
+            const {login, password } = req.body;
 
             if (!login || !password) {
-                console.log(nameUser)
                 return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }
 
