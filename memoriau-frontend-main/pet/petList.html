@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animais Integrados</title>
+</head>
+<body>
+    <h1>Animais Integrados ao <span id="userName"></span></h1>
+    <ul id="petList"></ul>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            try {
+                const nameLogin = localStorage.getItem('Login');
+                
+                let url = 'http://localhost:3306/api/pets';
+                if (nameLogin) {
+                    url += `?nameLogin=${nameLogin}`;
+                }
+                
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error('Erro ao buscar animais');
+                }
+
+                const data = await response.json();
+                const pets = data.pets || []; // Acessando a matriz de animais dentro do objeto
+
+                const userNameElement = document.getElementById('userName');
+                userNameElement.textContent = nameLogin || 'Usuário';
+
+                const petListElement = document.getElementById('petList');
+
+                if (pets.length === 0) {
+                    const noPetsMessage = document.createElement('li');
+                    noPetsMessage.textContent = 'Nenhum animal registrado para este usuário.';
+                    petListElement.appendChild(noPetsMessage);
+                } else {
+                    pets.forEach(pet => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = `Nome: ${pet.name}, Raça: ${pet.breed}, Porte: ${pet.size}, Cor: ${pet.color}, Sexo: ${pet.sex}, Nascimento: ${pet.birth}, Falecimento: ${pet.death}`;
+                        petListElement.appendChild(listItem);
+                    });
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                console.error('Erro ao buscar animais');
+            }
+        });
+    </script>
+</body>
+</html>
