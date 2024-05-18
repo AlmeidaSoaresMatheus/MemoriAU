@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoriAU - Inscrever-se</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="placeholder-logo.png" alt="memoriAU">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Sobre o App</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+            <div class="search">
+                <i class="fa fa-search"></i>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="left-section">
+            <div class="background-image">
+                <img src="placeholder-background.png" alt="background">
+            </div>
+            <div class="content">
+                <h1>Memori<span class="highlight">AU</span></h1>
+                <p>Eternize seus momentos especiais com seu pet.</p>
+            </div>
+        </section>
+        <section class="right-section">
+            <div class="signup-form">
+                <h2>Inscrever-se</h2>
+                <form action="#" method="post">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="password">Senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" name="password" required>
+                        <i class="fa fa-eye"></i>
+                    </div>
+                    
+                    <label for="confirm-password">Confirmar senha</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <i class="fa fa-eye"></i>
+                    </div>
+                    
+                    <p>Ao clicar em "Criar conta", você concorda com nossos <a href="#">Termos de serviço</a> e <a href="#">Política de Privacidade</a></p>
+                    
+                    <button type="submit" class="signup-button">Criar conta</button>
+                </form>
+                <p>Já tem uma conta? <a href="/memoriau-frontend-main/login/login.html">Login</a></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="social-icons">
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-paper-plane"></i>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

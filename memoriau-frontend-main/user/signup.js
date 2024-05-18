@@ -6,6 +6,14 @@ document.getElementById('userForm').addEventListener('submit', async function(ev
     const password = formData.get('password');
 
     try {
+        // Verifica se já existe um usuário com o mesmo nome
+        const isUserExists = await checkUserExists(login);
+        if (isUserExists) {
+            alert('Usuário já cadastrado com esse nome.');
+            return; // Sai da função se o usuário já existe
+        }
+
+        // Se o usuário não existe, prossegue com o registro
         const requestBody = new URLSearchParams();
         requestBody.append('login', login);
         requestBody.append('password', password);
@@ -31,28 +39,17 @@ document.getElementById('userForm').addEventListener('submit', async function(ev
     }
 });
 
-async function getUsers() {
+async function checkUserExists(login) {
     try {
-        const response = await fetch('http://localhost:3306/api/users'); // Faz uma requisição GET para /api/users
+        const response = await fetch(`http://localhost:3306/api/users?login=${
+                       }`); // Verifica se existe um usuário com o mesmo nome
         if (!response.ok) {
-            throw new Error('Erro ao buscar usuários'); // Lança um erro se a requisição falhar
+            throw new Error('Erro ao verificar usuário');
         }
-        const data = await response.json(); // Extrai os dados da resposta
-        console.log('Usuários:', data.users); // Exibe os usuários no console (pode ser tratado de outra forma)
+        const data = await response.json();
+        return data.exists; // Retorna true se o usuário existe, false caso contrário
     } catch (error) {
-        console.error('Erro:', error); // Exibe o erro no console
+        console.error('Erro:', error);
+        return false; // Retorna false em caso de erro
     }
 }
-
-function addUserToList(user) {
-    const userList = document.getElementById('userList');
-    const listItem = document.createElement('li');
-    listItem.textContent = `Login: ${user.login}`;
-    userList.appendChild(listItem);
-}
-
-function goToPetSignup(user) {
-    window.location.href = "../pet/petSignup.html"; // Redireciona para página2.html
-    localStorage.setItem('Login', user.login);
-}
-
