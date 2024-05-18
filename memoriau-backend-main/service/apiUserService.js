@@ -14,7 +14,7 @@ module.exports = {
         });
     }, 
 
-    createUser: (login, password) => {
+    create: (login, password) => {
         return new Promise((resolve, reject) => {
 
             const sql = 'INSERT INTO user (login, password) VALUES (?, ?)';
@@ -29,5 +29,17 @@ module.exports = {
                 resolve(newUser);
             });
         });
-    }
+    },
+
+    find: (login) => {
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM user WHERE login = ?', [login], (error, results) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                resolve(results);
+            });
+        });
+    },
 };

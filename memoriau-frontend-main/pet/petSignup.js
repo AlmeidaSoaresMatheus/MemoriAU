@@ -12,8 +12,8 @@ document.getElementById('petForm').addEventListener('submit', async function(eve
 
     try {
         const requestBody = new URLSearchParams();
-        const idLogin = localStorage.getItem('Login');
-        requestBody.append('idLogin', idLogin);
+        const nameLogin = localStorage.getItem('Login');
+        requestBody.append('nameLogin', nameLogin);
         requestBody.append('name', name);
         requestBody.append('breed', breed);
         requestBody.append('size', size);

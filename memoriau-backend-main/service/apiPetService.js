@@ -1,11 +1,10 @@
 const { findAll } = require('../controller/apiPetsController');
 const db = require('../db');
 
-
 module.exports = {
-    findAll: (idLogin) => {
+    findAll: () => {
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM animal WHERE idLogin = ?', [idLogin], (error, results) => {
+            db.query('SELECT * FROM animal', (error, results) => {
                 if (error) {
                     reject(error);
                     return;
@@ -15,12 +14,12 @@ module.exports = {
         });
     }, 
 
-    createPet: (idLogin, name, breed, size, color, sex, birth, death) => {
+    create: (nameLogin, name, breed, size, color, sex, birth, death) => {
         return new Promise((resolve, reject) => {
     
-            const sql = 'INSERT INTO animal (idLogin, name, breed, size, color, sex, birth, death) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+            const sql = 'INSERT INTO animal (nameLogin, name, breed, size, color, sex, birth, death) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
             
-            db.query(sql, [idLogin, name, breed, size, color, sex, birth, death], (error, result) => {
+            db.query(sql, [nameLogin, name, breed, size, color, sex, birth, death], (error, result) => {
                 if (error) {
                     reject(error);
                     return;
@@ -33,5 +32,17 @@ module.exports = {
                 resolve(newPet);
             });
         });
-    }    
+    },
+    
+    find: (nameLogin) => {
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM animal WHERE nameLogin = ?', [nameLogin], (error, results) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                resolve(results);
+            });
+        });
+    }, 
 };

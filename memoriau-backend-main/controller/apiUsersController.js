@@ -20,7 +20,7 @@ module.exports = {
         }
     }, 
 
-    createUser: async (req, res) => {
+    create: async (req, res) => {
         try {
             const { login, password } = req.body;
             
@@ -28,7 +28,13 @@ module.exports = {
                 return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }
 
-            const newUser = await userService.createUser(login, password);
+            const findUser = await userService.find(login);
+
+            if (findUser.length  !== 0) {
+                return res.status(400).json({ error: 'login ja existe no banco' });
+            }
+
+            const newUser = await userService.create(login, password);
 
             res.status(201).json(newUser);
         } catch (error) {
