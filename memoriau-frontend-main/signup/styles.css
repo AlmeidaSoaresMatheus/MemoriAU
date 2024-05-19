@@ -78,21 +78,21 @@ main {
     background-color: #fff;
 }
 
-.signup-form {
+.signup-form-div {
     width: 80%;
 }
 
-.signup-form h2 {
+.signup-form-div h2 {
     color: #F9A830;
 }
 
-.signup-form label {
+.signup-form-div label {
     display: block;
     margin-top: 20px;
     font-weight: bold;
 }
 
-.signup-form input {
+.signup-form-div input {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -116,17 +116,17 @@ main {
     cursor: pointer;
 }
 
-.signup-form p {
+.signup-form-div p {
     text-align: center;
     margin-top: 20px;
 }
 
-.signup-form p a {
+.signup-form-div p a {
     color: #F9A830;
     text-decoration: none;
 }
 
-.signup-form p a:hover {
+.signup-form-div p a:hover {
     text-decoration: underline;
 }
 
