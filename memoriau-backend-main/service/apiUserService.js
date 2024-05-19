@@ -14,26 +14,26 @@ module.exports = {
         });
     }, 
 
-    create: (login, password) => {
+    create: (email, name, password) => {
         return new Promise((resolve, reject) => {
 
-            const sql = 'INSERT INTO user (login, password) VALUES (?, ?)';
+            const sql = 'INSERT INTO user (email, name, password) VALUES (?, ?, ?)';
             
-            db.query(sql, [login, password], (error, result) => {
+            db.query(sql, [email, name, password], (error, result) => {
                 if (error) {
                     reject(error);
                     return;
                 }
-                const newUser = {login, password};
+                const newUser = {email, name, password};
 
                 resolve(newUser);
             });
         });
     },
 
-    find: (login) => {
+    find: (email) => {
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM user WHERE login = ?', [login], (error, results) => {
+            db.query('SELECT * FROM user WHERE email = ?', [email], (error, results) => {
                 if (error) {
                     reject(error);
                     return;
