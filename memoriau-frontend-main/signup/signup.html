@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="placeholder-logo.png" alt="memoriAU">
+            <img src="../assets/images/memoriAU.png" alt="memoriAU">
         </div>
         <nav>
             <ul>
@@ -17,25 +17,18 @@
                 <li><a href="#">Sobre o App</a></li>
                 <li><a href="#">Contato</a></li>
             </ul>
-            <div class="search">
-                <i class="fa fa-search"></i>
-            </div>
         </nav>
     </header>
     <main>
         <section class="left-section">
             <div class="background-image">
-                <img src="placeholder-background.png" alt="background">
-            </div>
-            <div class="content">
-                <h1>Memori<span class="highlight">AU</span></h1>
-                <p>Eternize seus momentos especiais com seu pet.</p>
+                <img src="../assets/images/background.png" alt="background">
             </div>
         </section>
         <section class="right-section">
             <div class="signup-form">
                 <h2>Inscrever-se</h2>
-                <form action="#" method="post">
+                <form id="signup-form" action="#" method="post">
                     <label for="name">Nome</label>
                     <input type="text" id="name" name="name" required>
                     
@@ -53,7 +46,9 @@
                         <input type="password" id="confirm-password" name="confirm-password" required>
                         <i class="fa fa-eye"></i>
                     </div>
-                    
+
+                    <p id="error-message" class="error-message"></p>
+
                     <p>Ao clicar em "Criar conta", você concorda com nossos <a href="#">Termos de serviço</a> e <a href="#">Política de Privacidade</a></p>
                     
                     <button type="submit" class="signup-button">Criar conta</button>

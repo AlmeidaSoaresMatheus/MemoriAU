@@ -1,17 +1,15 @@
-// script.js
 
-// Toggle password visibility
-document.querySelectorAll('.password-wrapper i').forEach(icon => {
-    icon.addEventListener('click', () => {
-        const input = icon.previousElementSibling;
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-        } else {
-            input.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("signup-form");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm-password");
+    const errorMessage = document.getElementById("error-message");
+
+    form.addEventListener("submit", function(event) {
+        if (password.value !== confirmPassword.value) {
+            event.preventDefault(); // Impede o envio do formulário
+            errorMessage.textContent = "As senhas não coincidem. Por favor, tente novamente.";
+            errorMessage.style.color = "red"; // Estiliza a mensagem de erro
         }
     });
 });
