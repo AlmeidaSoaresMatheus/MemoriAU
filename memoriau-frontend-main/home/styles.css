@@ -34,7 +34,7 @@ nav ul li a {
 }
 
 nav ul li a.active {
-    color: #FFC107;
+    color: #F9A830;
 }
 
 .search input {
@@ -58,14 +58,14 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid #FFC107;
+    border: 2px solid #F9A830;
     padding: 20px;
     border-radius: 10px;
 }
 
 .add-icon {
     font-size: 24px;
-    color: #FFC107;
+    color: #F9A830;
 }
 
 .memories-carousel {
@@ -79,6 +79,8 @@ main {
     display: flex;
     overflow-x: auto;
     scroll-behavior: smooth;
+    background-color: rgba(255, 165, 0, 0.1); /* Fundo levemente alaranjado */
+    padding: 20px; /* Espaçamento interno */
 }
 
 .carousel-item {
@@ -86,8 +88,8 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 10px;
-    border: 1px solid #FFC107;
+    padding: 20px; /* Espaçamento interno */
+    border: 1px solid #F9A830;
     border-radius: 10px;
 }
 
@@ -100,5 +102,93 @@ main {
     background-color: transparent;
     border: none;
     font-size: 24px;
+    cursor: pointer;
+}
+
+.logo {
+    margin: 0 auto;
+}
+
+
+/* Adjust the carousel container */
+.memories-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    border: 1px solid #ccc; /* Add border for the container */
+    border-radius: 10px; /* Add border radius */
+    padding: 200px; /* Add padding */
+    overflow: hidden; /* Hide overflow */
+}
+/* Ajustes para o modal selectDateModal */
+#selectDateModal {
+    display: none; /* Inicialmente oculto */
+    justify-content: center; /* Centraliza na horizontal */
+    align-items: center; /* Centraliza na vertical */
+}
+
+#selectDateModal .modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+#selectDateModal h2 {
+    margin-bottom: 20px;
+}
+
+#selectDateModal label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#selectDateModal input.date-input {
+    margin-bottom: 10px;
+    padding: 10px;
+    width: calc(100% - 20px); /* Ajusta o tamanho do input */
+    max-width: 300px;
+}
+
+#selectDateModal button {
+    padding: 10px 20px;
+    background-color: #F9A830; /* Cor do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#selectDateModal button:hover {
+    background-color: #F9A830; /* Cor do botão ao passar o mouse */
+}
+#petNameModal button {
+    padding: 10px 20px;
+    background-color: #F9A830; /* Cor do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#uploadImageModal button {
+    padding: 10px 20px;
+    background-color: #F9A830; /* Cor do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#petSummaryModal button {
+    padding: 10px 20px;
+    background-color: #F9A830; /* Cor do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }

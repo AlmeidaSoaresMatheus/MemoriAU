@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoriAU</title>
+    <link rel="icon" href="../assets/icons/logo small.png">
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Custom styles for the modals */
@@ -76,16 +77,13 @@
                 <li><a href="#">Perfil</a></li>
             </ul>
         </nav>
-        <div class="search">
-            <input type="text" placeholder="Search">
-        </div>
     </header>
     <main>
         <section class="pets-section">
             <h2>Meus pets</h2>
             <div class="add-pet" id="addPetButton">
                 <div class="add-icon">+</div>
-                <p>Add pet</p>
+                <p>adicionar pet</p>
             </div>
         </section>
         <section class="memories-carousel">
@@ -112,45 +110,47 @@
         </section>
     </main>
 
-    <!-- Modal for pet selection -->
     <div id="addPetModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('addPetModal')">&times;</span>
             <h2>Adicione seu pet</h2>
             <p>Seu pet era um...</p>
-            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="dog.png" alt="Cachorro"><p>Cachorro</p></div>
-            <div class="pet-option" onclick="selectPet('Gato')"><img src="cat.png" alt="Gato"><p>Gato</p></div>
-            <div class="pet-option" onclick="selectPet('Peixe')"><img src="fish.png" alt="Peixe"><p>Peixe</p></div>
-            <div class="pet-option" onclick="selectPet('Hamster')"><img src="hamster.png" alt="Hamster"><p>Hamster</p></div>
-            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="bird.png" alt="Pássaro"><p>Pássaro</p></div>
-            <div class="pet-option" onclick="selectPet('Other')"><img src="other.png" alt="Other"><p>Other</p></div>
+            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="../assets/images/image 23.png" alt="Cachorro"><p>Cachorro</p></div>
+            <div class="pet-option" onclick="selectPet('Gato')"><img src="../assets/images/image 23.png" alt="Gato"><p>Gato</p></div>
+            <div class="pet-option" onclick="selectPet('Peixe')"><img src="../assets/images/image 23.png" alt="Peixe"><p>Peixe</p></div>
+            <div class="pet-option" onclick="selectPet('Hamster')"><img src="../assets/images/image 23.png" alt="Hamster"><p>Hamster</p></div>
+            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="../assets/images/image 23.png" alt="Pássaro"><p>Pássaro</p></div>
+            <div class="pet-option" onclick="selectPet('Other')"><img src="../assets/images/image 23.png" alt="Other"><p>Other</p></div>
         </div>
     </div>
 
-    <!-- Modal for gender selection -->
     <div id="selectGenderModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('selectGenderModal')">&times;</span>
             <h2>Escolha o gênero do seu pet</h2>
-            <div class="gender-option" onclick="selectGender('Macho')"><img src="male.png" alt="Male"><p>Macho</p></div>
-            <div class="gender-option" onclick="selectGender('Fêmea')"><img src="female.png" alt="Female"><p>Fêmea</p></div>
+            <div class="gender-option" onclick="selectGender('Macho')"><img src="../assets/icons/macho.png" alt="Male"><p>Macho</p></div>
+            <div class="gender-option" onclick="selectGender('Fêmea')"><img src="../assets/icons/femea.png" alt="Female"><p>Fêmea</p></div>
         </div>
     </div>
 
-    <!-- Modal for date selection -->
     <div id="selectDateModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('selectDateModal')">&times;</span>
             <h2>Adicione seu pet</h2>
-            <label for="birthDate">Quando seu pet nasceu?</label>
-            <input type="date" id="birthDate" class="date-input">
-            <label for="deathDate">Quando seu pet faleceu?</label>
-            <input type="date" id="deathDate" class="date-input">
-            <button class="btn btn-primary" onclick="showNameModal()">Próximo</button>
+            <div class="input-container">
+                <label for="birthDate">Quando seu pet nasceu?</label>
+                <input type="date" id="birthDate" class="date-input">
+            </div>
+            <div class="input-container">
+                <label for="deathDate">Quando seu pet faleceu?</label>
+                <input type="date" id="deathDate" class="date-input">
+            </div>
+            <div class="btn-container">
+                <button class="btn btn-primary" onclick="showNameModal()">Próximo</button>
+            </div>
         </div>
     </div>
 
-    <!-- Modal for pet name input -->
     <div id="petNameModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('petNameModal')">&times;</span>
@@ -161,7 +161,6 @@
         </div>
     </div>
 
-    <!-- Modal for image upload -->
     <div id="uploadImageModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('uploadImageModal')">&times;</span>
@@ -192,7 +191,6 @@
     <script>
         var petInfo = {};
 
-        // Get the modals
         var addPetModal = document.getElementById("addPetModal");
         var selectGenderModal = document.getElementById("selectGenderModal");
         var selectDateModal = document.getElementById("selectDateModal");
@@ -200,7 +198,6 @@
         var uploadImageModal = document.getElementById("uploadImageModal");
         var petSummaryModal = document.getElementById("petSummaryModal");
 
-        // Show the add pet modal
         document.getElementById("addPetButton").onclick = function() {
             addPetModal.style.display = "block";
         }
