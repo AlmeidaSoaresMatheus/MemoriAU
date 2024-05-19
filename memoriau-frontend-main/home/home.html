@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoriAU</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom styles for the modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pet-option, .gender-option {
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .pet-option img, .gender-option img {
+            width: 50px;
+            height: 50px;
+        }
+        .date-input, .name-input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+        .summary {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="MemoriAU">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Comunidade</a></li>
+                <li><a href="#">Perfil</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <input type="text" placeholder="Search">
+        </div>
+    </header>
+    <main>
+        <section class="pets-section">
+            <h2>Meus pets</h2>
+            <div class="add-pet" id="addPetButton">
+                <div class="add-icon">+</div>
+                <p>Add pet</p>
+            </div>
+        </section>
+        <section class="memories-carousel">
+            <button class="carousel-btn prev-btn">&lt;</button>
+            <div class="carousel">
+                <div class="carousel-item">
+                    <img src="image1.png" alt="Gratidão Diária">
+                    <p>Gratidão Diária</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="image2.png" alt="Quadro de Honra">
+                    <p>Quadro de Honra</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="image3.png" alt="Linha do Tempo">
+                    <p>Linha do Tempo</p>
+                </div>
+                <div class="carousel-item">
+                    <img src="image4.png" alt="Memórias">
+                    <p>Memórias</p>
+                </div>
+            </div>
+            <button class="carousel-btn next-btn">&gt;</button>
+        </section>
+    </main>
+
+    <!-- Modal for pet selection -->
+    <div id="addPetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('addPetModal')">&times;</span>
+            <h2>Adicione seu pet</h2>
+            <p>Seu pet era um...</p>
+            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="dog.png" alt="Cachorro"><p>Cachorro</p></div>
+            <div class="pet-option" onclick="selectPet('Gato')"><img src="cat.png" alt="Gato"><p>Gato</p></div>
+            <div class="pet-option" onclick="selectPet('Peixe')"><img src="fish.png" alt="Peixe"><p>Peixe</p></div>
+            <div class="pet-option" onclick="selectPet('Hamster')"><img src="hamster.png" alt="Hamster"><p>Hamster</p></div>
+            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="bird.png" alt="Pássaro"><p>Pássaro</p></div>
+            <div class="pet-option" onclick="selectPet('Other')"><img src="other.png" alt="Other"><p>Other</p></div>
+        </div>
+    </div>
+
+    <!-- Modal for gender selection -->
+    <div id="selectGenderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('selectGenderModal')">&times;</span>
+            <h2>Escolha o gênero do seu pet</h2>
+            <div class="gender-option" onclick="selectGender('Macho')"><img src="male.png" alt="Male"><p>Macho</p></div>
+            <div class="gender-option" onclick="selectGender('Fêmea')"><img src="female.png" alt="Female"><p>Fêmea</p></div>
+        </div>
+    </div>
+
+    <!-- Modal for date selection -->
+    <div id="selectDateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('selectDateModal')">&times;</span>
+            <h2>Adicione seu pet</h2>
+            <label for="birthDate">Quando seu pet nasceu?</label>
+            <input type="date" id="birthDate" class="date-input">
+            <label for="deathDate">Quando seu pet faleceu?</label>
+            <input type="date" id="deathDate" class="date-input">
+            <button class="btn btn-primary" onclick="showNameModal()">Próximo</button>
+        </div>
+    </div>
+
+    <!-- Modal for pet name input -->
+    <div id="petNameModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('petNameModal')">&times;</span>
+            <h2>Adicione o nome do seu pet</h2>
+            <label for="petName">Nome do seu pet:</label>
+            <input type="text" id="petName" class="name-input" placeholder="Digite o nome do seu pet">
+            <button class="btn btn-primary" onclick="showImageUploadModal()">Próximo</button>
+        </div>
+    </div>
+
+    <!-- Modal for image upload -->
+    <div id="uploadImageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('uploadImageModal')">&times;</span>
+            <h2>Adicione uma imagem do seu pet</h2>
+            <input type="file" id="petImage" class="name-input">
+            <button class="btn btn-primary" onclick="savePetInfo()">Salvar</button>
+        </div>
+    </div>
+
+    <!-- Modal for pet information summary -->
+    <div id="petSummaryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('petSummaryModal')">&times;</span>
+            <h2>Pet cadastrado</h2>
+            <div class="summary">
+                <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
+                <p><strong>Gênero:</strong> <span id="summaryGender"></span></p>
+                <p><strong>Nome:</strong> <span id="summaryName"></span></p>
+                <p><strong>Data de Nascimento:</strong> <span id="summaryBirthDate"></span></p>
+                <p><strong>Data de Falecimento:</strong> <span id="summaryDeathDate"></span></p>
+                <p><strong>Imagem:</strong></p>
+                <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
+            </div>
+            <button class="btn btn-primary" onclick="closeModal('petSummaryModal')">Ver detalhes</button>
+        </div>
+    </div>
+
+    <script>
+        var petInfo = {};
+
+        // Get the modals
+        var addPetModal = document.getElementById("addPetModal");
+        var selectGenderModal = document.getElementById("selectGenderModal");
+        var selectDateModal = document.getElementById("selectDateModal");
+        var petNameModal = document.getElementById("petNameModal");
+        var uploadImageModal = document.getElementById("uploadImageModal");
+        var petSummaryModal = document.getElementById("petSummaryModal");
+
+        // Show the add pet modal
+        document.getElementById("addPetButton").onclick = function() {
+            addPetModal.style.display = "block";
+        }
+
+        function selectPet(petType) {
+            petInfo.type = petType;
+            addPetModal.style.display = "none";
+            selectGenderModal.style.display = "block";
+        }
+
+        function selectGender(gender) {
+            petInfo.gender = gender;
+            selectGenderModal.style.display = "none";
+            selectDateModal.style.display = "block";
+        }
+
+        function showNameModal() {
+            petInfo.birthDate = document.getElementById("birthDate").value;
+            petInfo.deathDate = document.getElementById("deathDate").value;
+            selectDateModal.style.display = "none";
+            petNameModal.style.display = "block";
+        }
+
+        function showImageUploadModal() {
+            petInfo.name = document.getElementById("petName").value;
+            petNameModal.style.display = "none";
+            uploadImageModal.style.display = "block";
+        }
+
+        function savePetInfo() {
+            var imageFile = document.getElementById("petImage").files[0];
+            if (imageFile) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    petInfo.image = e.target.result;
+                    displaySummary();
+                }
+                reader.readAsDataURL(imageFile);
+            } else {
+                alert("Please upload an image.");
+            }
+        }
+
+        function displaySummary() {
+            document.getElementById("summaryType").innerText = petInfo.type;
+            document.getElementById("summaryGender").innerText = petInfo.gender;
+            document.getElementById("summaryName").innerText = petInfo.name;
+            document.getElementById("summaryBirthDate").innerText = petInfo.birthDate;
+            document.getElementById("summaryDeathDate").innerText = petInfo.deathDate;
+            document.getElementById("summaryImage").src = petInfo.image;
+
+            uploadImageModal.style.display = "none";
+            petSummaryModal.style.display = "block";
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
