@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoriAU - Memórias</title>
+    <link rel="icon" href="../assets/icons/logo small.png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f4;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            background-color: #f4f4f4;
+        }
+        .logo img {
+            width: 120px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        nav ul li a.active {
+            font-weight: bold;
+        }
+        .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .container h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .container p {
+            font-size: 18px;
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .carousel-item {
+            min-width: 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .carousel-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .add-memory {
+            background-color: #f4f4f4;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .add-memory p {
+            margin: 10px 0 0 0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .input-container {
+            margin: 10px 0;
+            text-align: left;
+        }
+        .input-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-container input,
+        .input-container textarea,
+        .input-container select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="../assets/images/memoriAU.png" alt="MemoriAU">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="#">Comunidade</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="memorias.html" class="active">Memórias</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Colecione Memórias</h1>
+        <p>Somos feitos de memórias, das marcas que deixamos no mundo e daqueles que guardamos no peito. A vida passa na velocidade da luz, mas cada instante é eterno, aprecie...</p>
+        <div class="carousel">
+            <div class="carousel-item add-memory" onclick="openMemoryModal()">
+                <div class="add-icon">+</div>
+                <p>Adicionar memória</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="memoryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('memoryModal')">&times;</span>
+            <h2>Adicionar Memória</h2>
+            <div class="input-container">
+                <label for="petSelect">Selecione seu pet:</label>
+                <select id="petSelect" class="name-input">
+                    <!-- Options will be dynamically added here -->
+                    <option value="pet1">Pet 1</option>
+                    <option value="pet2">Pet 2</option>
+                </select>
+            </div>
+            <div class="input-container">
+                <label for="memoryText">Memória:</label>
+                <textarea id="memoryText" class="name-input" placeholder="Digite sua memória"></textarea>
+            </div>
+            <div class="input-container">
+                <label for="memoryImage">Imagem do pet:</label>
+                <input type="file" id="memoryImage" class="name-input">
+            </div>
+            <div class="btn-container">
+                <button class="btn" onclick="saveMemory()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openMemoryModal() {
+            document.getElementById('memoryModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function saveMemory() {
+            const petSelect = document.getElementById('petSelect');
+            const memoryText = document.getElementById('memoryText').value;
+            const memoryImage = document.getElementById('memoryImage').files[0];
+            const petName = petSelect.options[petSelect.selectedIndex].text;
+
+            if (memoryText && memoryImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newMemory = document.createElement('div');
+                    newMemory.classList.add('carousel-item');
+                    newMemory.innerHTML = `
+                        <img src="${e.target.result}" alt="Pet Image">
+                        <div>
+                            <p><strong>Nome:</strong> ${petName}</p>
+                            <p><strong>Memória:</strong> ${memoryText}</p>
+                        </div>
+                    `;
+                    document.querySelector('.carousel').appendChild(newMemory);
+                    closeModal('memoryModal');
+                };
+                reader.readAsDataURL(memoryImage);
+            } else {
+                alert('Por favor, preencha todos os campos e selecione uma imagem.');
+            }
+        }
+    </script>
+</body>
+</html>
