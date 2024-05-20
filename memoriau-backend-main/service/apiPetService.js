@@ -14,12 +14,12 @@ module.exports = {
         });
     }, 
 
-    create: (nameLogin, name, breed, size, color, sex, birth, death) => {
+    create: (email, name, breed, size, color, sex, birth, death) => {
         return new Promise((resolve, reject) => {
     
-            const sql = 'INSERT INTO animal (nameLogin, name, breed, size, color, sex, birth, death) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+            const sql = 'INSERT INTO animal (email, name, breed, size, color, sex, birth, death) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
             
-            db.query(sql, [nameLogin, name, breed, size, color, sex, birth, death], (error, result) => {
+            db.query(sql, [email, name, breed, size, color, sex, birth, death], (error, result) => {
                 if (error) {
                     reject(error);
                     return;
@@ -27,16 +27,16 @@ module.exports = {
     
                 const petId = result.insertId;
     
-                const newPet = { idAnimal: petId, name, breed, size, color, sex, birth, death };
+                const newPet = {idAnimal: petId, email, name, breed, size, color, sex, birth, death};
     
                 resolve(newPet);
             });
         });
     },
     
-    find: (nameLogin) => {
+    find: (email) => {
         return new Promise((resolve, reject) => {
-            db.query('SELECT * FROM animal WHERE nameLogin = ?', [nameLogin], (error, results) => {
+            db.query('SELECT * FROM animal WHERE email = ?', [email], (error, results) => {
                 if (error) {
                     reject(error);
                     return;
