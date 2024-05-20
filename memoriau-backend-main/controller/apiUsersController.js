@@ -9,8 +9,8 @@ module.exports = {
 
             for (let i in users) {
                 json.users.push({
-                    id: users[i].id,
-                    login: users[i].login
+                    name: users[i].name,
+                    email:users[i].email
                 });
             }
             res.json(json);

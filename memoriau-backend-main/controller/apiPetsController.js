@@ -5,19 +5,19 @@ module.exports = {
         try {
             let json = {pets: [] };
 
-            const nameLogin = req.query.nameLogin;
+            const email = req.query.email;
 
             let pets;
 
-            if (!nameLogin) {
+            if (!email) {
                 pets = await petService.findAll();
             } else { 
-                 pets = await petService.find(nameLogin);
+                 pets = await petService.find(email);
             }
 
             for (let pet in pets) {
                 json.pets.push({
-                    nameLogin: pets[pet].nameLogin,
+                    email: pets[pet].email,
                     name: pets[pet].name,
                     breed: pets[pet].breed,
                     size: pets[pet].size,
@@ -36,13 +36,13 @@ module.exports = {
 
     create: async (req, res) => {
         try {
-            const {nameLogin, name, breed, size, color, sex, birth, death} = req.body;
+            const {email, name, breed, size, color, sex, birth, death} = req.body;
 
-            if (!nameLogin || !name || !breed || !size || !color || !sex || !birth || !death) {
+            if (!email || !name || !breed || !size || !color || !sex || !birth || !death) {
                 return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }
 
-            const newPet = await petService.create(nameLogin, name, breed, size, color, sex, birth, death);
+            const newPet = await petService.create(email, name, breed, size, color, sex, birth, death);
 
             res.status(201).json(newPet);
         } catch (error) {
