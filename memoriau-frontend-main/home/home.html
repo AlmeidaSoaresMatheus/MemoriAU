@@ -63,6 +63,29 @@
             margin: 10px 0;
             text-align: left;
         }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+        .carousel-item {
+            flex: none;
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 10px;
+            scroll-snap-align: center;
+            text-align: center;
+        }
+        .carousel-item img {
+            max-width: 100%;
+            height: auto;
+        }
+        .carousel-btn {
+            background-color: #ccc;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -79,34 +102,20 @@
         </nav>
     </header>
     <main>
-        <section class="pets-section">
-            <h2>Meus pets</h2>
-            <div class="add-pet" id="addPetButton">
-                <div class="add-icon">+</div>
-                <p>adicionar pet</p>
-            </div>
-        </section>
+
+  
         <section class="memories-carousel">
+            <section class="pets-section">
+                <h2>Meus pets</h2>
+                <div class="add-pet" id="addPetButton">
+                    <div class="add-icon">+</div>
+                    <p>adicionar pet</p>
+                </div>
+            </section>
+
             <button class="carousel-btn prev-btn">&lt;</button>
-            <div class="carousel">
-                <div class="carousel-item">
-                    <img src="../assets/images/gratidao.png" alt="Gratidão Diária">
-                    <p>Gratidão Diária</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/images/quadrodehonra.png" alt="Quadro de Honra">
-                    <p>Quadro de Honra</p>
-                </div>
-                <div class="carousel-item">
-                    <img src="../assets/images/linhatempo.png" alt="Linha do Tempo">
-                    <p>Linha do Tempo</p>
-                </div>
-                <div class="carousel-item">
-                    <a href="../memorias/memorias.html">
-                        <img src="../assets/images/memorias.png" alt="Memórias">
-                        <p>Memórias</p>
-                    </a>
-                </div>
+            
+            <div class="carousel" id="petsCarousel">
             </div>
             <button class="carousel-btn next-btn">&gt;</button>
         </section>
@@ -176,7 +185,8 @@
     <div id="petSummaryModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('petSummaryModal')">&times;</span>
-            <h2>Pet cadastrado</h2>
+            <h2>Pet cadastrado</h2>         
+            <h2>Vamos juntos relembrar as grandes memórias...</h2>
             <div class="summary">
                 <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
                 <p><strong>Gênero:</strong> <span id="summaryGender"></span></p>
@@ -186,9 +196,35 @@
                 <p><strong>Imagem:</strong></p>
                 <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
             </div>
-            <button class="btn btn-primary" onclick="closeModal('petSummaryModal')">Ver detalhes</button>
+            <button class="btn btn-primary" onclick="addPetToCarousel()">Ver detalhes</button>
         </div>
     </div>
+    <section class="memories-carousel">
+        <button class="carousel-btn prev-btn">&lt;</button>
+        <div class="carousel">
+            <div class="carousel-item">
+                <img src="../assets/images/gratidao.png" alt="Gratidão Diária">
+                <p>Gratidão Diária</p>
+            </div>
+            <div class="carousel-item">
+                <img src="../assets/images/quadrodehonra.png" alt="Quadro de Honra">
+                <p>Quadro de Honra</p>
+            </div>
+            <div class="carousel-item">
+                <img src="../assets/images/linhatempo.png" alt="Linha do Tempo">
+                <p>Linha do Tempo</p>
+            </div>
+            <div class="carousel-item">
+                <a href="../memorias/memorias.html">
+                    <img src="../assets/images/memorias.png" alt="Memórias">
+                    <p>Memórias</p>
+                </a>
+            </div>
+        </div>
+        <button class="carousel-btn next-btn">&gt;</button>
+    </section>
+</main>
+
 
     <script>
         var petInfo = {};
@@ -239,7 +275,7 @@
                 }
                 reader.readAsDataURL(imageFile);
             } else {
-                alert("Please upload an image.");
+                alert("Por favor, adicione uma imagem.");
             }
         }
 
@@ -253,6 +289,25 @@
 
             uploadImageModal.style.display = "none";
             petSummaryModal.style.display = "block";
+        }
+
+        function addPetToCarousel() {
+            var carousel = document.getElementById("petsCarousel");
+
+            var newItem = document.createElement("div");
+            newItem.className = "carousel-item";
+
+            var img = document.createElement("img");
+            img.src = petInfo.image;
+            newItem.appendChild(img);
+
+            var name = document.createElement("p");
+            name.innerText = petInfo.name;
+            newItem.appendChild(name);
+
+            carousel.appendChild(newItem);
+
+            petSummaryModal.style.display = "none";
         }
 
         function closeModal(modalId) {

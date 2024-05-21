@@ -72,3 +72,28 @@
         document.getElementById('addPetButton').onclick = function() {
             openModal('addPetModal');
         };
+        function savePet() {
+            const petSelect = document.getElementById('petSelect');
+            const memoryImage = document.getElementById('summaryImage').files[0];
+            const petName = petSelect.options[petSelect.selectedIndex].text;
+        
+            if (petName && petImage) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newPet = document.createElement('div');
+                    newPet.classList.add('carousel-item');
+                    newPet.innerHTML = `
+                        <img src="${e.target.result}" alt="Pet Image">
+                        <div>
+                            <p><strong>Nome:</strong> ${petName}</p>
+                        </div>
+                    `;
+                    document.querySelector('.carousel').appendChild(newPet);
+                    closeModal('petModal');
+                };
+                reader.readAsDataURL(petImage);
+            } else {
+                alert('Por favor, preencha todos os campos e selecione uma imagem.');
+            }
+        } 
+        

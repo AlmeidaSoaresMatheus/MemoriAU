@@ -49,7 +49,7 @@ main {
 
 .pets-section {
     display: flex;
-    align-items: center;
+    align-items: left;
     gap: 20px;
 }
 
@@ -80,7 +80,7 @@ main {
     overflow-x: auto;
     scroll-behavior: smooth;
     background-color: rgba(255, 165, 0, 0.1); /* Fundo levemente alaranjado */
-    padding: 20px; /* Espaçamento interno */
+    padding: 50px; /* Espaçamento interno */
 }
 
 .carousel-item {
@@ -88,15 +88,17 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 20px; /* Espaçamento interno */
+    padding: 10px; /* Reduce internal padding */
     border: 1px solid #F9A830;
     border-radius: 10px;
 }
 
 .carousel-item img {
     max-width: 100px;
+    max-height: 100px; /* Limit image height */
     border-radius: 10px;
 }
+
 
 .carousel-btn {
     background-color: transparent;
@@ -119,7 +121,7 @@ main {
     margin-top: 20px;
     border: 1px solid #ccc; /* Add border for the container */
     border-radius: 10px; /* Add border radius */
-    padding: 200px; /* Add padding */
+    padding: 100px; /* Add padding */
     overflow: hidden; /* Hide overflow */
 }
 /* Ajustes para o modal selectDateModal */
