@@ -33,13 +33,13 @@ module.exports = {
             const { email, name, password } = req.body;
             
             if (!email || !name || !password) {
-                res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
+                return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }
 
             const findUser = await userService.find(email);
 
             if (findUser.length  !== 0) {
-                res.status(400).json({ error: 'login ja existe no banco' });
+                return res.status(400).json({ error: 'login ja existe no banco' });
             }
 
             const newUser = await userService.create(email, name, password);
