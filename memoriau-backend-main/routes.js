@@ -13,6 +13,6 @@ router.get('/pets', apiPetsController.findAll);
 router.post('/pets', apiPetsController.create);
 router.get('/file/:key(*)', apiS3Controller.findAll);
 router.post('/users/verifyLogin', apiUsersController.verifyLogin);
-router.post('/upload', multer.single('image'), apiS3Controller.upload);
+router.post('/file/uploadImage', multer.single('image'), apiS3Controller.upload);
 
 module.exports = router;
