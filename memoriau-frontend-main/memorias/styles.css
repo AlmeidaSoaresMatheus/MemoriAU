@@ -352,3 +352,66 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+/* Estilos do modal memoryModal */
+#memoryModal {
+    display: flex; /* Mostra o modal com flexbox */
+    justify-content: center; /* Centraliza na horizontal */
+    align-items: center; /* Centraliza na vertical */
+    position: fixed; /* Fixa a posição do modal */
+    z-index: 1; /* Garante que o modal fique acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro semi-transparente */
+}
+
+#memoryModal .modal-content {
+    background-color: #fefefe;
+    padding: 40px; /* Aumenta o padding */
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* Aumenta a largura máxima */
+    border-radius: 10px; /* Bordas arredondadas */
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#memoryModal .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#memoryModal .close:hover,
+#memoryModal .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#memoryModal .btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#memoryModal button {
+    padding: 15px 30px; /* Aumenta o padding */
+    margin: 10px 0; /* Espaçamento entre os botões */
+    background-color: #F9A830; /* Cor do botão */
+    color: #fff; /* Cor do texto */
+    border: none;
+    border-radius: 10px; /* Bordas mais arredondadas */
+    cursor: pointer;
+    display: block; /* Coloca os botões um abaixo do outro */
+    width: 100%; /* Faz os botões ocuparem toda a largura disponível */
+    max-width: 400px; /* Largura máxima dos botões */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#memoryModal button:hover {
+    background-color: #e89c27; /* Cor do botão ao passar o mouse */
+}
