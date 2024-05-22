@@ -5,7 +5,15 @@ module.exports = {
         try {
             let json = {users: [] };
 
-            let users = await userService.findAll();
+            const email = req.query.email;
+
+            let users;
+
+            if (!email) {
+                users = await userService.findAll();
+            } else { 
+                users = await userService.find(email);
+            }
 
             for (let i in users) {
                 json.users.push({
