@@ -5,7 +5,15 @@ module.exports = {
         try {
             let json = {users: [] };
 
-            let users = await userService.findAll();
+            const email = req.query.email;
+
+            let users;
+
+            if (!email) {
+                users = await userService.findAll();
+            } else { 
+                users = await userService.find(email);
+            }
 
             for (let i in users) {
                 json.users.push({
@@ -41,5 +49,26 @@ module.exports = {
             console.error('Erro ao cadastrar usuário:', error);
             res.status(500).json({ error: 'Erro ao cadastrar o usuário.' });
         }
+    }, 
+    verifyLogin: async (req, res) => {
+        try {
+            const { email, password } = req.body;
+
+            if (!email || !password) {
+                return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
+            }
+
+            const verifyLogin = await userService.verifyLogin(email, password);
+
+            if (verifyLogin  === "Error") {
+                return res.status(400).json({ error: 'credenciais incorretas.' });
+            }
+
+            res.status(201).json(verifyLogin);
+        } catch (error) {
+            console.error('Erro ao verificar credenciais:', error);
+            res.status(500).json({ error: 'Erro ao verificar as credenciais.' });
+        }
     }
+
 };

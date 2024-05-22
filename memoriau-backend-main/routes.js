@@ -11,5 +11,7 @@ router.post('/users', apiUsersController.create);
 router.get('/pets', apiPetsController.findAll);
 router.post('/pets', apiPetsController.create);
 router.get('/file/:key', apiS3Controller.findAll);
+router.post('/file/:key', apiS3Controller.findAll);
+router.post('/users/verifyLogin', apiUsersController.verifyLogin);
 
 module.exports = router;
