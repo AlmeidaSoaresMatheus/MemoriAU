@@ -39,7 +39,7 @@ module.exports = {
             const {email, name, breed, size, color, sex, birth, death} = req.body;
 
             if (!email || !name || !breed || !size || !color || !sex || !birth || !death) {
-                return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
+                res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }
 
             const newPet = await petService.create(email, name, breed, size, color, sex, birth, death);
