@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow: hidden; /* Oculta a barra de rolagem */
 }
 
 header {
@@ -11,12 +12,10 @@ header {
     align-items: center;
     padding: 10px 20px;
     border-bottom: 1px solid #ccc;
-    border-radius: 10px;
 }
 
 .logo img {
     height: 40px;
-    border-radius: 10px;
 }
 
 nav ul {
@@ -25,19 +24,16 @@ nav ul {
     gap: 20px;
     margin: 0;
     padding: 0;
-    border-radius: 10px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: #000;
     font-weight: bold;
-    border-radius: 10px;
 }
 
 nav ul li a.active {
     color: #F9A830;
-    border-radius: 10px;
 }
 
 .search input {
@@ -48,14 +44,12 @@ nav ul li a.active {
 
 main {
     padding: 20px;
-    border-radius: 10px;
 }
 
 .pets-section {
     display: flex;
-    align-items: left;
+    align-items: flex-start;
     gap: 20px;
-    border-radius: 10px;
 }
 
 .add-pet {
@@ -63,7 +57,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid #ccc;
+    border: 2px solid #F9A830;
     padding: 20px;
     border-radius: 10px;
 }
@@ -71,7 +65,6 @@ main {
 .add-icon {
     font-size: 24px;
     color: #F9A830;
-    border-radius: 10px;
 }
 
 .memories-carousel {
@@ -93,7 +86,6 @@ main {
     padding: 20px;
     justify-content: center;
     width: 100%;
-    border-radius: 10px;
 }
 
 .carousel-item {
@@ -103,7 +95,6 @@ main {
     gap: 10px;
     padding: 20px;
     max-width: 150px;
-    border-radius: 10px;
 }
 
 .carousel-item img {
@@ -116,19 +107,12 @@ main {
     border: none;
     font-size: 24px;
     cursor: pointer;
-    border-radius: 10px;
-}
-
-.logo {
-    margin: 0 auto;
-    border-radius: 10px;
 }
 
 #selectDateModal {
     display: none;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
 }
 
 #selectDateModal .modal-content {
@@ -138,18 +122,16 @@ main {
     width: 80%;
     max-width: 500px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 10px; /* Adiciona bordas arredondadas */
 }
 
 #selectDateModal h2 {
     margin-bottom: 20px;
-    border-radius: 10px;
 }
 
 #selectDateModal label {
     display: block;
     margin-bottom: 10px;
-    border-radius: 10px;
 }
 
 #selectDateModal input.date-input {
@@ -157,7 +139,6 @@ main {
     padding: 10px;
     width: calc(100% - 20px);
     max-width: 300px;
-    border-radius: 10px;
 }
 
 #selectDateModal button {
@@ -170,8 +151,13 @@ main {
 }
 
 #selectDateModal button:hover {
-    background-color: #F9A830;
-    border-radius: 10px;
+    background-color: #e89c27;
+}
+
+#petNameModal .modal-content,
+#uploadImageModal .modal-content,
+#petSummaryModal .modal-content {
+    border-radius: 10px; /* Adiciona bordas arredondadas */
 }
 
 #petNameModal button,
@@ -185,13 +171,6 @@ main {
     cursor: pointer;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    border-radius: 10px;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -201,9 +180,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
 }
 
 .modal-content {
@@ -214,7 +191,7 @@ body {
     width: 80%;
     max-width: 500px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 10px; /* Adiciona bordas arredondadas */
 }
 
 .close {
@@ -222,7 +199,6 @@ body {
     float: right;
     font-size: 28px;
     font-weight: bold;
-    border-radius: 10px;
 }
 
 .close:hover,
@@ -232,28 +208,22 @@ body {
     cursor: pointer;
 }
 
-.pet-option,
-.gender-option {
+.pet-option, .gender-option {
     display: inline-block;
     margin: 10px;
     cursor: pointer;
-    border-radius: 10px;
 }
 
-.pet-option img,
-.gender-option img {
+.pet-option img, .gender-option img {
     width: 50px;
     height: 50px;
-    border-radius: 10px;
 }
 
-.date-input,
-.name-input {
+.date-input, .name-input {
     margin: 10px 0;
     padding: 10px;
     width: 80%;
     max-width: 300px;
-    border-radius: 10px;
 }
 
 .summary {
@@ -268,18 +238,16 @@ body {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    border-radius: 10px;
 }
 
 .carousel-item {
     flex: none;
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 150px;
+    max-height: 150px;
     margin-right: 10px;
     scroll-snap-align: center;
     text-align: center;
     position: relative;
-    border-radius: 10px;
 }
 
 .carousel-item img {
@@ -293,7 +261,6 @@ body {
     border: none;
     padding: 10px;
     cursor: pointer;
-    border-radius: 10px;
 }
 
 .delete-btn {
@@ -306,5 +273,4 @@ body {
     border-radius: 50%;
     cursor: pointer;
     padding: 5px;
-    border-radius: 10px;
 }
