@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Imagens</title>
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .gallery img {
+            margin: 10px;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galeria de Imagens</h1>
+    <div>
+        <input type="text" id="email" placeholder="Email">
+        <input type="text" id="nameAnimal" placeholder="Nome do Animal">
+        <button onclick="fetchImages()">Buscar Imagens</button>
+    </div>
+    <p id="loading" style="display: none;">Carregando...</p>
+    <p id="error" style="color: red;"></p>
+    <div id="gallery" class="gallery"></div>
+
+    <script>
+        async function fetchImages() {
+            const email = document.getElementById('email').value;
+            const nameAnimal = document.getElementById('nameAnimal').value;
+            const loading = document.getElementById('loading');
+            const error = document.getElementById('error');
+            const gallery = document.getElementById('gallery');
+
+            loading.style.display = 'block';
+            error.textContent = '';
+            gallery.innerHTML = '';
+
+            try {
+                const response = await fetch(`http://localhost:3306/api/file/findFile?email=${email}&nameAnimal=${nameAnimal}`);
+                if (!response.ok) {
+                    throw new Error(await response.text());
+                }
+
+                const images = await response.json();
+                images.forEach(img => {
+                    if (img.data.trim() !== "") {
+                        const imgElement = document.createElement('img');
+                        imgElement.src = `data:image/jpeg;base64,${img.data}`;
+                        gallery.appendChild(imgElement);
+                    }
+                });
+            } catch (err) {
+                error.textContent = err.message;
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
