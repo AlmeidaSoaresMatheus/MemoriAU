@@ -1,4 +1,3 @@
-/* styles.css */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -14,15 +13,16 @@ input[type="file"] {
 }
 
 button {
-    background-color: #0074D9;
+    background-color: #F9A830;
     color: #FFF;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 20px; /* Botões arredondados */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #E18E28; /* Alterado para uma cor diferente no hover */
 }
 
 #listaImagens {
