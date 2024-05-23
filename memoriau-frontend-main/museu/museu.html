@@ -5,7 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoriAU - Memórias</title>
     <link rel="icon" href="../assets/icons/logo small.png">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        nav ul li a.active {
+            color: #F9A830;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .upload-container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .card {
+            width: 150px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .card img {
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-body {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -14,12 +85,81 @@
         </div>
         <nav>
             <ul>
-                <li><a href="../home/home.html">Home</a></li>
+                <li><a href="../home/home.html" class="active">Home</a></li>
                 <li><a href="#">Comunidade</a></li>
                 <li><a href="#">Perfil</a></li>
             </ul>
         </nav>
     </header>
+    <div class="container">
+        <div class="upload-container">
+            <button class="button" onclick="showUploadForm()"> Crie uma memória +</button>
+            <button class="button" onclick="viewTimeline()">Ver linha do tempo > </button>
+            
+        </div>
+        <div id="uploadForm" style="display: none;">
+            <div class="form-group">
+                <label for="imageName"> memória:</label>
+                <input type="text" class="form-control" id="imageName" placeholder="Dê um nome para sua memória">
+            </div>
+            <div class="form-group">
+                <label for="imageDate"> Data:</label>
+                <input type="date" class="form-control" id="imageDate">
+            </div>
+            <div class="form-group">
+                <label for="imageFile">Imagem:</label>
+                <input type="file" class="form-control" id="imageFile">
+            </div>
+            <button class="button" onclick="uploadImage()">Salvar</button>
+        </div>
+        <div id="imageList" class="d-flex flex-wrap"></div>
+    </div>
+    <script>
+        let images = [];
 
+        function showUploadForm() {
+            document.getElementById('uploadForm').style.display = 'block';
+        }
+
+        function viewTimeline() {
+            images.sort((a, b) => new Date(a.date) - new Date(b.date));
+            displayImages();
+        }
+
+        function uploadImage() {
+            const name = document.getElementById('imageName').value;
+            const date = document.getElementById('imageDate').value;
+            const fileInput = document.getElementById('imageFile');
+            const file = fileInput.files[0];
+
+            if (name && date && file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    images.push({ name, date, src: e.target.result });
+                    displayImages();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Preencha todos os campos necessários');
+            }
+        }
+
+        function displayImages() {
+            const imageList = document.getElementById('imageList');
+            imageList.innerHTML = '';
+            images.forEach(image => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <img src="${image.src}" class="card-img-top" alt="${image.name}">
+                    <div class="card-body">
+                        <h5 class="card-title">${image.name}</h5>
+                        <p class="card-text">${image.date}</p>
+                    </div>
+                `;
+                imageList.appendChild(card);
+            });
+        }
+    </script>
 </body>
 </html>

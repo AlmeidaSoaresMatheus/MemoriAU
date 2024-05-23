@@ -160,6 +160,12 @@ footer {
     height: 24px;
 }
 
+#flag-login-error p {
+    color: red;
+    text-align: left;
+    font-size: 12px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
     main {

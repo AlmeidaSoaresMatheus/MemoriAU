@@ -11,7 +11,9 @@
 <body>
     <header>
         <div class="logo">
+            <a href="../home/home.html">
             <img src="../assets/images/memoriAU.png" alt="MemoriAU">
+        </a>
         </div>
         <nav>
             <ul>
@@ -253,12 +255,11 @@
             petInfo.type = item.querySelector("img").src;
             petInfo.name = petType;
 
-            // Fill the forms with existing data
+
             document.getElementById("birthDate").value = petInfo.birthDate;
             document.getElementById("deathDate").value = petInfo.deathDate;
             document.getElementById("petName").value = petInfo.name;
 
-            // Show the modals starting from type selection
             addPetModal.style.display = "block";
         }
 
