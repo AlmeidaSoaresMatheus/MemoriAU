@@ -43,23 +43,9 @@ function flagLoginError() {
     parentDiv.replaceChild(listItem, flag);
 }
 
-
-
-// async function checkUserExists(email) {
-//     try {
-//         const response = await fetch(`http://localhost:3306/api/users?email=${email}`);
-//         if (!response.ok) {
-//             throw new Error('Erro ao verificar usuário');
-//         }
-//         const data = await response.json();
-//         return data.exists;
-//     } catch (error) {
-//         console.error('Erro:', error);
-
-//         return false;
-//     }
-// }
-
-
-
+function goToHome(user) {
+    window.location.href = "../home/home.html"; 
+    localStorage.setItem('Login', user.email);
+    localStorage.setItem('Name', user.name);
+}
 

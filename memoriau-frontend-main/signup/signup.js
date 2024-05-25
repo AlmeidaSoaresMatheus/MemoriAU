@@ -43,21 +43,6 @@ document.getElementById('signup-form').addEventListener('submit', async function
     }
 });
 
-// async function checkUserExists(email) {
-//     try {
-//         const response = await fetch(`http://localhost:3306/api/users?email=${email}`);
-//         if (!response.ok) {
-//             throw new Error('Erro ao verificar usuário');
-//         }
-//         const data = await response.json();
-//         return data.exists;
-//     } catch (error) {
-//         console.error('Erro:', error);
-
-//         return false;
-//     }
-// }
-
 // function addUserToList(user) {
 //     const userList = document.getElementById('userList');
 //     const listItem = document.createElement('li');

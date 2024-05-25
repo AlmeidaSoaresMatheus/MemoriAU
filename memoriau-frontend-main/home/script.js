@@ -9,8 +9,8 @@
         }
 
         // Variáveis para armazenar informações do pet
-        let petType = '';
-        let petGender = '';
+        let petBreed = '';
+        let petSex = '';
         let petBirthDate = '';
         let petDeathDate = '';
         let petName = '';
@@ -18,15 +18,15 @@
 
         // Função para selecionar o tipo de pet
         function selectPet(type) {
-            petType = type;
+            petBreed = type;
             closeModal('addPetModal');
-            openModal('selectGenderModal');
+            openModal('selectSexModal');
         }
 
         // Função para selecionar o gênero do pet
-        function selectGender(gender) {
-            petGender = gender;
-            closeModal('selectGenderModal');
+        function selectSex(gender) {
+            petSex = gender;
+            closeModal('selectSexModal');
             openModal('selectDateModal');
         }
 
@@ -50,11 +50,11 @@
             const fileInput = document.getElementById('petImage');
             const file = fileInput.files[0];
             const reader = new FileReader();
-            
+
             reader.onload = function(e) {
                 petImage = e.target.result;
-                document.getElementById('summaryType').innerText = petType;
-                document.getElementById('summaryGender').innerText = petGender;
+                document.getElementById('summaryBreed').innerText = petBreed;
+                document.getElementById('summarySex').innerText = petSex;
                 document.getElementById('summaryName').innerText = petName;
                 document.getElementById('summaryBirthDate').innerText = petBirthDate;
                 document.getElementById('summaryDeathDate').innerText = petDeathDate;
@@ -62,10 +62,14 @@
                 closeModal('uploadImageModal');
                 openModal('petSummaryModal');
             };
+
+
             
             if (file) {
                 reader.readAsDataURL(file);
             }
+
+            
         }
 
         // Abre o modal de adicionar pet ao clicar no botão
@@ -130,7 +134,7 @@
             document.getElementById("deathDate").value = pet.deathDate;
             
             addPetModal.style.display = "none";
-            selectGenderModal.style.display = "none";
+            selectSexModal.style.display = "none";
             selectDateModal.style.display = "none";
             petNameModal.style.display = "block";
         }
@@ -150,8 +154,14 @@
         }
         
         function displaySummary() {
-            document.getElementById("summaryType").innerText = petInfo.type;
-            document.getElementById("summaryGender").innerText = petInfo.gender;
+            localStorage.setItem('SummaryBreed', petInfo.type);
+            localStorage.setItem('SummarySex', petInfo.gender);
+            localStorage.setItem('SummaryName', petInfo.name);
+            localStorage.setItem('SummaryBirth', petInfo.birthDate);
+            localStorage.setItem('SummaryDeath', petInfo.deathDate);
+
+            document.getElementById("summaryBreed").innerText = petInfo.type;
+            document.getElementById("summarySex").innerText = petInfo.gender;
             document.getElementById("summaryName").innerText = petInfo.name;
             document.getElementById("summaryBirthDate").innerText = petInfo.birthDate;
             document.getElementById("summaryDeathDate").innerText = petInfo.deathDate;
@@ -171,4 +181,7 @@
             var modal = document.getElementById(modalId);
             modal.style.display = "none";
         }
+        
+        
+        
         
