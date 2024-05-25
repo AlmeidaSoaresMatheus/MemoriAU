@@ -3,27 +3,48 @@ const s3 = require('../s3');
 const path = require('path'); //
 
 module.exports = {
-  findAll: async (req, res) => {
-    const { key } = req.params;
-
-    // Parâmetros para obter a imagem do S3
+  findFiles: async (req, res) => {
+    const { email, nameAnimal } = req.query;
+  
+    if (!email || !nameAnimal) {
+      return res.status(400).send('Email e nome do animal são obrigatórios.');
+    }
+  
+    const folderKey = `${email}/${nameAnimal}/`;
+  
     const params = {
       Bucket: process.env.S3_BUCKET,
-      Key: key
+      Prefix: folderKey
     };
-
+  
     try {
-      const data = await s3.getObject(params).promise();
-
-      res.set('Content-Type', data.ContentType);
-
-      res.send(data.Body);
+      const data = await s3.listObjectsV2(params).promise();
+  
+      if (!data.Contents.length) {
+        return res.status(404).send('Nenhuma imagem encontrada para o animal especificado.');
+      }
+  
+      const images = await Promise.all(data.Contents.map(async (obj) => {
+        const imageData = await s3.getObject({ Bucket: params.Bucket, Key: obj.Key }).promise();
+        if (imageData.Body.toString('base64') !== '') {
+          return {
+            key: obj.Key,
+            data: imageData.Body.toString('base64')
+          };
+        } else {
+          return null;
+        }
+      }));
+  
+      const filteredImages = images.filter(image => image !== null);
+  
+      res.json(filteredImages);
     } catch (err) {
-      console.error('Erro ao obter a imagem do S3:', err);
-      res.status(500).send('Erro ao obter a imagem do S3');
+      console.error('Erro ao obter as imagens do S3:', err);
+      res.status(500).send('Erro ao obter as imagens do S3');
     }
   },
-
+  
   upload: async (req, res) => {
     const { email, petName, date, description} = req.body;
 
