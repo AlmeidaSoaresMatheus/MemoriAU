@@ -33,6 +33,22 @@ module.exports = {
             });
         });
     },
+
+    delete: (email, name) => {
+        return new Promise((resolve, reject) => {
+    
+            const sql = 'DELETE FROM animal WHERE email = ? AND name = ?';
+            
+            db.query(sql, [email, name], (error, result) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+    
+                resolve(result);
+            });
+        });
+    },
     
     find: (email) => {
         return new Promise((resolve, reject) => {

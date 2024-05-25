@@ -11,6 +11,7 @@ router.get('/users', apiUsersController.findAll);
 router.post('/users', apiUsersController.create);
 router.get('/pets', apiPetsController.findAll);
 router.post('/pets', apiPetsController.create);
+router.post('/pets/delete', apiPetsController.delete);
 router.get('/file/findFile', apiS3Controller.findFiles);
 router.post('/users/verifyLogin', apiUsersController.verifyLogin);
 router.post('/file/uploadImage', multer.single('image'), apiS3Controller.upload);

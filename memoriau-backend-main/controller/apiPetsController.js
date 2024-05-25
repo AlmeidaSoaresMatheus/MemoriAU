@@ -49,6 +49,23 @@ module.exports = {
         }
     },
 
+    delete: async (req, res) => {
+        try {
+            const {email, name} = req.body;
+
+            if (!email || !name) {
+                return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
+            }
+
+            const deletePet = await petService.delete(email, name);
+
+            res.status(201).json(deletePet);
+        } catch (error) {
+            console.error('Erro ao excluir cadastro do pet:', error);
+            res.status(500).json({ error: 'Erro ao excluir cadastro do pet.' });
+        }
+    },
+
     find: async (req, res) => {
         try {
             let json = {pets: [] };

@@ -59,6 +59,14 @@
                 document.getElementById('summaryBirthDate').innerText = petBirthDate;
                 document.getElementById('summaryDeathDate').innerText = petDeathDate;
                 document.getElementById('summaryImage').src = petImage;
+
+                // localStorage.setItem('SummaryBreed', petBreed);
+                // localStorage.setItem('SummarySex', petSex);
+                // localStorage.setItem('SummaryName', petName);
+                // localStorage.setItem('SummaryBirth', petBirthDate);
+                // localStorage.setItem('SummaryDeath', petDeathDate);
+                // const breeed =  localStorage.getItem('SummaryBreed');
+                // console.log(breeed)
                 closeModal('uploadImageModal');
                 openModal('petSummaryModal');
             };
@@ -154,11 +162,6 @@
         }
         
         function displaySummary() {
-            localStorage.setItem('SummaryBreed', petInfo.type);
-            localStorage.setItem('SummarySex', petInfo.gender);
-            localStorage.setItem('SummaryName', petInfo.name);
-            localStorage.setItem('SummaryBirth', petInfo.birthDate);
-            localStorage.setItem('SummaryDeath', petInfo.deathDate);
 
             document.getElementById("summaryBreed").innerText = petInfo.type;
             document.getElementById("summarySex").innerText = petInfo.gender;

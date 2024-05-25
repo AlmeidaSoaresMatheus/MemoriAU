@@ -2,8 +2,8 @@ document.getElementById('signup-form').addEventListener('submit', async function
     event.preventDefault(); // Previne o envio padrão do formulário
 
     const formData = new FormData(this);
-    const name = formData.get('name');
     const email = formData.get('email');
+    const name = formData.get('name');
     const password = formData.get('password');
 
     try {
@@ -16,8 +16,8 @@ document.getElementById('signup-form').addEventListener('submit', async function
 
         // Se o usuário não existe, prossegue com o registro
         const requestBody = new URLSearchParams();
-        requestBody.append('name', name);
         requestBody.append('email', email);
+        requestBody.append('name', name);
         requestBody.append('password', password);
 
         const response = await fetch('http://localhost:3306/api/users', {

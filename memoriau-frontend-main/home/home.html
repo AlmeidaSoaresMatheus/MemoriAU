@@ -95,7 +95,7 @@
             <span class="close" onclick="closeModal('uploadImageModal')">&times;</span>
             <h2>Adicione uma imagem do seu pet</h2>
             <input type="file" id="petImage" class="name-input">
-            <button type="submit" id="savePet" class="btn btn-primary" onclick="savePetInfo()">Salvar</button>
+            <button type="submit" class="btn btn-primary" onclick="savePetInfo()">Salvar</button>
         </div>
     </div>
 
@@ -114,7 +114,7 @@
                 <p><strong>Imagem:</strong></p>
                 <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
             </div>
-            <button class="btn btn-primary" onclick="addPetToCarousel()">Salvar</button>
+            <button id="savePet" class="btn btn-primary" onclick="addPetToCarousel()">Salvar</button>
         </div>
     </div>
     <section class="memories-carousel">

@@ -1,16 +1,22 @@
 document.getElementById('savePet').addEventListener('click', async function(event) {
     event.preventDefault(); // Previne o envio padrão do formulário
 
-    const emailLogin = localStorage.getItem('Login');
-    const name = localStorage.getItem('SummaryName');
-    const breed = localStorage.getItem('SummaryBreed');
-    const sex = localStorage.getItem('SummarySex');
-    const birth = localStorage.getItem('SummaryBirth');
-    const death = localStorage.getItem('SummaryDeath');
+    const email = localStorage.getItem('Login');
+    // const name = localStorage.getItem('SummaryName');
+    // const breed = localStorage.getItem('SummaryBreed');
+    // const sex = localStorage.getItem('SummarySex');
+    // const birth = localStorage.getItem('SummaryBirth');
+    // const death = localStorage.getItem('SummaryDeath');
+
+    const breed = document.getElementById('summaryBreed').innerText
+    const sex = document.getElementById('summarySex').innerText
+    const name = document.getElementById('summaryName').innerText
+    const birth = document.getElementById('summaryBirthDate').innerText
+    const death = document.getElementById('summaryDeathDate').innerText
 
     try {
         const requestBody = new URLSearchParams();
-        requestBody.append('nameLogin', emailLogin);
+        requestBody.append('email', email);
         requestBody.append('name', name);
         requestBody.append('breed', breed);
         requestBody.append('sex', sex);
@@ -28,7 +34,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
         if (!response.ok) {
             throw new Error('Failed to register animal');
         }
-        this.reset(); // Limpa o formulário após o envio bem-sucedido
+        // this.reset(); // Limpa o formulário após o envio bem-sucedido
     } catch (error) {
         console.error('Error:', error);
         alert('Failed to register animal');
