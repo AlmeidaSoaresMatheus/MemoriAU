@@ -19,7 +19,7 @@ module.exports = {
                 json.pets.push({
                     email: pets[pet].email,
                     name: pets[pet].name,
-                    breed: pets[pet].breed,
+                    type: pets[pet].type,
                     sex: pets[pet].sex,
                     birth: pets[pet].birth,
                     death: pets[pet].death
@@ -34,13 +34,13 @@ module.exports = {
 
     create: async (req, res) => {
         try {
-            const {email, name, breed, sex, birth, death} = req.body;
+            const {email, name, type, sex, birth, death} = req.body;
 
-            if (!email || !name || !breed || !sex || !birth || !death) {
+            if (!email || !name || !type || !sex || !birth || !death) {
                 return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
             }
 
-            const newPet = await petService.create(email, name, breed, sex, birth, death);
+            const newPet = await petService.create(email, name, type, sex, birth, death);
 
             res.status(201).json(newPet);
         } catch (error) {
@@ -84,7 +84,7 @@ module.exports = {
                 json.pets.push({
                     email: pets[pet].email,
                     name: pets[pet].name,
-                    breed: pets[pet].breed,
+                    type: pets[pet].type,
                     sex: pets[pet].sex,
                     birth: pets[pet].birth,
                     death: pets[pet].death

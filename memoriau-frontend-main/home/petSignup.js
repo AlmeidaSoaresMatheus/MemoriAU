@@ -2,13 +2,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
     event.preventDefault(); // Previne o envio padrão do formulário
 
     const email = localStorage.getItem('Login');
-    // const name = localStorage.getItem('SummaryName');
-    // const breed = localStorage.getItem('SummaryBreed');
-    // const sex = localStorage.getItem('SummarySex');
-    // const birth = localStorage.getItem('SummaryBirth');
-    // const death = localStorage.getItem('SummaryDeath');
-
-    const breed = document.getElementById('summaryBreed').innerText
+    const type = document.getElementById('summaryType').innerText
     const sex = document.getElementById('summarySex').innerText
     const name = document.getElementById('summaryName').innerText
     const birth = document.getElementById('summaryBirthDate').innerText
@@ -18,7 +12,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
         const requestBody = new URLSearchParams();
         requestBody.append('email', email);
         requestBody.append('name', name);
-        requestBody.append('breed', breed);
+        requestBody.append('type', type);
         requestBody.append('sex', sex);
         requestBody.append('birth', birth);
         requestBody.append('death', death);

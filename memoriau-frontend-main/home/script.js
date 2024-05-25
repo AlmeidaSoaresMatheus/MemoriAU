@@ -9,7 +9,7 @@
         }
 
         // Variáveis para armazenar informações do pet
-        let petBreed = '';
+        let petType = '';
         let petSex = '';
         let petBirthDate = '';
         let petDeathDate = '';
@@ -18,7 +18,7 @@
 
         // Função para selecionar o tipo de pet
         function selectPet(type) {
-            petBreed = type;
+            petType = type;
             closeModal('addPetModal');
             openModal('selectSexModal');
         }
@@ -53,20 +53,13 @@
 
             reader.onload = function(e) {
                 petImage = e.target.result;
-                document.getElementById('summaryBreed').innerText = petBreed;
+                document.getElementById('summaryType').innerText = petType;
                 document.getElementById('summarySex').innerText = petSex;
                 document.getElementById('summaryName').innerText = petName;
                 document.getElementById('summaryBirthDate').innerText = petBirthDate;
                 document.getElementById('summaryDeathDate').innerText = petDeathDate;
                 document.getElementById('summaryImage').src = petImage;
 
-                // localStorage.setItem('SummaryBreed', petBreed);
-                // localStorage.setItem('SummarySex', petSex);
-                // localStorage.setItem('SummaryName', petName);
-                // localStorage.setItem('SummaryBirth', petBirthDate);
-                // localStorage.setItem('SummaryDeath', petDeathDate);
-                // const breeed =  localStorage.getItem('SummaryBreed');
-                // console.log(breeed)
                 closeModal('uploadImageModal');
                 openModal('petSummaryModal');
             };
@@ -163,7 +156,7 @@
         
         function displaySummary() {
 
-            document.getElementById("summaryBreed").innerText = petInfo.type;
+            document.getElementById("summaryType").innerText = petInfo.type;
             document.getElementById("summarySex").innerText = petInfo.gender;
             document.getElementById("summaryName").innerText = petInfo.name;
             document.getElementById("summaryBirthDate").innerText = petInfo.birthDate;

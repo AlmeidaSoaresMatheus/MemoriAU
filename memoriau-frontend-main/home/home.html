@@ -49,7 +49,7 @@
             <div class="pet-option" onclick="selectPet('Peixe')"><img src="../assets/images/image 23.png" alt="Peixe"><p>Peixe</p></div>
             <div class="pet-option" onclick="selectPet('Hamster')"><img src="../assets/images/image 23.png" alt="Hamster"><p>Hamster</p></div>
             <div class="pet-option" onclick="selectPet('Pássaro')"><img src="../assets/images/image 23.png" alt="Pássaro"><p>Pássaro</p></div>
-            <div class="pet-option" onclick="selectPet('Outro')"><img src="../assets/images/image 23.png" alt="Other"><p>Other</p></div>
+            <div class="pet-option" onclick="selectPet('Outro')"><img src="../assets/images/image 23.png" alt="Other"><p>Outro</p></div>
         </div>
     </div>
 
@@ -106,7 +106,7 @@
             <h2>Pet cadastrado</h2>         
             <h2>Vamos juntos relembrar as grandes memórias...</h2>
             <div class="summary">
-                <p><strong>Tipo:</strong> <span id="summaryBreed"></span></p>
+                <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
                 <p><strong>Gênero:</strong> <span id="summarySex"></span></p>
                 <p><strong>Nome:</strong> <span id="summaryName"></span></p>
                 <p><strong>Data de Nascimento:</strong> <span id="summaryBirthDate"></span></p>
@@ -156,8 +156,8 @@
             addPetModal.style.display = "block";
         }
 
-        function selectPet(petBreed) {
-            petInfo.breed = petBreed;
+        function selectPet(petType) {
+            petInfo.type = petType;
             addPetModal.style.display = "none";
             selectSexModal.style.display = "block";
         }
@@ -196,7 +196,7 @@
         }
 
         function displaySummary() {
-            document.getElementById("summaryBreed").innerText = petInfo.breed;
+            document.getElementById("summaryType").innerText = petInfo.type;
             document.getElementById("summarySex").innerText = petInfo.sex;
             document.getElementById("summaryName").innerText = petInfo.name;
             document.getElementById("summaryBirthDate").innerText = petInfo.birthDate;
@@ -249,11 +249,11 @@
         }
 
         function editPetItem(item) {
-            var petBreed = item.querySelector("p").innerText;
+            var petType = item.querySelector("p").innerText;
             petEditIndex = Array.from(item.parentNode.children).indexOf(item);
 
-            petInfo.breed = item.querySelector("img").src;
-            petInfo.name = petBreed;
+            petInfo.type = item.querySelector("img").src;
+            petInfo.name = petType;
 
 
             document.getElementById("birthDate").value = petInfo.birthDate;
