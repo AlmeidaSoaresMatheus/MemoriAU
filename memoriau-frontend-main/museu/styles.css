@@ -47,3 +47,35 @@ button:hover {
     max-width: 200px;
 }
 
+  .gallery {
+    border: 1px solid #ccc; /* Contorno fino */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin: 10px; /* Espaço entre os cards */
+    padding: 10px; /* Espaço interno do card */
+    max-width: 300px; /* Largura máxima do card */
+    display: inline-block; /* Para alinhar os cards lado a lado */
+    vertical-align: top; /* Alinhamento vertical dos cards */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    text-align: center; /* Centralizar o texto */
+  }
+
+  .gallery img {
+    width: 100%; /* Imagem ocupa toda a largura do card */
+    height: auto; /* Manter a proporção da imagem */
+    border-bottom: 1px solid #ccc; /* Linha de separação abaixo da imagem */
+    margin-bottom: 10px; /* Espaço abaixo da imagem */
+  }
+
+  .card-body {
+    padding: 10px; /* Espaço interno do corpo do card */
+  }
+
+  .card-title {
+    font-size: 1.2em; /* Tamanho da fonte do título */
+    margin: 10px 0; /* Espaço acima e abaixo do título */
+  }
+
+  .card-text {
+    font-size: 1em; /* Tamanho da fonte do texto */
+    margin: 5px 0; /* Espaço acima e abaixo do texto */
+  }
