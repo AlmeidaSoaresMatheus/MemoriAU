@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                         const card = document.createElement('div');
                         const keyParts = img.key.split('/');
                         const petName = keyParts[1];
-                        const dateAndImageName = keyParts[2];
+                        const dateAndImageName = keyParts[3];
+                        const description = keyParts[2];
                         const date = dateAndImageName.substring(0, 10);
 
                         card.className = 'gallery';
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                             <img src="data:image/jpeg;base64,${img.data}">
                             <div class="card-body">
                                 <h5 class="card-title">${petName}</h5>
-                                <p class="card-text">${img.key}</p>
+                                <p class="card-text">${description}</p>
                                 <h6 class="card-text">${date}</h6>
                             </div>
                         `;

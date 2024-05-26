@@ -48,7 +48,7 @@ module.exports = {
   upload: async (req, res) => {
     const { email, petName, date, description} = req.body;
 
-    if (!req.file || !email || !petName) {
+    if (!req.file || !email || !petName || !description) {
       return res.status(400).send('Nao foram fornecidos todos os campos.');
     }
         try {
@@ -66,7 +66,7 @@ module.exports = {
   
       const params = {
         Bucket: process.env.S3_BUCKET,
-        Key: `${email}/${petName}/${date}_${path.basename(req.file.originalname)}`,
+        Key: `${email}/${petName}/${description}/${date}_${path.basename(req.file.originalname)}`,
         Body: req.file.buffer,
         ContentType: req.file.mimetype,
       };
