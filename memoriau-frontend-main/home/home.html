@@ -26,7 +26,7 @@
     <main>
 
   
-        <section class="mypets-carousel">
+        <section class="memories-carousel">
             <section class="pets-section">
                 <h2>Meus pets</h2>
                 <div class="add-pet" id="addPetButton">
@@ -44,21 +44,21 @@
             <span class="close" onclick="closeModal('addPetModal')">&times;</span>
             <h2>Adicione seu pet</h2>
             <p>Seu pet era um...</p>
-            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="../assets/images/image 23.png" alt="Cachorro"><p>Cachorro</p></div>
-            <div class="pet-option" onclick="selectPet('Gato')"><img src="../assets/images/image 23.png" alt="Gato"><p>Gato</p></div>
-            <div class="pet-option" onclick="selectPet('Peixe')"><img src="../assets/images/image 23.png" alt="Peixe"><p>Peixe</p></div>
-            <div class="pet-option" onclick="selectPet('Hamster')"><img src="../assets/images/image 23.png" alt="Hamster"><p>Hamster</p></div>
-            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="../assets/images/image 23.png" alt="Pássaro"><p>Pássaro</p></div>
-            <div class="pet-option" onclick="selectPet('Outro')"><img src="../assets/images/image 23.png" alt="Other"><p>Outro</p></div>
+            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="../assets/images/cachorro.png" alt="Cachorro"><p>Cachorro</p></div>
+            <div class="pet-option" onclick="selectPet('Gato')"><img src="../assets/images/gato.png" alt="Gato"><p>Gato</p></div>
+            <div class="pet-option" onclick="selectPet('Peixe')"><img src="../assets/images/peixe.png" alt="Peixe"><p>Peixe</p></div>
+            <div class="pet-option" onclick="selectPet('Hamster')"><img src="../assets/images/hamster.png" alt="Hamster"><p>Hamster</p></div>
+            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="../assets/images/passaro.png" alt="Pássaro"><p>Pássaro</p></div>
+            <div class="pet-option" onclick="selectPet('Outro')"><img src="../assets/images/outro.png " alt="Other"><p>Other</p></div>
         </div>
     </div>
 
-    <div id="selectSexModal" class="modal">
+    <div id="selectGenderModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal('selectSexModal')">&times;</span>
+            <span class="close" onclick="closeModal('selectGenderModal')">&times;</span>
             <h2>Escolha o gênero do seu pet</h2>
-            <div class="sex-option" onclick="selectSex('Macho')"><img src="../assets/icons/macho.png" alt="Male"><p>Macho</p></div>
-            <div class="sex-option" onclick="selectSex('Fêmea')"><img src="../assets/icons/femea.png" alt="Female"><p>Fêmea</p></div>
+            <div class="gender-option" onclick="selectGender('Macho')"><img src="../assets/icons/macho.png" alt="Male"><p>Macho</p></div>
+            <div class="gender-option" onclick="selectGender('Fêmea')"><img src="../assets/icons/femea.png" alt="Female"><p>Fêmea</p></div>
         </div>
     </div>
 
@@ -95,7 +95,7 @@
             <span class="close" onclick="closeModal('uploadImageModal')">&times;</span>
             <h2>Adicione uma imagem do seu pet</h2>
             <input type="file" id="petImage" class="name-input">
-            <button type="submit" class="btn btn-primary" onclick="savePetInfo()">Salvar</button>
+            <button class="btn btn-primary" onclick="savePetInfo()">Salvar</button>
         </div>
     </div>
 
@@ -107,14 +107,14 @@
             <h2>Vamos juntos relembrar as grandes memórias...</h2>
             <div class="summary">
                 <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
-                <p><strong>Gênero:</strong> <span id="summarySex"></span></p>
+                <p><strong>Gênero:</strong> <span id="summaryGender"></span></p>
                 <p><strong>Nome:</strong> <span id="summaryName"></span></p>
                 <p><strong>Data de Nascimento:</strong> <span id="summaryBirthDate"></span></p>
                 <p><strong>Data de Falecimento:</strong> <span id="summaryDeathDate"></span></p>
                 <p><strong>Imagem:</strong></p>
                 <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
             </div>
-            <button id="savePet" class="btn btn-primary" onclick="addPetToCarousel()">Salvar</button>
+            <button class="btn btn-primary" onclick="addPetToCarousel()">Salvar</button>
         </div>
     </div>
     <section class="memories-carousel">
@@ -146,7 +146,7 @@
         var petEditIndex = null;
 
         var addPetModal = document.getElementById("addPetModal");
-        var selectSexModal = document.getElementById("selectSexModal");
+        var selectGenderModal = document.getElementById("selectGenderModal");
         var selectDateModal = document.getElementById("selectDateModal");
         var petNameModal = document.getElementById("petNameModal");
         var uploadImageModal = document.getElementById("uploadImageModal");
@@ -159,12 +159,12 @@
         function selectPet(petType) {
             petInfo.type = petType;
             addPetModal.style.display = "none";
-            selectSexModal.style.display = "block";
+            selectGenderModal.style.display = "block";
         }
 
-        function selectSex(sex) {
-            petInfo.sex = sex;
-            selectSexModal.style.display = "none";
+        function selectGender(gender) {
+            petInfo.gender = gender;
+            selectGenderModal.style.display = "none";
             selectDateModal.style.display = "block";
         }
 
@@ -197,7 +197,7 @@
 
         function displaySummary() {
             document.getElementById("summaryType").innerText = petInfo.type;
-            document.getElementById("summarySex").innerText = petInfo.sex;
+            document.getElementById("summaryGender").innerText = petInfo.gender;
             document.getElementById("summaryName").innerText = petInfo.name;
             document.getElementById("summaryBirthDate").innerText = petInfo.birthDate;
             document.getElementById("summaryDeathDate").innerText = petInfo.deathDate;
@@ -268,7 +268,5 @@
             modal.style.display = "none";
         }
     </script>
-
-    <script src="petSignup.js"></script>
 </body>
 </html>
