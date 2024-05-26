@@ -66,7 +66,7 @@ module.exports = {
   
       const params = {
         Bucket: process.env.S3_BUCKET,
-        Key: `${email}/${petName}/${Date.now()}_${path.basename(req.file.originalname)}`,
+        Key: `${email}/${petName}/${date}_${path.basename(req.file.originalname)}`,
         Body: req.file.buffer,
         ContentType: req.file.mimetype,
       };
@@ -80,7 +80,29 @@ module.exports = {
       console.error(err);
       res.status(500).send('Erro ao enviar imagem');
     }
+  },
+
+  findFileRecord: async (req, res) => {
+    try {
+        const { email } = req.query;
+
+        if (!email) {
+            return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
+        }
+
+        const findFileRecord = await s3Service.findFileRecord(email);
+
+        if (findFileRecord  === "Error") {
+            return res.status(400).json({ error: 'Erro ao verificar credenciais.' });
+        }
+
+        res.status(201).json(findFileRecord);
+    } catch (error) {
+        console.error('Erro ao verificar credenciais:', error);
+        res.status(500).json({ error: 'Erro ao verificar as credenciais.' });
+    }
   }
+
 }
 
   async function checkFolderExists(folderKey) {

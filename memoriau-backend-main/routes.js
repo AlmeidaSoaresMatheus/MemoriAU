@@ -13,6 +13,7 @@ router.get('/pets', apiPetsController.findAll);
 router.post('/pets', apiPetsController.create);
 router.post('/pets/delete', apiPetsController.delete);
 router.get('/file/findFile', apiS3Controller.findFiles);
+router.get('/file/findFileRecord', apiS3Controller.findFileRecord);
 router.post('/users/verifyLogin', apiUsersController.verifyLogin);
 router.post('/file/uploadImage', multer.single('image'), apiS3Controller.upload);
 

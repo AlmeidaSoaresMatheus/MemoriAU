@@ -97,6 +97,7 @@
             <button class="button" onclick="viewTimeline()">Ver linha do tempo > </button>
             
         </div>
+
         <div id="uploadForm" style="display: none;">
             <div class="form-group">
                 <label for="imageDescription">Descrição:</label>
@@ -118,6 +119,11 @@
         </div>
         <div id="imageList" class="d-flex flex-wrap"></div>
     </div>
+
+    <div id="gallery">
+        <!-- Feed entra aqui -->
+    </div>
+
     <script>
         let images = [];
 
@@ -167,6 +173,7 @@
         }
     </script>
 
-    <script src="museu.js"></script>
+    <script src="museu-add-memories.js"></script>
+    <script src="museu-get-memories.js"></script>
 </body>
 </html>

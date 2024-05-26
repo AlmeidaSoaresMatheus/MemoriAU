@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden; /* Oculta a barra de rolagem */
+    /* overflow: hidden; Oculta a barra de rolagem */
 }
 
 header {
@@ -67,7 +67,7 @@ main {
     color: #F9A830;
 }
 
-.memories-carousel {
+.mypets-carousel {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,16 +76,22 @@ main {
     border: 1px solid #ccc;
     border-radius: 10px;
     padding: 20px;
-    overflow: hidden;
+    /* overflow: hidden; */
+}
+
+.memories-carousel {
+    width: 100vw;
 }
 
 .carousel {
     display: flex;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     scroll-behavior: smooth;
     padding: 20px;
+    padding-left: 70px;
     justify-content: center;
-    width: 100%;
+    width: 90%;
+    overflow: hidden;
 }
 
 .carousel-item {

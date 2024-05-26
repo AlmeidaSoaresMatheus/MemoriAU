@@ -26,6 +26,8 @@ document.getElementById('saveMemory').addEventListener('click', async function(e
             throw new Error('Failed to register memory');
         }
 
+        location.reload();
+
     } catch (error) {
         console.error('Error:', error);
         alert('Failed to register memory');

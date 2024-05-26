@@ -17,5 +17,17 @@ module.exports = {
                 resolve(newFile);
             });
         });
+    },
+
+    findFileRecord: (email) => {
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM file WHERE email = ?', [email], (error, results) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                resolve(results);
+            });
+        });
     }
 };
