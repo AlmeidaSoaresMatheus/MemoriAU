@@ -45,6 +45,7 @@ module.exports = {
     }
   },
   
+  //memories
   upload: async (req, res) => {
     const { email, petName, date, description} = req.body;
 
@@ -100,6 +101,42 @@ module.exports = {
     } catch (error) {
         console.error('Erro ao verificar credenciais:', error);
         res.status(500).json({ error: 'Erro ao verificar as credenciais.' });
+    }
+  },
+
+  //imagem do cadastro do pet
+  uploadPetImage: async (req, res) => {
+    const { email, petName } = req.body;
+
+    if (!req.file || !email || !petName) {
+      return res.status(400).send('Nao foram fornecidos todos os campos.');
+    }
+        try {
+      const userFolderExists = await checkFolderExists('pets');
+      
+      if (!userFolderExists) {
+        await createFolder('pets');
+      }
+
+      const petFolderExists = await checkFolderExists(`pets/${email}/${petName}`);
+
+      if (!petFolderExists) {
+        await createFolder(`pets/${email}/${petName}`);
+      }
+
+      const params = {
+        Bucket: process.env.S3_BUCKET,
+        Key: `pets/${email}/${petName}/${Date.now}_${path.basename(req.file.originalname)}`,
+        Body: req.file.buffer,
+        ContentType: req.file.mimetype,
+      };
+
+      await s3.upload(params).promise();
+
+      res.status(200).send('Arquivo criado com sucesso');
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Erro ao enviar imagem');
     }
   }
 
