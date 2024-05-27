@@ -49,3 +49,10 @@ function goToHome(user) {
     localStorage.setItem('Name', user.name);
 }
 
+document.getElementById('signup').addEventListener('click', function() {
+    const delay = 2000;
+
+    setTimeout(function() {
+        window.location.href = '../signup/signup.html';
+    }, delay);
+});

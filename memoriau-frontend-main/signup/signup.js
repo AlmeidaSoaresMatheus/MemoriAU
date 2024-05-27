@@ -56,4 +56,10 @@ function goToHome(user) {
     localStorage.setItem('Name', user.name);
 }
 
+document.getElementById('login').addEventListener('click', function() {
+    const delay = 2000;
 
+    setTimeout(function() {
+        window.location.href = '../login/login.html';
+    }, delay);
+});
