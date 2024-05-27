@@ -32,7 +32,7 @@
                     <h2>Inscrever-se</h2>
                     <form id="signup-form" action="..\home\home.html" method="post">
                         <input type="text" id="name" name="name" placeholder="Nome" required>
-                        <input type="text" id="email" name="email" placeholder="Email" required>
+                        <input type="email" id="email" name="email" placeholder="Email" required>
                         <div class="password-wrapper">
                             <input type="password" id="password" name="password" placeholder="Senha" required>
                             <i class="fa fa-eye"></i>
@@ -42,9 +42,11 @@
                             <i class="fa fa-eye"></i>
                         </div>
     
+                    <input type="hidden" name="terms-agreed" value="false">
+                    
                         <p id="error-message" class="error-message"></p>
     
-                        <p>Ao clicar em "Criar conta", você concorda com nossos <a href="#">Termos de serviço</a> e <a href="#">Política de Privacidade</a></p>
+                        <p>Ao clicar em "Criar conta", você concorda com nossos <a href="#" id="terms-link">Termos de serviço e Política de Privacidade</a></p>
                         
                         <button type="submit" class="signup-button">Criar conta</button>
                     </form>
@@ -66,6 +68,116 @@
             </footer>
         </section>
     </main>
+
+    <!-- Modal -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Termos de Serviço</h2>
+            <p>Coleta de dados e controle do cliente
+
+                O MemoriAU se preocupa em conscientizar seus clientes sobre as informações coletadas e utilizadas em seu site, as quais servem para proporcionar uma melhor experiência de navegação. Para isso, apresentamos nossa política de privacidade, que esclarece o uso dessas informações. Ao visitar o site www.memoriau.com.br, você aceita as ações descritas nesta política.
+                
+                Continuamente estamos em busca de melhorias que tragam mais agilidade e conforto no momento de uso do site. Com esse objetivo, coletamos algumas informações de nossos clientes. Para fazer quaisquer utilização em nosso site é necessário que o cliente esteja cadastrado em nossa base de clientes. Ao se cadastrar, algumas informações pessoais são inseridas e posteriormente utilizadas para melhorar sua experiência em nossa loja online.
+                
+                Um dos nossos objetivos é ter cada vez mais assertividade na comunicação com nossos clientes e, para que isso seja possível, utilizamos tecnologias para entender o que mais agrada a você e seu pet. Esses recursos tecnológicos nos ajudam a otimizar mídias online e enviar e-mails segmentados.
+                
+                O MemoriAU pode coletar informações de dispositivos móveis que acessam o nosso site e também recebê-las de outras fontes, que jamais serão vendidas ou compartilhadas com terceiros. Além disso, sempre que há qualquer interação do cliente com o site e publicidades do MemoriAU, automaticamente armazenamos algumas informações coletadas por meio de cookies.
+                
+                Os cookies são as identificações das interações ocorridas no site ou nas publicidades a ele relacionadas, que são transferidas para o equipamento do usuário, como computadores, smartphones e tablets. Essas identificações permitem que o cliente seja reconhecido ao acessar o site novamente. Nós utilizamos cookies para proporcionar uma melhor experiência de compra aos nossos consumidores, recomendando produtos e apresentando publicidades e outros itens que possam ser do seu interesse.
+                
+                Esclarecemos que os principais navegadores de internet permitem que o cliente gerencie a utilização dos cookies em sua máquina. Caso o cliente opte por desabilitar a função, basta acessar os links abaixo e seguir o procedimento indicado pelos fabricantes de cada navegador:
+                
+                Google Chrome:
+                (https://support.google.com/chrome/answer/95647?hl=pt-BR)
+                
+                Internet Explorer: (http://windows.microsoft.com/pt-br/internet-explorer/delete-manage-cookies#ie=ie-11)
+                
+                Firefox: (https://support.mozilla.org/pt-BR/kb/ativando-e-desativando-cookies)
+                
+                Safari: (http://safari.helpmax.net/ps/privacidade-e-seguranca/como-remover-cookies/)
+                
+                As informações descritas nos links informados acima são fornecidas pelo próprio fabricante. O MemoriAU está isenta por quaisquer perdas e danos causados pelo uso desses procedimentos.
+                
+                Nossa recomendação é manter o salvamento dos cookies habilitados, para usufruir de todos os recursos de navegação personalizada oferecidos pelo MemoriAU. Caso o cliente desabilite a função, estará ciente que não utilizará esses benefícios.
+                
+                Parte dos dados a serem informados são opcionais, ou seja, o cliente pode decidir se deseja informar ou não. No entanto, alguns deles são imprescindíveis para concluir o pedido e melhorar a experiência de navegação na loja.
+                
+                Ao cadastrar o e-mail em nosso site, o cliente aceita receber informativos e promoções por e-mail e SMS. O envio de mensagens eletrônicas será feito somente com o consentimento do cliente e a função poderá ser desabilitada a qualquer momento, basta solicitar o cancelamento.
+                
+                O MemoriAU reserva-se o direito de alterar a política de privacidade a qualquer momento, sempre a mantendo atualizada em seu site. Caso queira algum esclarecimento sobre essa política, poderá entrar em contato por meio de nossas redes sociais ou pela nossa Central de Atendimento, de segunda à sexta, das 9h às 19h, por telefone (XX) XXXX-XXXX ou e-mail principal@memoriau.com.br.
+                
+                Segurança da informação
+                
+                Com o objetivo de garantir que todos os dados pessoais dos clientes não sejam divulgados, todas as transações de pagamento são executadas com a tecnologia SSL (Secure Socket Layer). Essa tecnologia visa impedir que as informações sejam transmitidas ou acessadas por terceiros.
+                
+                Ainda visando garantir a confidencialidade de nossos clientes, todas informações pessoais fornecidas no momento do cadastro são armazenadas e criptografadas. Além disso, nossos sistemas web e internos possuem dispositivos contra invasão.
+                
+                Segurança do cliente
+                
+                É importante que o cliente proteja suas informações contra acessos não autorizados ao seu computador, conta ou senha. Para que isso seja possível, ressaltamos a importância de o cliente se certificar que clicou em “sair” ao encerrar sua navegação em um computador compartilhado. Procure não utilizar sequência de números e letras, troque sua senha regularmente e nunca compartilhe com terceiros.
+                
+                Sempre verifique o conteúdo do e-mail antes de acionar qualquer endereço da web. Desconfie de e-mails que contenham informações e remetente suspeitos ou estranhos, mensagens que possuam erros de português e imagens com falha.
+                
+                O MemoriAU alerta a todos os clientes que nunca enviará mensagens eletrônicas solicitando confirmação de dados ou links para eventuais downloads. Existem alguns vírus de computador que podem alterar os dados dos seus boletos antes ou no momento de impressão, por isso orientamos que tenha muita atenção nos dados de pagamento do código numérico, checando entre outas coisas se o código do banco confere com o código do boleto. Em caso de dúvida, recorra à uma agência bancária ou entre em contato com nossa Central de Atendimento.
+                
+                Compartilhamento de informações
+                
+                O MemoriAU preza pela segurança e pelo sigilo das informações de seus clientes, para que haja sempre relação de confiança. No entanto, alguns serviços prestados por nossos parceiros são possíveis somente mediante o compartilhamento de algumas informações, o que fazemos com responsabilidade e seguindo todas as condições registradas nessa política de privacidade.
+                
+                Se necessário, compartilhamos informações com empresas fornecedoras e terceiros para a realização de algumas atividades, como serviços logísticos, disparo de e-mails, análise da base de dados, criação de ações de marketing e processamento de pagamentos. Muitos desses serviços só são possíveis com o compartilhamento de informações de nossos clientes, porém, é importante reforçar que seu uso está autorizado apenas para as finalidades contratadas.
+                
+                Além disso, o MemoriAU pode compartilhar as informações de seus clientes durante processos de aquisição e fusão de empresas e por requisição judicial. Nas demais situações, entraremos em contato com o cliente para solicitar autorização da divulgação desses dados.
+                
+                Copyright© 2024 MemoriAU
+                Todos os direitos reservados</p>
+            <!-- Adicione o conteúdo dos seus termos de serviço aqui -->
+            <button id="agree-button">Li e concordo com os termos</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Obtenha os elementos do modal
+            var modal = document.getElementById("terms-modal");
+            var btn = document.getElementById("terms-link");
+            var span = document.getElementsByClassName("close")[0];
+            var agreeButton = document.getElementById("agree-button");
+
+            // Quando o usuário clicar no link, abra o modal
+            btn.onclick = function(event) {
+                event.preventDefault();
+                modal.style.display = "block";
+            }
+
+            // Quando o usuário clicar no botão "Li e concordo com os termos", feche o modal e marque a caixa de seleção
+            agreeButton.onclick = function() {
+                modal.style.display = "none";
+                document.getElementById('signup-form').elements['terms-agreed'].value = 'true';
+            }
+
+            // Quando o usuário clicar no "x", feche o modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Quando o usuário clicar fora do modal, feche-o
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Verifique se os termos foram aceitos antes de enviar o formulário
+            document.getElementById('signup-form').addEventListener('submit', function(event) {
+                if (this.elements['terms-agreed'].value !== 'true') {
+                    event.preventDefault();
+                    document.getElementById('error-message').textContent = 'Você deve concordar com os termos de serviço.';
+                }
+            });
+        });
+    </script>
+
     <script src="signup.js"></script>
 </body>
 </html>

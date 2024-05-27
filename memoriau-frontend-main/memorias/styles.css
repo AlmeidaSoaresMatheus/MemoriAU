@@ -1,180 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ccc;
-}
-
-.logo img {
-    height: 40px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-}
-
-nav ul li a.active {
-    color: #F9A830;
-}
-
-.search input {
-    border: 1px solid #ccc;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-main {
-    padding: 20px;
-}
-
-.pets-section {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.add-pet {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #F9A830;
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.add-icon {
-    font-size: 24px;
-    color: #F9A830;
-}
-
-.memories-carousel {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    background-color: rgba(255, 165, 0, 0.1);
-}
-
-.carousel-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-    border: 1px solid #F9A830;
-    border-radius: 10px;
-}
-
-.carousel-item img {
-    max-width: 100px;
-    border-radius: 10px;
-}
-
-.carousel-btn {
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.logo {
-    margin: 0 auto;
-}
-
-/* Adjust the carousel container */
-.memories-carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    padding: 30px; /* Increased padding */
-    overflow: hidden;
-}
-
-/* Adjustments for modal selectDateModal */
-#selectDateModal {
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-#selectDateModal .modal-content {
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-}
-
-#selectDateModal h2 {
-    margin-bottom: 20px;
-}
-
-#selectDateModal label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-#selectDateModal input.date-input {
-    margin-bottom: 10px;
-    padding: 10px;
-    width: calc(100% - 20px);
-    max-width: 300px;
-}
-
-#selectDateModal button {
-    padding: 10px 20px;
-    background-color: #F9A830;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#selectDateModal button:hover {
-    background-color: #F9A830;
-}
-
-#petNameModal button,
-#uploadImageModal button,
-#petSummaryModal button {
-    padding: 10px 20px;
-    background-color: #F9A830;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 body, html {
     height: 100%;
     margin: 0;
@@ -192,6 +15,7 @@ header {
     width: 100%;
     padding: 10px 20px;
     background-color: #f4f4f4;
+    border-bottom: 1px solid #ccc;
 }
 
 .logo img {
@@ -213,10 +37,11 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: #333;
+    font-weight: bold;
 }
 
 nav ul li a.active {
-    font-weight: bold;
+    color: #F9A830;
 }
 
 .container {
@@ -245,14 +70,15 @@ nav ul li a.active {
     overflow-x: auto;
     gap: 20px;
     margin-bottom: 20px;
-    padding: 20px; /* Increased padding */
+    padding: 20px;
+    background-color: rgba(255, 165, 0, 0.1);
 }
 
 .carousel-item {
     min-width: 150px;
     background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid #F9A830;
+    border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: center;
@@ -279,6 +105,11 @@ nav ul li a.active {
 
 .add-memory p {
     margin: 10px 0 0 0;
+}
+
+.add-icon {
+    font-size: 24px;
+    color: #F9A830;
 }
 
 .modal {
@@ -317,25 +148,6 @@ nav ul li a.active {
     cursor: pointer;
 }
 
-.input-container {
-    margin: 10px 0;
-    text-align: left;
-}
-
-.input-container label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.input-container input,
-.input-container textarea,
-.input-container select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
 .btn-container {
     text-align: center;
     margin-top: 20px;
@@ -350,18 +162,9 @@ nav ul li a.active {
     cursor: pointer;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #F9A830;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 /* Estilos do modal memoryModal */
 #memoryModal {
-    display: flex;
+    display: none; /* Modal inicialmente oculto */
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -415,10 +218,61 @@ button {
     display: block;
     width: 100%;
     max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 100px;
+    margin-right: 40px;
 }
 
 #memoryModal button:hover {
+    background-color: #e89c27;
+}
+
+/* Estilos para outros modais (ajuste se necessário) */
+#selectDateModal,
+#petNameModal,
+#uploadImageModal,
+#petSummaryModal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#selectDateModal .modal-content,
+#petNameModal .modal-content,
+#uploadImageModal .modal-content,
+#petSummaryModal .modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+#selectDateModal button,
+#petNameModal button,
+#uploadImageModal button,
+#petSummaryModal button {
+    padding: 10px 20px;
+    background-color: #F9A830;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#selectDateModal button:hover,
+#petNameModal button:hover,
+#uploadImageModal button:hover,
+#petSummaryModal button:hover {
     background-color: #e89c27;
 }

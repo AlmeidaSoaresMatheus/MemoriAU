@@ -90,7 +90,7 @@
                     newPet.innerHTML = `
                         <img src="${e.target.result}" alt="Pet Image">
                         <div>
-                            <p><strong>Nome:</strong> ${petName}</p>
+                            <p id="${petName}-card"><strong>Nome:</strong> ${petName}</p>
                         </div>
                     `;
                     document.querySelector('.carousel').appendChild(newPet);

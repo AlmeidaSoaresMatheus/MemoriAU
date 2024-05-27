@@ -61,20 +61,46 @@
         }
 
         .card {
-            width: 150px;
+            width: 200px;
             margin: 10px;
-            border: 1px solid #ccc;
+            border: 2px solid #F9A830;
             border-radius: 10px;
+            background-color: #fff8e1;
         }
 
         .card img {
-            height: 100px;
+            height: 150px;
             object-fit: cover;
             border-radius: 10px 10px 0 0;
         }
 
         .card-body {
             text-align: center;
+        }
+
+        .card-title {
+            color: #F9A830;
+            font-weight: bold;
+        }
+
+        #imageList {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px; /* Adiciona espaçamento entre o botão de salvar e a lista de pets */
+        }
+
+        .button {
+            background-color: #F9A830;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #e89b26;
         }
     </style>
 </head>
@@ -86,8 +112,8 @@
         <nav>
             <ul>
                 <li><a href="../home/home.html" class="active">Home</a></li>
-                <li><a href="#">Comunidade</a></li>
                 <li><a href="#">Perfil</a></li>
+                <li><a href="../login/login.html">Sair</a></li>
             </ul>
         </nav>
     </header>
@@ -95,25 +121,34 @@
         <div class="upload-container">
             <button class="button" onclick="showUploadForm()"> Crie uma memória +</button>
             <button class="button" onclick="viewTimeline()">Ver linha do tempo > </button>
-            
         </div>
+
         <div id="uploadForm" style="display: none;">
             <div class="form-group">
-                <label for="imageName"> memória:</label>
-                <input type="text" class="form-control" id="imageName" placeholder="Dê um nome para sua memória">
+                <label for="imageDescription">Descrição:</label>
+                <input type="text" class="form-control" id="imageDescription" placeholder="Descreva essa memória">
             </div>
             <div class="form-group">
-                <label for="imageDate"> Data:</label>
+                <label for="imagePetName">Nome do pet:</label>
+                <input type="text" class="form-control" id="imagePetName" placeholder="Nome do pet associado à memória">
+            </div>
+            <div class="form-group">
+                <label for="imageDate">Data:</label>
                 <input type="date" class="form-control" id="imageDate">
             </div>
             <div class="form-group">
                 <label for="imageFile">Imagem:</label>
                 <input type="file" class="form-control" id="imageFile">
             </div>
-            <button class="button" onclick="uploadImage()">Salvar</button>
+            <button id="saveMemory" class="button" onclick="uploadImage()">Salvar</button>
         </div>
         <div id="imageList" class="d-flex flex-wrap"></div>
     </div>
+
+    <div id="gallery">
+        <!-- Feed entra aqui -->
+    </div>
+
     <script>
         let images = [];
 
@@ -127,12 +162,13 @@
         }
 
         function uploadImage() {
-            const name = document.getElementById('imageName').value;
+            const name = document.getElementById('imageDescription').value;
+            const petName = document.getElementById('imagePetName').value;
             const date = document.getElementById('imageDate').value;
             const fileInput = document.getElementById('imageFile');
             const file = fileInput.files[0];
 
-            if (name && date && file) {
+            if (name && petName && date && file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     images.push({ name, date, src: e.target.result });
@@ -154,12 +190,15 @@
                     <img src="${image.src}" class="card-img-top" alt="${image.name}">
                     <div class="card-body">
                         <h5 class="card-title">${image.name}</h5>
-                        <p class="card-text">${image.date}</p>
+                        <p class="card-text">Data da sua Lembrança: ${image.date}</p>
                     </div>
                 `;
                 imageList.appendChild(card);
             });
         }
     </script>
+
+    <script src="museu-add-memories.js"></script>
+    <script src="museu-get-memories.js"></script>
 </body>
 </html>

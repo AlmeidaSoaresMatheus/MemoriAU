@@ -18,15 +18,14 @@
         <nav>
             <ul>
                 <li><a href="../home/home.html" class="active">Home</a></li>
-                <li><a href="#">Comunidade</a></li>
                 <li><a href="#">Perfil</a></li>
+                <li><a href="../login/login.html">Sair</a></li>
             </ul>
         </nav>
     </header>
     <main>
 
-  
-        <section class="memories-carousel">
+        <section class="mypets-carousel">
             <section class="pets-section">
                 <h2>Meus pets</h2>
                 <div class="add-pet" id="addPetButton">
@@ -44,12 +43,12 @@
             <span class="close" onclick="closeModal('addPetModal')">&times;</span>
             <h2>Adicione seu pet</h2>
             <p>Seu pet era um...</p>
-            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="../assets/images/image 23.png" alt="Cachorro"><p>Cachorro</p></div>
-            <div class="pet-option" onclick="selectPet('Gato')"><img src="../assets/images/image 23.png" alt="Gato"><p>Gato</p></div>
-            <div class="pet-option" onclick="selectPet('Peixe')"><img src="../assets/images/image 23.png" alt="Peixe"><p>Peixe</p></div>
-            <div class="pet-option" onclick="selectPet('Hamster')"><img src="../assets/images/image 23.png" alt="Hamster"><p>Hamster</p></div>
-            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="../assets/images/image 23.png" alt="Pássaro"><p>Pássaro</p></div>
-            <div class="pet-option" onclick="selectPet('Outro')"><img src="../assets/images/image 23.png" alt="Other"><p>Outro</p></div>
+            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="../assets/images/cachorro.png" alt="Cachorro"><p>Cachorro</p></div>
+            <div class="pet-option" onclick="selectPet('Gato')"><img src="../assets/images/gato.png" alt="Gato"><p>Gato</p></div>
+            <div class="pet-option" onclick="selectPet('Peixe')"><img src="../assets/images/peixe.png" alt="Peixe"><p>Peixe</p></div>
+            <div class="pet-option" onclick="selectPet('Hamster')"><img src="../assets/images/hamster.png" alt="Hamster"><p>Hamster</p></div>
+            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="../assets/images/passaro.png" alt="Pássaro"><p>Pássaro</p></div>
+            <div class="pet-option" onclick="selectPet('Outro')"><img src="../assets/images/outro.png " alt="Other"><p>Outro</p></div>
         </div>
     </div>
 
@@ -103,7 +102,7 @@
     <div id="petSummaryModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('petSummaryModal')">&times;</span>
-            <h2>Pet cadastrado</h2>         
+            <h2>Verifique os dados de seu Pet</h2>         
             <h2>Vamos juntos relembrar as grandes memórias...</h2>
             <div class="summary">
                 <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
