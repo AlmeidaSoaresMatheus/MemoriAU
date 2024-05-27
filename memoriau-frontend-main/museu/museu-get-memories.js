@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                             <div class="card-body">
                                 <h5 class="card-title">${petName}</h5>
                                 <p class="card-text">${description}</p>
-                                <h6 class="card-text">${date}</h6>
+                                <h6 class="card-text" >${date}</h6>
                             </div>
                         `;
                         gallery.appendChild(card);

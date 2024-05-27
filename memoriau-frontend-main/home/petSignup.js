@@ -5,8 +5,10 @@ document.getElementById('savePet').addEventListener('click', async function(even
     const type = document.getElementById('summaryType').innerText
     const sex = document.getElementById('summarySex').innerText
     const name = document.getElementById('summaryName').innerText
+    const petName = document.getElementById('summaryName').value
     const birth = document.getElementById('summaryBirthDate').innerText
     const death = document.getElementById('summaryDeathDate').innerText
+    const inputFile = document.getElementById('petImage');
 
     try {
         const requestBody = new URLSearchParams();
@@ -25,8 +27,22 @@ document.getElementById('savePet').addEventListener('click', async function(even
             body: requestBody // Adjusted request body
         });
 
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('petName', petName);
+        formData.append('image', inputFile.files[0]);
+
+        const responsePetImage = await fetch('http://localhost:3306/api/file/uploadPetImage', {
+            method: 'POST',
+            body: formData
+        });
+
         if (!response.ok) {
             throw new Error('Failed to register animal');
+        }
+
+        if (!responsePetImage.ok) {
+            throw new Error('Failed to register pet image');
         }
         // this.reset(); // Limpa o formulário após o envio bem-sucedido
     } catch (error) {
