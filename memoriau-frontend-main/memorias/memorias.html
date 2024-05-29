@@ -23,26 +23,28 @@
             </ul>
         </nav>
     </header>
-    <div class="container">
-        <h1>Colecione Memórias</h1>
-        <p>Somos feitos de memórias, das marcas que deixamos no mundo e daqueles que guardamos no peito. A vida passa na velocidade da luz, mas cada instante é eterno, aprecie...</p>
-        <div class="carousel">
-            <div class="carousel-item add-memory" onclick="openMemoryModal()">
-                <div class="add-icon">+</div>
-                <p>Adicionar memória</p>
+    <main>
+        <div class="container">
+            <h1>Colecione Memórias</h1>
+            <p>Somos feitos de memórias, das marcas que deixamos no mundo e daqueles que guardamos no peito. A vida passa na velocidade da luz, mas cada instante é eterno, aprecie...</p>
+            <div class="carousel">
+                <div class="carousel-item add-memory" onclick="openMemoryModal()">
+                    <div class="add-icon">+</div>
+                    <p>Adicionar memória</p>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div id="memoryModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('memoryModal')">&times;</span>
-            <div class="btn-container">
-                <button onclick="window.location.href='../museu/museu.html'">Museu Fotos e Vídeos</button>
-                <button onclick="window.location.href='../linhatempo/linhatempo.html'">Linha do Tempo</button>
+    
+        <div id="memoryModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('memoryModal')">&times;</span>
+                <div class="btn-container">
+                    <button onclick="window.location.href='../museu/museu.html'">Museu Fotos e Vídeos</button>
+                    <button onclick="window.location.href='../linhatempo/linhatempo.html'">Linha do Tempo</button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
     
     <script>
         function openMemoryModal() {

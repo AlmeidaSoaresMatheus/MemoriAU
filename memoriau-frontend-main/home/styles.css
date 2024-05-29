@@ -10,12 +10,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 40px;
     border-bottom: 1px solid #ccc;
 }
 
 .logo img {
-    height: 40px;
+    width: 100%;
 }
 
 nav ul {
@@ -44,6 +44,7 @@ nav ul li a.active {
 
 main {
     padding: 20px;
+
 }
 
 .pets-section {
@@ -57,14 +58,32 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 2px solid #F9A830;
-    padding: 20px;
-    border-radius: 10px;
 }
 
 .add-icon {
-    font-size: 24px;
-    color: #F9A830;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #F9A830;
+    background-color: #faeedf;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.add-icon svg {
+    width: 50px;
+    height: 50px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px;
+    width: 90%;
+    overflow: hidden;
 }
 
 .mypets-carousel {
@@ -79,40 +98,71 @@ main {
     /* overflow: hidden; */
 }
 
+/* Estilo para o contêiner do carrossel */
 .memories-carousel {
-    width: 100vw;
+    width: 60%;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 5px; /* Borda arredondada */
+    border: 2px solid #F9A830;
+    background-color: #faeedf;
+    overflow: hidden; /* Garante que o conteúdo não saia do contêiner */
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
 }
 
-.carousel {
+/* Estilo para o carrossel */
+.memoriesCarousel {
     display: flex;
-    /* overflow-x: auto; */
-    scroll-behavior: smooth;
-    padding: 20px;
-    padding-left: 70px;
+    gap: 60px; /* Espaço entre os itens do carrossel */
     justify-content: center;
-    width: 90%;
-    overflow: hidden;
+    align-items: flex-start;
 }
 
 .carousel-item {
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    padding: 20px;
-    max-width: 150px;
+}
+
+.carousel-item a {
+    text-decoration: none;
+    color: inherit;
+    color: #000;
+    font-weight: bold;
+}
+
+.image-frame {
+    width: 174px; /* 2px maior que a imagem (150px + 2px de cada lado) */
+    height: 174px; /* 2px maior que a imagem */
+    background-color: #ffd595; /* Cor de fundo da moldura */
+    border-radius: 3px; /* Borda arredondada da moldura */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-item img {
-    max-width: 100%;
-    border-radius: 10px;
+    width: 150px; /* Ajuste conforme necessário */
+    height: 150px;
+    object-fit: cover; /* Garante que a imagem cubra o contêiner sem distorção */
+    border-radius: 3px;
+    overflow: hidden;
 }
 
+.carousel-item p {
+    text-align: center;
+}
+
+
 .carousel-btn {
-    background-color: transparent;
     border: none;
     font-size: 24px;
     cursor: pointer;
+    background-color: #ccc;
+    padding: 10px;
 }
 
 #selectDateModal {
@@ -238,35 +288,6 @@ main {
     border-radius: 5px;
     margin: 10px 0;
     text-align: left;
-}
-
-.carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-}
-
-.carousel-item {
-    flex: none;
-    max-width: 150px;
-    max-height: 150px;
-    margin-right: 10px;
-    scroll-snap-align: center;
-    text-align: center;
-    position: relative;
-}
-
-.carousel-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
-
-.carousel-btn {
-    background-color: #ccc;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
 }
 
 .delete-btn {

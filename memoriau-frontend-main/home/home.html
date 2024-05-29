@@ -6,6 +6,9 @@
     <title>MemoriAU</title>
     <link rel="icon" href="../assets/icons/logo small.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="styles.css"> 
 
 </head>
 <body>
@@ -24,13 +27,17 @@
         </nav>
     </header>
     <main>
-
         <section class="mypets-carousel">
             <section class="pets-section">
-                <h2>Meus pets</h2>
+                <h2>Meus Pets</h2>
                 <div class="add-pet" id="addPetButton">
-                    <div class="add-icon">+</div>
-                    <p>adicionar pet</p>
+                    <div class="add-icon">
+                        <svg width="90" height="90" viewBox="0 0 24 24">
+                            <line x1="12" y1="5" x2="12" y2="19" stroke="black" stroke-width="1"/>
+                            <line x1="5" y1="12" x2="19" y2="12" stroke="black" stroke-width="1"/>
+                        </svg>
+                    </div>
+                    <p>Add pet</p>
                 </div>
             </section>            
             <div class="carousel" id="petsCarousel">
@@ -117,28 +124,41 @@
         </div>
     </div>
     <section class="memories-carousel">
-        <div class="carousel">
+        <div class="memoriesCarousel">
             <div class="carousel-item">
-                <img src="../assets/images/gratidao.png" alt="Gratidão Diária">
-                <p>Gratidão Diária</p>
+                <a href="#">
+                    <div class="image-frame">
+                        <img src="../assets/images/gratidao.png" alt="Gratidão Diária">
+                    </div>
+                    <p>Gratidão Diária</p>
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="../assets/images/quadrodehonra.png" alt="Quadro de Honra">
-                <p>Quadro de Honra</p>
+                <a href="#">
+                    <div class="image-frame">
+                        <img src="../assets/images/quadrodehonra.png" alt="Quadro de Honra">
+                    </div>
+                    <p>Quadro de Honra</p>
+                </a>
             </div>
             <div class="carousel-item">
-                <img src="../assets/images/linhatempo.png" alt="Linha do Tempo">
-                <p>Linha do Tempo</p>
+                <a href="#">
+                    <div class="image-frame">
+                        <img src="../assets/images/linhatempo.png" alt="Linha do Tempo">
+                    </div>
+                    <p>Linha do Tempo</p>
+                </a>
             </div>
             <div class="carousel-item">
                 <a href="../memorias/memorias.html">
-                    <img src="../assets/images/memorias.png" alt="Memórias">
+                    <div class="image-frame">
+                        <img src="../assets/images/memorias.png" alt="Memórias">
+                    </div>
                     <p>Memórias</p>
                 </a>
             </div>
         </div>
-    </section>
-</main>
+    </section>    
 
     <script>
         var petInfo = {};
@@ -186,7 +206,7 @@
                 var reader = new FileReader();
                 reader.onload = function(e) {
                     petInfo.image = e.target.result;
-                    displaySummary();
+                    displaySummary();    
                 }
                 reader.readAsDataURL(imageFile);
             } else {
