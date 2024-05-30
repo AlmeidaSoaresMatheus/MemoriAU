@@ -1,6 +1,7 @@
 const s3Service = require('../service/apiS3Service');
 const s3 = require('../s3');
-const path = require('path'); //
+const path = require('path');
+const { format } = require('date-fns');
 
 module.exports = {
   findFiles: async (req, res) => {
@@ -52,7 +53,8 @@ module.exports = {
     if (!req.file || !email || !petName || !description) {
       return res.status(400).send('Nao foram fornecidos todos os campos.');
     }
-        try {
+    
+    try {
       const userFolderExists = await checkFolderExists(email);
       
       if (!userFolderExists) {
@@ -104,29 +106,32 @@ module.exports = {
     }
   },
 
-  //imagem do cadastro do pet
-  uploadPetImage: async (req, res) => {
+  //cadastrar imagem de "perfil" do pet
+  uploadprofilePetImage: async (req, res) => {
     const { email, petName } = req.body;
 
     if (!req.file || !email || !petName) {
       return res.status(400).send('Nao foram fornecidos todos os campos.');
     }
-        try {
-      const userFolderExists = await checkFolderExists('pets');
+      
+    try {
+      const userFolderExists = await checkFolderExists(email);
       
       if (!userFolderExists) {
-        await createFolder('pets');
+        await createFolder(email);
       }
 
-      const petFolderExists = await checkFolderExists(`pets/${email}/${petName}`);
+      const petFolderExists = await checkFolderExists(`${email}/${petName}`);
 
       if (!petFolderExists) {
-        await createFolder(`pets/${email}/${petName}`);
+        await createFolder(`${email}/${petName}`);
       }
+
+      const currentDate = format(new Date(), 'yyyy-MM-dd');
 
       const params = {
         Bucket: process.env.S3_BUCKET,
-        Key: `pets/${email}/${petName}/${Date.now}_${path.basename(req.file.originalname)}`,
+        Key: `${email}/${petName}/profilePet/${currentDate}_${path.basename(req.file.originalname)}`,
         Body: req.file.buffer,
         ContentType: req.file.mimetype,
       };
