@@ -4,8 +4,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
     const email = localStorage.getItem('Login');
     const type = document.getElementById('summaryType').innerText
     const sex = document.getElementById('summarySex').innerText
-    const name = document.getElementById('summaryName').innerText
-    const petName = document.getElementById('summaryName').value
+    const petName = document.getElementById('summaryName').innerText
     const birth = document.getElementById('summaryBirthDate').innerText
     const death = document.getElementById('summaryDeathDate').innerText
     const inputFile = document.getElementById('petImage');
@@ -13,7 +12,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
     try {
         const requestBody = new URLSearchParams();
         requestBody.append('email', email);
-        requestBody.append('name', name);
+        requestBody.append('name', petName);
         requestBody.append('type', type);
         requestBody.append('sex', sex);
         requestBody.append('birth', birth);
@@ -32,7 +31,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
         formData.append('petName', petName);
         formData.append('image', inputFile.files[0]);
 
-        const responsePetImage = await fetch('http://localhost:3306/api/file/uploadPetImage', {
+        const responsePetImage = await fetch('http://localhost:3306/api/file/uploadprofilePetImage', {
             method: 'POST',
             body: formData
         });

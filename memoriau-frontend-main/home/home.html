@@ -120,7 +120,7 @@
                 <p><strong>Imagem:</strong></p>
                 <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
             </div>
-            <button id="savePet" class="btn btn-primary" onclick="addPetToCarousel()">Salvar</button>
+            <button id="savePet" class="btn btn-primary" onclick="closeModal('petSummaryModal')">Salvar</button>
         </div>
     </div>
     <section class="memories-carousel">
@@ -249,6 +249,7 @@
 
                 var deleteBtn = document.createElement("button");
                 deleteBtn.className = "delete-btn";
+                deleteBtn.id = `${petInfo.name}-delete-btn`;
                 deleteBtn.innerText = "x";
                 deleteBtn.onclick = function(event) { 
                     event.stopPropagation(); 
@@ -289,5 +290,6 @@
     </script>
 
     <script src="petSignup.js"></script>
+    <script src="home-get-pets.js"></script>
 </body>
 </html>

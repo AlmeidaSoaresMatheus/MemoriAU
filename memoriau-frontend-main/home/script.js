@@ -88,9 +88,9 @@
                     const newPet = document.createElement('div');
                     newPet.classList.add('carousel-item');
                     newPet.innerHTML = `
-                        <img src="${e.target.result}" alt="Pet Image">
+                        <img id="${petName}-profileImage" src="${e.target.result}" alt="Pet Image">
                         <div>
-                            <p id="${petName}-card"><strong>Nome:</strong> ${petName}</p>
+                            <p id="${petName}-card"><strong>Nome:</strong>${petName}</p>
                         </div>
                     `;
                     document.querySelector('.carousel').appendChild(newPet);
