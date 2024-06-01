@@ -15,3 +15,10 @@ button {
     cursor: pointer;
     border-radius: 20px; /* Botões arredondados */
 }
+
+#petButton {
+    display: flex;
+    justify-content: center;
+}
+
+
