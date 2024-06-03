@@ -19,12 +19,12 @@ header {
 }
 
 h1 {
-    color: #333;
+  color: #333;
 }
 
 input[type="file"] {
-    display: block;
-    margin: 20px auto;
+  display: block;
+  margin: 20px auto;
 }
 
 button {
@@ -48,59 +48,50 @@ button:hover a{
 }
 
 #listaImagens {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-
 
 #gallery {
-    display: flex; /* Faz com que as imagens fiquem uma ao lado da outra */
-    flex-wrap: wrap; /* Permite que as imagens quebrem para a próxima linha quando não couberem mais */
-    justify-content: center; /* Centraliza as imagens horizontalmente */
-    padding: 0 10px; /* Adiciona um espaçamento às extremidades direita e esquerda */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 10px;
 }
 
-/* Estilos para cada imagem */
-#gallery img {
-    width: 200px; /* Define a largura de cada imagem como um terço da largura do contêiner (com um espaçamento total de 20px entre as imagens) */
-    height: auto; /* Mantém a proporção da imagem */
-    margin-bottom: 20px; /* Adiciona um espaço entre as imagens */
-    object-fit: scale-down; /* Faz com que as imagens se ajustem ao tamanho do contêiner, mantendo a proporção e cortando o excesso */
-    box-sizing: border-box; /* Inclui a borda e o preenchimento na largura e altura */
-    max-width: 200px;
+/* Estilos para cada card de imagem */
+.gallery {
+  border: 2px solid #F9A830; /* Contorno laranja */
+  border-radius: 10px; /* Bordas arredondadas */
+  margin: 10px; /* Espaço entre os cards */
+  padding: 10px; /* Espaço interno do card */
+  max-width: 300px; /* Largura máxima do card */
+  display: inline-block; /* Para alinhar os cards lado a lado */
+  vertical-align: top; /* Alinhamento vertical dos cards */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+  text-align: center; /* Centralizar o texto */
+  background-color: #FFF3E0; /* Fundo alaranjado claro */
 }
 
-  .gallery {
-    border: 1px solid #ccc; /* Contorno fino */
-    border-radius: 5px; /* Bordas arredondadas */
-    margin: 10px; /* Espaço entre os cards */
-    padding: 10px; /* Espaço interno do card */
-    max-width: 300px; /* Largura máxima do card */
-    display: inline-block; /* Para alinhar os cards lado a lado */
-    vertical-align: top; /* Alinhamento vertical dos cards */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
-    text-align: center; /* Centralizar o texto */
-  }
+.gallery img {
+  width: 100%; /* Imagem ocupa toda a largura do card */
+  height: auto; /* Mantém a proporção da imagem */
+  border-bottom: 1px solid #F9A830; /* Linha de separação laranja abaixo da imagem */
+  margin-bottom: 10px; /* Espaço abaixo da imagem */
+}
 
-  .gallery img {
-    width: 100%; /* Imagem ocupa toda a largura do card */
-    height: auto; /* Manter a proporção da imagem */
-    border-bottom: 1px solid #ccc; /* Linha de separação abaixo da imagem */
-    margin-bottom: 10px; /* Espaço abaixo da imagem */
-  }
+.card-body {
+  padding: 10px; /* Espaço interno do corpo do card */
+}
 
-  .card-body {
-    padding: 10px; /* Espaço interno do corpo do card */
-  }
+.card-title {
+  font-size: 1.2em; /* Tamanho da fonte do título */
+  margin: 10px 0; /* Espaço acima e abaixo do título */
+}
 
-  .card-title {
-    font-size: 1.2em; /* Tamanho da fonte do título */
-    margin: 10px 0; /* Espaço acima e abaixo do título */
-  }
-
-  .card-text {
-    font-size: 1em; /* Tamanho da fonte do texto */
-    margin: 5px 0; /* Espaço acima e abaixo do texto */
-  }
+.card-text {
+  font-size: 1em; /* Tamanho da fonte do texto */
+  margin: 5px 0; /* Espaço acima e abaixo do texto */
+}
 
   nav ul {
     list-style: none;

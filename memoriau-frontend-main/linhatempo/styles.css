@@ -15,3 +15,49 @@ button {
     cursor: pointer;
     border-radius: 20px; /* Botões arredondados */
 }
+
+#petButton {
+    display: flex;
+    justify-content: center;
+}
+
+#listaImagens {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* Alinha os cards verticalmente */
+    align-items: center; /* Centraliza os cards horizontalmente */
+}
+
+/* Estilos para cada card de imagem */
+.gallery {
+    border: 2px solid #F9A830; /* Contorno laranja */
+    border-radius: 10px; /* Bordas arredondadas */
+    margin: 20px 0; /* Espaço entre os cards, criando o efeito de linha do tempo */
+    padding: 10px; /* Espaço interno do card */
+    width: 80%; /* Largura dos cards */
+    max-width: 300px; /* Largura máxima do card */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    text-align: center; /* Centralizar o texto */
+    background-color: #FFF3E0; /* Fundo alaranjado claro */
+}
+
+.gallery img {
+    width: 100%; /* Imagem ocupa toda a largura do card */
+    height: auto; /* Mantém a proporção da imagem */
+    border-bottom: 1px solid #F9A830; /* Linha de separação laranja abaixo da imagem */
+    margin-bottom: 10px; /* Espaço abaixo da imagem */
+}
+
+.card-body {
+    padding: 10px; /* Espaço interno do corpo do card */
+}
+
+.card-title {
+    font-size: 1.2em; /* Tamanho da fonte do título */
+    margin: 10px 0; /* Espaço acima e abaixo do título */
+}
+
+.card-text {
+    font-size: 1em; /* Tamanho da fonte do texto */
+    margin: 5px 0; /* Espaço acima e abaixo do texto */
+}

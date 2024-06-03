@@ -41,14 +41,12 @@
                             <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar senha" required>
                             <i class="fa fa-eye"></i>
                         </div>
-    
-                    <input type="hidden" name="terms-agreed" value="false">
                     
                         <p id="error-message" class="error-message"></p>
     
                         <p>Ao clicar em "Criar conta", você concorda com nossos <a href="#" id="terms-link">Termos de serviço e Política de Privacidade</a></p>
                         
-                        <button type="submit" class="signup-button">Criar conta</button>
+                        <button type="submit" class="signup-button" id="signup-button">Criar conta</button>
                     </form>
                     <p>Já tem uma conta? <a href="../login/login.html" id="login">Login</a></p>
                 </div>
@@ -168,11 +166,29 @@
                 }
             }
 
-            // Verifique se os termos foram aceitos antes de enviar o formulário
+            // Verifique se as senhas são iguais antes de enviar o formulário
             document.getElementById('signup-form').addEventListener('submit', function(event) {
-                if (this.elements['terms-agreed'].value !== 'true') {
+                var password = document.getElementById('password').value;
+                var confirmPassword = document.getElementById('confirm-password').value;
+
+                if (password !== confirmPassword) {
                     event.preventDefault();
-                    document.getElementById('error-message').textContent = 'Você deve concordar com os termos de serviço.';
+                    document.getElementById('error-message').textContent = 'As senhas não coincidem.';
+                    document.getElementById('signup-button').disabled = true;
+                }
+            });
+
+            // Reative o botão de cadastro se as senhas coincidirem novamente
+            document.getElementById('confirm-password').addEventListener('input', function() {
+                var password = document.getElementById('password').value;
+                var confirmPassword = document.getElementById('confirm-password').value;
+
+                if (password === confirmPassword) {
+                    document.getElementById('error-message').textContent = '';
+                    document.getElementById('signup-button').disabled = false;
+                } else {
+                    document.getElementById('error-message').textContent = 'As senhas não coincidem.';
+                    document.getElementById('signup-button').disabled = true;
                 }
             });
         });
