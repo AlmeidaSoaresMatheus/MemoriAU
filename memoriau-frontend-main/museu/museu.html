@@ -97,17 +97,25 @@
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
+            text-decoration: none;
         }
 
         .button:hover {
             background-color: #e89b26;
+        }
+
+
+        .timeline-button a:hover {
+            color: #F9A830; /* Cor laranja ao passar o mouse */
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
+            <a href="../home/home.html">
             <img src="../assets/images/memoriAU.png" alt="MemoriAU">
+        </a>
         </div>
         <nav>
             <ul>
@@ -120,7 +128,7 @@
     <div class="container">
         <div class="upload-container">
             <button class="button" onclick="showUploadForm()"> Crie uma memória +</button>
-            <button class="button" onclick="viewTimeline()"><a href="../linhatempo/linhatempo.html">Linha do tempo > </a></button>
+            <button class="button"><a href="../linhatempo/linhatempo.html">Linha do tempo > </a></button>
         </div>
 
         <div id="uploadForm" style="display: none;">

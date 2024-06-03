@@ -7,13 +7,15 @@
     <link rel="icon" href="../assets/icons/logo small.png">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f4f4f9;
+            color: #333;
         }
 
         header {
@@ -22,6 +24,7 @@
             align-items: center;
             padding: 10px 20px;
             border-bottom: 1px solid #ccc;
+            background-color: rgba(255, 255, 255, 0.8);
         }
 
         .logo img {
@@ -46,68 +49,110 @@
             color: #F9A830;
         }
 
-        .container {
-            padding: 20px;
+        #title p {
+    margin: 20px 0 30px; /* aumenta o espaço abaixo do texto */
+    font-size: 1.7em; /* aumenta o tamanho da fonte */
+    color: #F9A830;
+}
+
+        #title h3 {
+            margin: 0;
+            font-weight: bold;
+            color: #333;
         }
 
-        .upload-container {
+        #title p {
+            margin: 10px 0;
+            font-size: 1.5em;
+            color: #F9A830;
+        }
+
+        #petButton {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin: 20px 0;
+            border-bottom: 2px solid #F9A830;
         }
 
-        .form-group {
-            margin-bottom: 10px;
+        .petButton {
+            margin: 0 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-bottom: none;
+            background-color: rgba(249, 168, 48, 0.1);
+            font-weight: bold;
+        }
+
+        .petButton.active {
+            border-color: #F9A830;
+            background-color: rgba(249, 168, 48, 0.2);
+        }
+
+        #listaImagens {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            position: relative;
         }
 
         .card {
-            width: 200px;
-            margin: 10px;
+            width: 80%;
+            max-width: 300px;
+            margin: 20px 0;
             border: 2px solid #F9A830;
             border-radius: 10px;
             background-color: #fff8e1;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 10px;
+            position: relative;
         }
 
         .card img {
-            height: 150px;
-            object-fit: cover;
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #F9A830;
+            margin-bottom: 10px;
             border-radius: 10px 10px 0 0;
         }
 
         .card-body {
-            text-align: center;
+            padding: 10px;
         }
 
         .card-title {
             color: #F9A830;
+            font-size: 1.2em;
+            margin: 10px 0;
             font-weight: bold;
         }
 
-        #imageList {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px; /* Adiciona espaçamento entre o botão de salvar e a lista de pets */
+        .card-text {
+            font-size: 1em;
+            margin: 5px 0;
         }
 
-        .button {
+        /* Linha vertical no centro da página */
+        #listaImagens::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
             background-color: #F9A830;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .button:hover {
-            background-color: #e89b26;
         }
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
+            <a href="../home/home.html">
             <img src="../assets/images/memoriAU.png" alt="MemoriAU">
+        </a>
         </div>
         <nav>
             <ul>
@@ -119,23 +164,121 @@
     </header>
 
     <div id="title">
-        <h3>Escolha seu pet para expandir a linha do tempo: </h3>
+        <h3>Escolha seu pet para expandir a linha do tempo:</h3>
+        <p>"Lembrar dos bons momentos com seu pet é como reviver a alegria de novo."</p>
     </div>
-
+    
     <div id="petButton">
-        <!-- Botões de escolha de pet entra aqui -->
+        <!-- Botões de escolha de pet entram aqui dinamicamente -->
     </div>
-
-    <div id="gallery">
-        <!-- Feed entra aqui -->
+    
+    <div id="listaImagens">
+        <!-- Memórias dos pets serão carregadas aqui dinamicamente -->
     </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                const email = localStorage.getItem('Login');
+                const gallery = document.getElementById('listaImagens');
+                gallery.innerHTML = '';
 
-    <!-- <script>
-        function displayTimeLine(petName) {
-            document.getElementById(`card-body-${petName}`).style.display = 'block';
+                const response = await fetch(`http://localhost:3306/api/file/findFileRecord?email=${email}`, {
+                    method: 'GET',
+                });
+
+                const data = await response.json();
+
+                const pets = data.map(pet => pet.nameAnimal);
+                const petNames = pets.filter((name, index) => pets.indexOf(name) === index);
+
+                if (!response.ok) {
+                    throw new Error('Failed to find user animals');
+                }
+
+                for (let i = 0; i < petNames.length; i++) {
+                    const petName = petNames[i];
+
+                    const petButton = document.getElementById('petButton');
+
+                    const button = document.createElement('div');
+                    button.className = 'petButton';
+                    button.id = 'choosePet';
+                    button.innerHTML = `
+                        <button class="button-body-${petName}" onclick="displayTimeLine('${petName}', '${petNames}')">${petName}</button>
+                    `;
+                    petButton.appendChild(button);
+
+                    const timelineResponse = await fetch(`http://localhost:3306/api/timeline/searchTimeline?email=${email}&nameAnimal=${petName}`, {
+                        method: 'GET',
+                    });
+
+                    const timelineData = await timelineResponse.json();
+
+                    for (let j = 0; j < timelineData.length; j++) {
+                        const item = timelineData[j];
+
+                        const { descriptionFile, date, image } = item;
+
+                        if (image.trim() !== "") {
+                            const card = document.createElement('div');
+
+                            card.className = `gallery card card-body-${petName}`;
+                            card.style.display = 'none'; // oculta por padrão
+                            card.innerHTML = `
+                                <img src="data:image/jpeg;base64,${image}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${descriptionFile}</h5>
+                                    <h6 class="card-text">Data: ${new Date(date).toLocaleDateString()}</h6>
+                                </div>
+                            `;
+                            gallery.appendChild(card);
+                        }
+                    }
+                }
+
+                // Torna o primeiro botão ativo por padrão
+                if (petButton.firstChild) {
+                    petButton.firstChild.classList.add('active');
+                    displayTimeLine(petNames[0], petNames.join(','));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
+        function displayTimeLine(petName, petNames) {
+            // Atualiza a aba ativa
+            const petButtons = document.querySelectorAll('.petButton');
+            petButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.querySelector(`.button-body-${petName}`)) {
+                    button.classList.add('active');
+                }
+            });
+
+            // Mostra apenas a linha do tempo do pet selecionado
+            const pets = petNames.split(',');
+
+            const petNameList = pets.filter(name => name !== petName);
+
+            for (let i = 0; i < petNameList.length; i++) {
+                const name = petNameList[i];
+
+                const timelineToHide = document.getElementsByClassName(`card-body-${name}`);
+                for (let j = 0; j < timelineToHide.length; j++) {
+                    timelineToHide[j].style.display = 'none'; // oculta todas as linhas do tempo
+                }
+            }
+
+            const timelineToShow = document.getElementsByClassName(`card-body-${petName}`);
+
+            if (timelineToShow.length > 0) {
+                for (let i = 0; i < timelineToShow.length; i++) {
+                    timelineToShow[i].style.display = 'block'; // exibe todas as linhas do tempo do pet selecionado
+                }
+            }
         }
-    </script> -->
-
-    <script src="linhatempo.js"></script>
+    </script>
 </body>
 </html>
