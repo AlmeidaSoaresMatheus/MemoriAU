@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* overflow: hidden; Oculta a barra de rolagem */
 }
 
 header {
@@ -93,29 +92,26 @@ main {
     gap: 10px;
     margin-top: 20px;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 20px;
-    /* overflow: hidden; */
 }
 
-/* Estilo para o contêiner do carrossel */
 .memories-carousel {
     width: 60%;
     padding: 20px;
     box-sizing: border-box;
-    border-radius: 5px; /* Borda arredondada */
+    border-radius: 5px;
     border: 2px solid #F9A830;
     background-color: #faeedf;
-    overflow: hidden; /* Garante que o conteúdo não saia do contêiner */
+    overflow: hidden; 
     display: flex;
     justify-content: center;
     margin: 20px auto;
 }
 
-/* Estilo para o carrossel */
 .memoriesCarousel {
     display: flex;
-    gap: 60px; /* Espaço entre os itens do carrossel */
+    gap: 60px; 
     justify-content: center;
     align-items: flex-start;
 }
@@ -125,6 +121,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .carousel-item a {
@@ -135,19 +132,19 @@ main {
 }
 
 .image-frame {
-    width: 174px; /* 2px maior que a imagem (150px + 2px de cada lado) */
-    height: 174px; /* 2px maior que a imagem */
-    background-color: #ffd595; /* Cor de fundo da moldura */
-    border-radius: 3px; /* Borda arredondada da moldura */
-    display: flex;
+    width: 174px; 
+    height: 174px; 
+    background-color: #ffd595;
+    border-radius: 3px; 
     justify-content: center;
     align-items: center;
+    display: flex;
 }
 
 .carousel-item img {
-    width: 150px; /* Ajuste conforme necessário */
+    width: 150px;
     height: 150px;
-    object-fit: cover; /* Garante que a imagem cubra o contêiner sem distorção */
+    object-fit: cover; 
     border-radius: 3px;
     overflow: hidden;
 }
@@ -165,68 +162,6 @@ main {
     padding: 10px;
 }
 
-#selectDateModal {
-    display: none;
-    justify-content: center;
-    align-items: center;
-}
-
-#selectDateModal .modal-content {
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    text-align: center;
-    border-radius: 10px; /* Adiciona bordas arredondadas */
-}
-
-#selectDateModal h2 {
-    margin-bottom: 20px;
-}
-
-#selectDateModal label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-#selectDateModal input.date-input {
-    margin-bottom: 10px;
-    padding: 10px;
-    width: calc(100% - 20px);
-    max-width: 300px;
-}
-
-#selectDateModal button {
-    padding: 10px 20px;
-    background-color: #F9A830;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#selectDateModal button:hover {
-    background-color: #e89c27;
-}
-
-#petNameModal .modal-content,
-#uploadImageModal .modal-content,
-#petSummaryModal .modal-content {
-    border-radius: 10px; /* Adiciona bordas arredondadas */
-}
-
-#petNameModal button,
-#uploadImageModal button,
-#petSummaryModal button {
-    padding: 10px 20px;
-    background-color: #F9A830;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .modal {
     display: none;
     position: fixed;
@@ -237,67 +172,204 @@ main {
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: white;
+    margin: 5% auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #F9A830;
+    border-radius: 5px;
     width: 80%;
-    max-width: 500px;
-    text-align: center;
-    border-radius: 10px; /* Adiciona bordas arredondadas */
+    max-width: 600px;
+    position: relative;
+    box-sizing: border-box;
 }
 
-.close {
+.modal h2 {
+    font-size: 24px;
+    margin: 0 0 10px;
+    padding-bottom: 5px;
+    text-align: left;
+    position: relative;
+    display: inline-block;
+}
+
+.modal p {
+    text-align: center;
+    margin-top: 5px;
+}
+
+.modal .btn-primary {
+    position: absolute;
+    bottom: 15px; 
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #F9A830;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal .btn-primary:hover {
+    background-color: #e69529;
+}
+
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
+.modal .close:hover,
+.modal .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
 
-.pet-option, .gender-option {
-    display: inline-block;
-    margin: 10px;
-    cursor: pointer;
+.modal .input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    justify-content: center;
+    text-align: center;
 }
 
-.pet-option img, .gender-option img {
-    width: 50px;
-    height: 50px;
+.modal .input-container label {
+    margin-bottom: 10px;
 }
 
-.date-input, .name-input {
-    margin: 10px 0;
+.modal .input-container input {
     padding: 10px;
-    width: 80%;
-    max-width: 300px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
 }
 
-.summary {
-    background-color: #f9f9f9;
-    padding: 15px;
+.modal-content-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem 0;
+}
+
+.modal-content-pet-option{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 2rem 0;
+  flex-direction: column;
+}
+
+.modal-content-pet-option > div {
+    display: flex;
+}
+
+.modal .pet-option,
+.modal .sex-option {
+    justify-items: center; 
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    margin: 10px 0;
+    text-align: center;
+    cursor: pointer;
+    width: 100px; 
+}
+
+.modal .pet-option img,
+.modal .sex-option img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 10px; 
+    border-radius: 5px;
+    place-items: center;
+}
+
+.modal .pet-option p,
+.modal .sex-option p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+.modal .summary {
     text-align: left;
+}
+
+.modal .summary p {
+    margin: 5px 0;
+}
+
+.modal-content {
+    width: 80%;
+    max-width: 600px;
+    min-height: 300px; 
+    box-sizing: border-box;
+}
+
+.modal .option-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.option-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+}
+
+#petNameModal label {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.name-input {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    display: block;
+}
+
+.date-input {
+    width: calc(100% - 40px); 
+    max-width: 200px; 
+    margin: 0 auto; 
+    display: block;
 }
 
 .delete-btn {
     position: absolute;
-    top: 5px;
     right: 5px;
-    background-color: red;
+    width: 20px;
+    height: 20px;
+    background-color: #F9A830;
     color: white;
     border: none;
     border-radius: 50%;
     cursor: pointer;
     padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

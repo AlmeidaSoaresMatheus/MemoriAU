@@ -1,6 +1,21 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.logo img {
+  height: 40px;
 }
 
 h1 {
@@ -19,10 +34,17 @@ button {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 20px; /* Botões arredondados */
+    text-decoration: none;
 }
 
-button:hover {
+button a {
+    color: white;
+}
+
+button:hover a{
     background-color: #E18E28; /* Alterado para uma cor diferente no hover */
+    text-decoration: none;
+    color: white;
 }
 
 #listaImagens {
@@ -79,3 +101,95 @@ button:hover {
     font-size: 1em; /* Tamanho da fonte do texto */
     margin: 5px 0; /* Espaço acima e abaixo do texto */
   }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+nav ul li a.active {
+    color: #F9A830;
+}
+
+.container {
+    padding: 20px;
+}
+
+.upload-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.card {
+    width: 200px;
+    margin: 10px;
+    border: 2px solid #F9A830;
+    border-radius: 10px;
+    background-color: #fff8e1;
+}
+
+.card img {
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    color: #F9A830;
+    font-weight: bold;
+}
+
+#imageList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px; /* Adiciona espaçamento entre o botão de salvar e a lista de pets */
+}
+
+.button {
+    background-color: #F9A830;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#saveMemory {
+    margin-top: 20px;
+}
+
+.button:hover {
+    background-color: #e89b26;
+}
+
+.imageFile {
+    text-align: left;
+}
+
+#uploadForm {
+    background-color: #f8ecda;
+    padding: 20px; 
+    border: 1px solid #F9A830; /* borda laranja */
+    border-radius: 5px; /* borda arredondada */
+    max-width: 600px;/* largura máxima para manter o formulário centralizado */
+    margin: 0 auto;/* centraliza horizontalmente */
+}

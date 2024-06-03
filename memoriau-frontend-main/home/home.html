@@ -43,122 +43,161 @@
             <div class="carousel" id="petsCarousel">
             </div>
         </section>
+        <section  class="adicionarPet">
+            <div id="petNameModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('petNameModal')">&times;</span>
+                    <h2>Adicione o nome do seu pet</h2>
+                    <div class="input-container">
+                        <div class="modal-content-center">
+                            <div>
+                                <label for="petName">Qual é o nome do seu pet?</label>
+                                <input type="text" id="petName" class="name-input" placeholder="Digite o nome do seu pet">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="showImageUploadModal()">Próximo</button>
+                </div>
+            </div>
+            <div id="addPetModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('addPetModal')">&times;</span>
+                    <h2>Adicione seu pet</h2>
+                    <p>Seu pet era um...</p>
+                    <div class="modal-content-pet-option">
+                        <div>
+                            <div class="pet-option" onclick="selectPet('Cachorro')">
+                                <img src="../assets/images/cachorro.png" alt="Cachorro">
+                                <p>Cachorro</p>
+                            </div>
+                            <div class="pet-option" onclick="selectPet('Gato')">
+                                <img src="../assets/images/gato.png" alt="Gato">
+                                <p>Gato</p>
+                            </div>
+                            <div class="pet-option" onclick="selectPet('Peixe')">
+                                <img src="../assets/images/peixe.png" alt="Peixe">
+                                <p>Peixe</p>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="pet-option" onclick="selectPet('Hamster')">
+                                <img src="../assets/images/hamster.png" alt="Hamster">
+                                <p>Hamster</p>
+                            </div>
+                            <div class="pet-option" onclick="selectPet('Pássaro')">
+                                <img src="../assets/images/passaro.png" alt="Pássaro">
+                                <p>Pássaro</p>
+                            </div>
+                            <div class="pet-option" onclick="selectPet('Outro')">
+                                <img src="../assets/images/outro.png " alt="Other">
+                                <p>Outro</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="selectSexModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('selectSexModal')">&times;</span>
+                    <div>
+                        <h2>Escolha o gênero do seu pet</h2>
+                    </div>
+                    <div class="modal-content-center">
+                        <div class="sex-option" onclick="selectSex('Macho')">
+                            <img src="../assets/icons/macho.png" alt="Male">
+                            <p>Macho</p>
+                        </div>
+                        <div class="sex-option" onclick="selectSex('Fêmea')">
+                            <img src="../assets/icons/femea.png" alt="Female">
+                            <p>Fêmea</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="selectDateModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('selectDateModal')">&times;</span>
+                    <h2>Adicione seu pet</h2>
+                    <div class="input-container">
+                        <label for="birthDate">Quando seu pet nasceu?</label>
+                        <input type="date" id="birthDate" class="date-input">
+                    </div>
+                    <div class="input-container">
+                        <label for="deathDate">Quando seu pet faleceu?</label>
+                        <input type="date" id="deathDate" class="date-input">
+                    </div>
+                    <div class="btn-container">
+                        <button class="btn btn-primary" onclick="showNameModal()">Próximo</button>
+                    </div>
+                </div>
+            </div>
+            <div id="uploadImageModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('uploadImageModal')">&times;</span>
+                    <h2>Adicione uma imagem do seu pet</h2>
+                    <div class="modal-content-center">
+                        <input type="file" id="petImage" class="name-input">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="savePetInfo()">Salvar</button>
+                </div>
+            </div>
+            <!-- Modal for pet information summary -->
+            <div id="petSummaryModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('petSummaryModal')">&times;</span>
+                    <h2>Verifique os dados de seu Pet</h2>         
+                    <h2>Vamos juntos relembrar as grandes memórias...</h2>
+                    <div class="summary">
+                        <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
+                        <p><strong>Gênero:</strong> <span id="summarySex"></span></p>
+                        <p><strong>Nome:</strong> <span id="summaryName"></span></p>
+                        <p><strong>Data de Nascimento:</strong> <span id="summaryBirthDate"></span></p>
+                        <p><strong>Data de Falecimento:</strong> <span id="summaryDeathDate"></span></p>
+                        <p><strong>Imagem:</strong></p>
+                        <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
+                    </div>
+                    <button id="savePet" class="btn btn-primary" onclick="addPetToCarousel()">Salvar</button>
+                </div>
+            </div>
+        </section>
+        <section class="memories-carousel">
+            <div class="memoriesCarousel">
+                <div class="carousel-item">
+                    <a href="#">
+                        <div class="image-frame">
+                            <img src="../assets/images/gratidao.png" alt="Gratidão Diária">
+                        </div>
+                        <p>Gratidão Diária</p>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                        <div class="image-frame">
+                            <img src="../assets/images/quadrodehonra.png" alt="Quadro de Honra">
+                        </div>
+                        <p>Quadro de Honra</p>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="#">
+                        <div class="image-frame">
+                            <img src="../assets/images/linhatempo.png" alt="Linha do Tempo">
+                        </div>
+                        <p>Linha do Tempo</p>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="../memorias/memorias.html">
+                        <div class="image-frame">
+                            <img src="../assets/images/memorias.png" alt="Memórias">
+                        </div>
+                        <p>Memórias</p>
+                    </a>
+                </div>
+            </div>
+        </section> 
     </main>
-
-    <div id="addPetModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('addPetModal')">&times;</span>
-            <h2>Adicione seu pet</h2>
-            <p>Seu pet era um...</p>
-            <div class="pet-option" onclick="selectPet('Cachorro')"><img src="../assets/images/cachorro.png" alt="Cachorro"><p>Cachorro</p></div>
-            <div class="pet-option" onclick="selectPet('Gato')"><img src="../assets/images/gato.png" alt="Gato"><p>Gato</p></div>
-            <div class="pet-option" onclick="selectPet('Peixe')"><img src="../assets/images/peixe.png" alt="Peixe"><p>Peixe</p></div>
-            <div class="pet-option" onclick="selectPet('Hamster')"><img src="../assets/images/hamster.png" alt="Hamster"><p>Hamster</p></div>
-            <div class="pet-option" onclick="selectPet('Pássaro')"><img src="../assets/images/passaro.png" alt="Pássaro"><p>Pássaro</p></div>
-            <div class="pet-option" onclick="selectPet('Outro')"><img src="../assets/images/outro.png " alt="Other"><p>Outro</p></div>
-        </div>
-    </div>
-
-    <div id="selectSexModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('selectSexModal')">&times;</span>
-            <h2>Escolha o gênero do seu pet</h2>
-            <div class="sex-option" onclick="selectSex('Macho')"><img src="../assets/icons/macho.png" alt="Male"><p>Macho</p></div>
-            <div class="sex-option" onclick="selectSex('Fêmea')"><img src="../assets/icons/femea.png" alt="Female"><p>Fêmea</p></div>
-        </div>
-    </div>
-
-    <div id="selectDateModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('selectDateModal')">&times;</span>
-            <h2>Adicione seu pet</h2>
-            <div class="input-container">
-                <label for="birthDate">Quando seu pet nasceu?</label>
-                <input type="date" id="birthDate" class="date-input">
-            </div>
-            <div class="input-container">
-                <label for="deathDate">Quando seu pet faleceu?</label>
-                <input type="date" id="deathDate" class="date-input">
-            </div>
-            <div class="btn-container">
-                <button class="btn btn-primary" onclick="showNameModal()">Próximo</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="petNameModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('petNameModal')">&times;</span>
-            <h2>Adicione o nome do seu pet</h2>
-            <label for="petName">Nome do seu pet:</label>
-            <input type="text" id="petName" class="name-input" placeholder="Digite o nome do seu pet">
-            <button class="btn btn-primary" onclick="showImageUploadModal()">Próximo</button>
-        </div>
-    </div>
-
-    <div id="uploadImageModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('uploadImageModal')">&times;</span>
-            <h2>Adicione uma imagem do seu pet</h2>
-            <input type="file" id="petImage" class="name-input">
-            <button type="submit" class="btn btn-primary" onclick="savePetInfo()">Salvar</button>
-        </div>
-    </div>
-
-    <!-- Modal for pet information summary -->
-    <div id="petSummaryModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('petSummaryModal')">&times;</span>
-            <h2>Verifique os dados de seu Pet</h2>         
-            <h2>Vamos juntos relembrar as grandes memórias...</h2>
-            <div class="summary">
-                <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
-                <p><strong>Gênero:</strong> <span id="summarySex"></span></p>
-                <p><strong>Nome:</strong> <span id="summaryName"></span></p>
-                <p><strong>Data de Nascimento:</strong> <span id="summaryBirthDate"></span></p>
-                <p><strong>Data de Falecimento:</strong> <span id="summaryDeathDate"></span></p>
-                <p><strong>Imagem:</strong></p>
-                <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
-            </div>
-            <button id="savePet" class="btn btn-primary" onclick="addPetToCarousel()">Salvar</button>
-        </div>
-    </div>
-    <section class="memories-carousel">
-        <div class="memoriesCarousel">
-            <div class="carousel-item">
-                <a href="#">
-                    <div class="image-frame">
-                        <img src="../assets/images/gratidao.png" alt="Gratidão Diária">
-                    </div>
-                    <p>Gratidão Diária</p>
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="#">
-                    <div class="image-frame">
-                        <img src="../assets/images/quadrodehonra.png" alt="Quadro de Honra">
-                    </div>
-                    <p>Quadro de Honra</p>
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="#">
-                    <div class="image-frame">
-                        <img src="../assets/images/linhatempo.png" alt="Linha do Tempo">
-                    </div>
-                    <p>Linha do Tempo</p>
-                </a>
-            </div>
-            <div class="carousel-item">
-                <a href="../memorias/memorias.html">
-                    <div class="image-frame">
-                        <img src="../assets/images/memorias.png" alt="Memórias">
-                    </div>
-                    <p>Memórias</p>
-                </a>
-            </div>
-        </div>
-    </section>    
+   
 
     <script>
         var petInfo = {};
@@ -215,9 +254,9 @@
         }
 
         function displaySummary() {
+            document.getElementById("summaryName").innerText = petInfo.name;
             document.getElementById("summaryType").innerText = petInfo.type;
             document.getElementById("summarySex").innerText = petInfo.sex;
-            document.getElementById("summaryName").innerText = petInfo.name;
             document.getElementById("summaryBirthDate").innerText = petInfo.birthDate;
             document.getElementById("summaryDeathDate").innerText = petInfo.deathDate;
             document.getElementById("summaryImage").src = petInfo.image;
