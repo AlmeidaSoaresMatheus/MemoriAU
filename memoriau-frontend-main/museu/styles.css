@@ -184,3 +184,28 @@ nav ul li a.active {
     max-width: 600px;/* largura máxima para manter o formulário centralizado */
     margin: 0 auto;/* centraliza horizontalmente */
 }
+
+/* Estilizando a lista suspensa */
+.form-group.col-md-10 select {
+  background-color: white; /* Cor do fundo */
+  border-radius: 5px; /* borda arredondada */
+  padding: 10px;
+}
+
+.form-group.col-md-10 select:focus {
+  outline: none;
+  border-color: #F9A830; /* Cor da borda quando focado */
+}
+
+.form-group.col-md-10 select option {
+  padding: 10px;
+}
+
+.form-group.col-md-10 select option:hover {
+  background-color: #f1f1f1; /* Cor de fundo quando hover */
+}
+
+#imagePetName {
+  display: flex;
+  width: 100%;
+}

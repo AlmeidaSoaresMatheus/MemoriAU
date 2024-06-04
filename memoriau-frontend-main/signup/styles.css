@@ -202,7 +202,6 @@ footer {
 
 #flag-login-error p {
     color: red;
-    text-align: left;
     font-size: 12px;
     transition: color 0.3s ease;
 }
@@ -260,4 +259,10 @@ button {
 
 button:hover {
     background-color: #e6b800;
+}
+
+#error-message {
+    color: red;
+    /* font-size: 12px; */
+    transition: color 0.3s ease;
 }
