@@ -125,6 +125,7 @@ module.exports = {
       } else { 
         path =`${email}/${petName}`;
         await petService.delete(email, petName);
+        await s3Service.deletePet(email, petName);
       }
 
       const petFolderExists = await checkFolderExists(path);

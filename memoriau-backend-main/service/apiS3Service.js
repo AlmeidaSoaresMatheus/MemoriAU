@@ -42,4 +42,16 @@ module.exports = {
             });
         });
     },
+
+    deletePet: (email, petName) => {
+        return new Promise((resolve, reject) => {
+            db.query('DELETE FROM file WHERE email = ? AND nameAnimal = ?', [email, petName], (error, results) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                resolve(results);
+            });
+        });
+    },
 };
