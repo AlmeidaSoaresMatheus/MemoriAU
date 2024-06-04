@@ -1,4 +1,4 @@
-const { findAll } = require('../controller/apiS3Controller');
+const { findAll, deleteMemory } = require('../controller/apiS3Controller');
 const db = require('../db');
 
 module.exports = {
@@ -29,5 +29,17 @@ module.exports = {
                 resolve(results);
             });
         });
-    }
+    },
+
+    deleteMemory: (email, petName, description) => {
+        return new Promise((resolve, reject) => {
+            db.query('DELETE FROM file WHERE email = ? AND nameAnimal = ? AND descriptionFile = ?', [email, petName, description], (error, results) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+                resolve(results);
+            });
+        });
+    },
 };

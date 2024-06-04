@@ -20,5 +20,5 @@ router.post('/users/verifyLogin', apiUsersController.verifyLogin);
 router.post('/file/uploadImage', multer.single('image'), apiS3Controller.upload);
 router.post('/file/uploadprofilePetImage', multer.single('image'), apiS3Controller.uploadprofilePetImage);
 router.get('/timeline/searchTimeline', apiTimeline.findFilesAndRecords);
-
+router.delete('/file/delete', apiS3Controller.delete)
 module.exports = router;
