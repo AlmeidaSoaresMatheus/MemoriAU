@@ -1,4 +1,5 @@
 const s3Service = require('../service/apiS3Service');
+const petService = require('../service/apiPetService');
 const s3 = require('../s3');
 const path = require('path');
 const { format } = require('date-fns');
@@ -111,24 +112,32 @@ module.exports = {
   delete: async (req, res) => {
     const { email, petName, description} = req.query;
 
-    if (!email || !petName || !description) {
+    if (!email || !petName) {
       return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
     }
 
-    try {
-      const petFolderExists = await checkFolderExists(`${email}/${petName}/${description}`);
+    let path;
 
-      if (!petFolderExists) {
-        return res.status(400).json({ error: 'Memoria nao encontrada.' });
+    try {
+      if (description) {
+        path =`${email}/${petName}/${description}`;
+        await s3Service.deleteMemory(email, petName, description);
+      } else { 
+        path =`${email}/${petName}`;
+        await petService.delete(email, petName);
       }
 
-      await deleteObject(`${email}/${petName}/${description}`);
+      const petFolderExists = await checkFolderExists(path);
 
-      await s3Service.deleteMemory(email, petName, description);
-      
-      res.status(200).json({ message: 'Memoria deletada com sucesso .' });
+      if (!petFolderExists) {
+        return res.status(400).json({ error: 'Arquivo nao encontrado.' });
+      }
+
+      await deleteObject(path);
+
+      res.status(200).json({ message: 'Arquivo deletado com sucesso .' });
     }  catch (error) {
-      console.error('Erro ao deletar memoria:', error);
+      console.error('Erro ao deletar arquivo:', error);
       res.status(500).json({ error: 'Erro ao deletar memoria.' });
     }
   },
