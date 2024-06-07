@@ -33,16 +33,17 @@
             <div class="form-row">
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-10">
-                    <label for="imagePetName">Nome do pet</label>
-                    <input type="text" class="form-control" id="imagePetName"
-                        placeholder="Nome do pet associado à memória">
+                    <label for="imagePetName">Nome do pet:</label>
+                    <select id="imagePetName" name="choosePet">
+                        <!-- Listagem dos pets aparece aqui -->
+                    </select>
                 </div>
                 <div class="col-md-1"></div>
             </div>
             <div class="form-row">
                 <div class="col-md-1"></div>
                 <div class="form-group col-md-4">
-                    <label for="imageFile">Imagem</label>
+                    <label for="imageFile">Imagem:</label>
                     <div class="custom-file">
                         <label class="custom-file-label" for="customFile"></label>
                         <input type="file" class="custom-file-input" id="imageFile">
@@ -50,7 +51,7 @@
                 </div>
                 <div class="col-md-2"></div>
                 <div class="form-group col-md-4">
-                    <label for="inputEmail4">Data</label>
+                    <label for="inputEmail4">Data:</label>
                     <input type="date" class="form-control" id="imageDate">
                 </div>
                 <div class="col-md-1"></div>
@@ -58,7 +59,7 @@
             <div class="form-row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
-                    <label for="imageDescription">Descrição</label>
+                    <label for="imageDescription">Descrição:</label>
                     <textarea class="form-control" id="imageDescription" placeholder="Descreva essa memória"></textarea>
                 </div>
                 <div class="col-md-1"></div>
@@ -123,5 +124,6 @@
 
     <script src="museu-add-memories.js"></script>
     <script src="museu-get-memories.js"></script>
+    <script src="museu-get-pets.js"></script>
 </body>
 </html>

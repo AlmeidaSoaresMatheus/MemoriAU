@@ -124,6 +124,11 @@ main {
     align-items: center;
     position: relative;
     width: calc(100% / 3 - 20px);
+    margin: 0px 15px;
+    border: 2px solid #F9A830;
+    background-color: #faeedf;
+    border-radius: 5px;
+    padding: 5px 10px 0px 10px;
 }
 
 .carousel-item a {

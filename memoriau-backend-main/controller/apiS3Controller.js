@@ -1,7 +1,10 @@
 const s3Service = require('../service/apiS3Service');
+const petService = require('../service/apiPetService');
 const s3 = require('../s3');
 const path = require('path');
 const { format } = require('date-fns');
+const querystring = require('querystring');
+
 
 module.exports = {
   findFiles: async (req, res) => {
@@ -106,6 +109,40 @@ module.exports = {
     }
   },
 
+  delete: async (req, res) => {
+    const { email, petName, description} = req.query;
+
+    if (!email || !petName) {
+      return res.status(400).json({ error: 'Nao foram fornecidos todos os campos.' });
+    }
+
+    let path;
+
+    try {
+      if (description) {
+        path =`${email}/${petName}/${description}`;
+        await s3Service.deleteMemory(email, petName, description);
+      } else { 
+        path =`${email}/${petName}`;
+        await petService.delete(email, petName);
+        await s3Service.deletePet(email, petName);
+      }
+
+      const petFolderExists = await checkFolderExists(path);
+
+      if (!petFolderExists) {
+        return res.status(400).json({ error: 'Arquivo nao encontrado.' });
+      }
+
+      await deleteObject(path);
+
+      res.status(200).json({ message: 'Arquivo deletado com sucesso .' });
+    }  catch (error) {
+      console.error('Erro ao deletar arquivo:', error);
+      res.status(500).json({ error: 'Erro ao deletar memoria.' });
+    }
+  },
+
   //cadastrar imagem de "perfil" do pet
   uploadprofilePetImage: async (req, res) => {
     const { email, petName } = req.body;
@@ -175,5 +212,35 @@ module.exports = {
     } catch (err) {
       console.error('Erro ao criar a pasta:', err);
       throw err;
+    }
+  };
+
+  async function deleteObject(prefix) {
+      
+    const params = {
+      Bucket: process.env.S3_BUCKET,
+      Prefix: prefix
+    };
+
+    try {
+      const listedObjects = await s3.listObjectsV2(params).promise();
+  
+      if (listedObjects.Contents.length === 0) return;
+  
+      const deleteParams = {
+        Bucket: process.env.S3_BUCKET,
+        Delete: { Objects: [] }
+      };
+  
+      listedObjects.Contents.forEach(({ Key }) => {
+        deleteParams.Delete.Objects.push({ Key });
+      });
+  
+      await s3.deleteObjects(deleteParams).promise();
+  
+      if (listedObjects.IsTruncated) await deleteObjects(prefix);
+    } catch (error) {
+      console.error('Erro ao deletar objetos:', error);
+      throw new Error('Erro ao deletar objetos.');
     }
   };
