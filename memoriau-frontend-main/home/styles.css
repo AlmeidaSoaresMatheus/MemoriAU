@@ -97,7 +97,7 @@ main {
 }
 
 .memories-carousel {
-    width: 60%;
+    width: 80%;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -107,6 +107,7 @@ main {
     display: flex;
     justify-content: center;
     margin: 20px auto;
+    flex-wrap: wrap;
 }
 
 .memoriesCarousel {
@@ -122,6 +123,7 @@ main {
     flex-direction: column;
     align-items: center;
     position: relative;
+    width: calc(100% / 3 - 20px);
 }
 
 .carousel-item a {
@@ -147,6 +149,7 @@ main {
     object-fit: cover; 
     border-radius: 3px;
     overflow: hidden;
+    
 }
 
 .carousel-item p {
@@ -308,12 +311,46 @@ main {
     text-align: center;
 }
 
-.modal .summary {
-    text-align: left;
+#petSummaryModal .modal-content {
+    width: 80%;
+    max-width: 600px;
+    min-height: 300px;
+    box-sizing: border-box;
+}
+
+#summaryImage {
+    width: 110px;
+    height: 110px;
+    object-fit: cover; 
+    border-radius: 3px;
+    overflow: hidden;
+    align-items: center;
+    align-content: center;
+}
+
+.summary section {
+    flex: 1;
+    min-width: 200px; /* Ajuste conforme necessário para o layout desejado */
+}
+
+.summaryLeft {
+    margin-left: 10px;
+}
+
+.summaryRight {
+    align-items: center;
+    align-content: center;
+}
+
+.summary {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra de linha se necessário */
+    gap: 20px; /* Espaço entre as sections */
 }
 
 .modal .summary p {
     margin: 5px 0;
+    text-align: left;
 }
 
 .modal-content {
@@ -372,4 +409,64 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px 20px;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pets-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .mypets-carousel {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .memories-carousel {
+        width: 100%;
+        margin: 20px 0;
+        padding: 10px;
+    }
+
+    .memoriesCarousel {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .carousel-item {
+        width: 100%;
+        max-width: 100%;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%; /* Aumentar a largura da modal em telas menores */
+    }
+
+    .summary-image {
+        width: 100%;
+        height: auto; /* Garantir que a imagem se ajuste corretamente */
+    }
 }

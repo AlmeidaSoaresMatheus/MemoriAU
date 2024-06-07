@@ -146,15 +146,21 @@
                 <div class="modal-content">
                     <span class="close" onclick="closeModal('petSummaryModal')">&times;</span>
                     <h2>Verifique os dados de seu Pet</h2>         
-                    <h2>Vamos juntos relembrar as grandes memórias...</h2>
+                    <p>Vamos juntos relembrar as grandes memórias...</p>
                     <div class="summary">
-                        <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
-                        <p><strong>Gênero:</strong> <span id="summarySex"></span></p>
-                        <p><strong>Nome:</strong> <span id="summaryName"></span></p>
-                        <p><strong>Data de Nascimento:</strong> <span id="summaryBirthDate"></span></p>
-                        <p><strong>Data de Falecimento:</strong> <span id="summaryDeathDate"></span></p>
-                        <p><strong>Imagem:</strong></p>
-                        <img id="summaryImage" src="" alt="Pet Image" style="max-width: 100%; height: auto;">
+                        <section class="summaryLeft">
+                            <p><strong>Nome:</strong> <span id="summaryName"></span></p>
+                            <p><strong>Tipo:</strong> <span id="summaryType"></span></p>
+                            <p><strong>Gênero:</strong> <span id="summarySex"></span></p>
+                            <p><strong>Nascimento:</strong> <span id="summaryBirthDate"></span></p>
+                            <p><strong>Falecimento:</strong> <span id="summaryDeathDate"></span></p>
+                        </section>
+                        <section class="summaryRight">
+                            <p><strong>Imagem:</strong></p>
+                            <div>
+                                <img id="summaryImage" src="" alt="Pet Image" >
+                            </div>
+                        </section>
                     </div>
                     <button id="savePet" class="btn btn-primary" onclick="closeModal('petSummaryModal')">Salvar</button>
                 </div>
