@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                         }
                         const petName = keyParts[1];
 
+                        card.id = `item-${petName}`;
                         card.className = 'carousel-item';
                         card.innerHTML = `
                             <img src="data:image/jpeg;base64,${img.data}">
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                         deleteBtn.innerText = "x";
                         deleteBtn.onclick = function(event) { 
                             event.stopPropagation(); 
-                            deletePetItem(newItem);
+                            deletePetItem(email, petName);
                         };
                         card.appendChild(deleteBtn);
 
@@ -62,4 +63,24 @@ document.addEventListener('DOMContentLoaded', async function() {
     } 
 
 });
+
+deletePetItem = async (email, petName) => {
+    try {
+        const response = await fetch(`http://localhost:3306/api/file/delete?email=${email}&petName=${petName}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete pet');
+        }
+
+        // Remova o item do DOM após a exclusão bem-sucedida
+        const petCard = document.getElementById(`item-${petName}`);
+        petCard.remove();
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to delete pet');
+    }
+};
+
 
