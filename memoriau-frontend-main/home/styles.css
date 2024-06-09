@@ -97,22 +97,24 @@ main {
 }
 
 .memories-carousel {
-    width: 80%;
+    display: flex;
+    width: 90%;
     padding: 20px;
     box-sizing: border-box;
     border-radius: 5px;
     border: 2px solid #F9A830;
     background-color: #faeedf;
-    overflow: hidden; 
+    /* overflow: hidden;  */
     display: flex;
     justify-content: center;
     margin: 20px auto;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .memoriesCarousel {
     display: flex;
-    gap: 60px; 
+    gap: 50px; 
     justify-content: center;
     align-items: flex-start;
 }
@@ -121,14 +123,10 @@ main {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
     position: relative;
-    width: calc(100% / 3 - 20px);
-    margin: 0px 15px;
-    border: 2px solid #F9A830;
-    background-color: #faeedf;
     border-radius: 5px;
-    padding: 5px 10px 0px 10px;
+    max-width: 100%;
+    
 }
 
 .carousel-item a {
@@ -146,9 +144,11 @@ main {
     justify-content: center;
     align-items: center;
     display: flex;
+    position: relative;
 }
 
 .carousel-item img {
+    position: absolute;
     width: 150px;
     height: 150px;
     object-fit: cover; 
@@ -160,6 +160,7 @@ main {
 .carousel-item p {
     text-align: center;
 }
+
 
 
 .carousel-btn {
@@ -349,7 +350,7 @@ main {
 
 .summary {
     display: flex;
-    flex-wrap: wrap; /* Permite quebra de linha se necessário */
+    flex-wrap: nowrap; 
     gap: 20px; /* Espaço entre as sections */
 }
 
@@ -456,11 +457,12 @@ main {
         flex-direction: column;
         width: 100%;
         padding: 10px;
+        gap: 20px;
     }
 
     .carousel-item {
-        width: 100%;
-        max-width: 100%;
+        flex: 1 1 45%; /* Permitir que os itens ocupem até 45% da largura em telas menores */
+        max-width: calc(100% - 20px);
     }
 
 }
@@ -473,5 +475,24 @@ main {
     .summary-image {
         width: 100%;
         height: auto; /* Garantir que a imagem se ajuste corretamente */
+    }
+
+    .memories-carousel {
+        padding: 10px;
+    }
+
+    .memoriesCarousel {
+        gap: 5px; /* Ajuste o gap para telas menores */
+    }
+
+    .carousel-item {
+        flex: 1 1 100%; /* Permitir que os itens ocupem 100% da largura em telas muito pequenas */
+        min-width: 100px; /* Ajuste conforme necessário para um tamanho mínimo menor */
+        max-width: calc(100% - 10px);
+        
+    }
+
+    .image-frame {
+        padding-top: 75%; /* Ajustar a proporção conforme necessário */
     }
 }
