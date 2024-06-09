@@ -31,13 +31,14 @@ document.addEventListener('DOMContentLoaded', async function() {
                         const card = document.createElement('div');
                         const keyParts = img.key.split('/');
                         if (keyParts[2] == "profilePet") {
-                            pass;
+                            return;
                         }
                         const petName = keyParts[1];
                         const dateAndImageName = keyParts[3];
                         const description = keyParts[2];
                         const date = dateAndImageName.substring(0, 10);
 
+                        card.id = `memory-${petName}`;
                         card.className = 'gallery';
                         card.innerHTML = `
                             <img src="data:image/jpeg;base64,${img.data}">
@@ -47,6 +48,16 @@ document.addEventListener('DOMContentLoaded', async function() {
                                 <h6 class="card-text" >${date}</h6>
                             </div>
                         `;
+                        var deleteBtn = document.createElement("button");
+                        deleteBtn.className = "delete-btn";
+                        deleteBtn.id = `${petName}-delete-btn`;
+                        deleteBtn.innerText = "x";
+                        deleteBtn.onclick = function(event) { 
+                            event.stopPropagation(); 
+                            deletePetItem(email, petName, description);
+                        };
+                        card.appendChild(deleteBtn);
+
                         gallery.appendChild(card);
                     }
                 });
@@ -56,4 +67,26 @@ document.addEventListener('DOMContentLoaded', async function() {
     } 
 
 });
+
+
+deletePetItem = async (email, petName, description) => {
+    try {
+        const response = await fetch(`http://localhost:3306/api/file/delete?email=${email}&petName=${petName}&description=${description}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete pet');
+        }
+
+        // Remova o item do DOM após a exclusão bem-sucedida
+        const petCard = document.getElementById(`memory-${petName}`);
+        petCard.remove();
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Failed to delete pet');
+    }
+};
+
+
 

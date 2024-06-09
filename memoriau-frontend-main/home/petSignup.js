@@ -43,6 +43,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
         if (!responsePetImage.ok) {
             throw new Error('Failed to register pet image');
         }
+        window.location.reload();
         // this.reset(); // Limpa o formulário após o envio bem-sucedido
     } catch (error) {
         console.error('Error:', error);
