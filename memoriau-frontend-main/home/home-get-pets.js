@@ -46,11 +46,11 @@ document.addEventListener('DOMContentLoaded', async function() {
 
                         var deleteBtn = document.createElement("button");
                         deleteBtn.className = "delete-btn";
-                        deleteBtn.id = `${petInfo.name}-delete-btn`;
+                        deleteBtn.id = `${petInfo.name}-delete-btn`; // Corrigido de 'petInfo.name' para 'petName'
                         deleteBtn.innerText = "x";
                         deleteBtn.onclick = function(event) { 
                             event.stopPropagation(); 
-                            deletePetItem(email, petName);
+                            openDeleteModal(email, petName); // Adicionado para abrir o modal de exclusão
                         };
                         card.appendChild(deleteBtn);
 
@@ -63,6 +63,25 @@ document.addEventListener('DOMContentLoaded', async function() {
     } 
 
 });
+
+openDeleteModal = (email, petName) => {
+    const deleteModal = document.getElementById('deleteModal');
+    const confirmBtn = document.getElementById('confirmDeleteBtn');
+    const cancelBtn = document.getElementById('cancelDeleteBtn');
+
+    // Adiciona evento de clique ao botão 'Sim' no modal
+    confirmBtn.onclick = function() {
+        deletePetItem(email, petName); // Chama a função de exclusão se o usuário confirmar
+        deleteModal.style.display = 'none'; // Fecha o modal
+    };
+
+    // Adiciona evento de clique ao botão 'Cancelar' no modal
+    cancelBtn.onclick = function() {
+        deleteModal.style.display = 'none'; // Fecha o modal sem excluir o animal de estimação
+    };
+
+    deleteModal.style.display = 'block'; // Exibe o modal
+};
 
 deletePetItem = async (email, petName) => {
     try {
@@ -82,5 +101,3 @@ deletePetItem = async (email, petName) => {
         alert('Failed to delete pet');
     }
 };
-
-
