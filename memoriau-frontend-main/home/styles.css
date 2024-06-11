@@ -165,6 +165,9 @@ main {
     text-align: center;
 }
 
+.carousel-item p {
+    text-align: center;
+}
 
 .carousel-btn {
     border: none;
