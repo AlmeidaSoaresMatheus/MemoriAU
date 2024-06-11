@@ -119,14 +119,18 @@ main {
     align-items: flex-start;
 }
 
-.carousel-item {
+.carousel-item-pet {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     position: relative;
+    /* width: calc(100% / 3 - 20px); */
+    margin: 0px 15px;
+    border: 2px solid #F9A830;
+    background-color: #faeedf;
     border-radius: 5px;
-    max-width: 100%;
-    
+    padding: 15px 15px 0px 15px;
 }
 
 .carousel-item a {
@@ -148,7 +152,7 @@ main {
 }
 
 .carousel-item img {
-    position: absolute;
+    /* position: absolute; */
     width: 150px;
     height: 150px;
     object-fit: cover; 
@@ -157,10 +161,9 @@ main {
     
 }
 
-.carousel-item p {
+.carousel-item h5 {
     text-align: center;
 }
-
 
 
 .carousel-btn {

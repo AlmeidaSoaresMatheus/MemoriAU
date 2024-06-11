@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                         const petName = keyParts[1];
 
                         card.id = `item-${petName}`;
-                        card.className = 'carousel-item';
+                        card.className = 'carousel-item-pet';
                         card.innerHTML = `
                             <img src="data:image/jpeg;base64,${img.data}">
                             <div class="card-body">
