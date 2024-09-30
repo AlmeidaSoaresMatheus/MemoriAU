@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const gallery = document.getElementById('gallery');
         gallery.innerHTML = '';
 
-        const response = await fetch(`http://localhost:3306/api/file/findFileRecord?email=${email}`, {
+        const response = await fetch(`${URL_DOMAIN}api/file/findFileRecord?email=${email}`, {
             method: 'GET',
         });
 
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             `;
             petButton.appendChild(button);
 
-            const response = await fetch(`http://localhost:3306/api/timeline/searchTimeline?email=${email}&nameAnimal=${petName}`, {
+            const response = await fetch(`${URL_DOMAIN}api/timeline/searchTimeline?email=${email}&nameAnimal=${petName}`, {
                 method: 'GET',
             });
 

@@ -18,7 +18,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
         requestBody.append('birth', birth);
         requestBody.append('death', death);
 
-        const response = await fetch('http://localhost:3306/api/pets', {
+        const response = await fetch(`${URL_DOMAIN}api/pets`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type
@@ -31,7 +31,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
         formData.append('petName', petName);
         formData.append('image', inputFile.files[0]);
 
-        const responsePetImage = await fetch('http://localhost:3306/api/file/uploadprofilePetImage', {
+        const responsePetImage = await fetch(`${URL_DOMAIN}/api/file/uploadprofilePetImage`, {
             method: 'POST',
             body: formData
         });

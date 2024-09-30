@@ -40,7 +40,7 @@
             gallery.innerHTML = '';
 
             try {
-                const response = await fetch(`http://localhost:3306/api/file/findFile?email=${email}&nameAnimal=${nameAnimal}`);
+                const response = await fetch(`${URL_DOMAIN}api/file/findFile?email=${email}&nameAnimal=${nameAnimal}`);
                 if (!response.ok) {
                     throw new Error(await response.text());
                 }

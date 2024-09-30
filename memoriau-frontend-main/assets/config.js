@@ -1,0 +1,1 @@
+const URL_DOMAIN='http://localhost:3306/';

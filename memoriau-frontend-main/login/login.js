@@ -10,7 +10,7 @@ document.getElementById('user-login-form').addEventListener('submit', async func
         requestBody.append('email', email);
         requestBody.append('password', password);
 
-        const response = await fetch('http://localhost:3306/api/users/verifyLogin', {
+        const response = await fetch(`${URL_DOMAIN}api/users/verifyLogin`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type

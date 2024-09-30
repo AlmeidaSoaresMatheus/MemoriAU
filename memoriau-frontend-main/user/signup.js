@@ -20,7 +20,7 @@ document.getElementById('userForm').addEventListener('submit', async function(ev
         requestBody.append('email', email);
         requestBody.append('password', password);
 
-        const response = await fetch('http://localhost:3306/api/users', {
+        const response = await fetch(`${URL_DOMAIN}api/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type
@@ -45,7 +45,7 @@ document.getElementById('userForm').addEventListener('submit', async function(ev
 
 async function checkUserExists(email) {
     try {
-        const response = await fetch(`http://localhost:3306/api/users?email=${email}`);
+        const response = await fetch(`${URL_DOMAIN}api/users?email=${email}`);
         if (!response.ok) {
             throw new Error('Erro ao verificar usuário');
         }

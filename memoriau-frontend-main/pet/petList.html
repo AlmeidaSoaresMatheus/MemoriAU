@@ -14,7 +14,7 @@
             try {
                 const nameLogin = localStorage.getItem('Login');
                 
-                let url = 'http://localhost:3306/api/pets';
+                let url = `${URL_DOMAIN}api/pets`
                 if (nameLogin) {
                     url += `?nameLogin=${nameLogin}`;
                 }
@@ -50,5 +50,8 @@
             }
         });
     </script>
+
+    <script src="../assets/config.js"></script>
+
 </body>
 </html>

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const gallery = document.getElementById('gallery');
         gallery.innerHTML = '';
 
-        const response = await fetch(`http://localhost:3306/api/file/findFileRecord?email=${email}`, {
+        const response = await fetch(`${URL_DOMAIN}api/file/findFileRecord?email=${email}`, {
             method: 'GET',
         });
 
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         for (let i = 0; i < petNames.length; i++) {
             const petName = petNames[i]
 
-            const response = await fetch(`http://localhost:3306/api/file/findFile?email=${email}&nameAnimal=${petName}`, {
+            const response = await fetch(`${URL_DOMAIN}api/file/findFile?email=${email}&nameAnimal=${petName}`, {
                 method: 'GET',
             });
 
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 deletePetItem = async (email, petName, description) => {
     try {
-        const response = await fetch(`http://localhost:3306/api/file/delete?email=${email}&petName=${petName}&description=${description}`, {
+        const response = await fetch(`${URL_DOMAIN}api/file/delete?email=${email}&petName=${petName}&description=${description}`, {
             method: 'DELETE',
         });
 

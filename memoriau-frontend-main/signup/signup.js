@@ -20,7 +20,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
         requestBody.append('name', name);
         requestBody.append('password', password);
 
-        const response = await fetch('http://localhost:3306/api/users', {
+        const response = await fetch(`${URL_DOMAIN}api/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type

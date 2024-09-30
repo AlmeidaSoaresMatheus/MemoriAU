@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         var carousel = document.getElementById("imagePetName");
         carousel.innerHTML = '';
 
-        const response = await fetch(`http://localhost:3306/api/pets/find?email=${email}`, {
+        const response = await fetch(`${URL_DOMAIN}api/pets/find?email=${email}`, {
             method: 'GET',
         });
 

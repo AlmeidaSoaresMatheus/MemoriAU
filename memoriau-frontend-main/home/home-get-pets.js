@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         var carousel = document.getElementById("petsCarousel");
         carousel.innerHTML = '';
 
-        const response = await fetch(`http://localhost:3306/api/pets/find?email=${email}`, {
+        const response = await fetch(`${URL_DOMAIN}api/pets/find?email=${email}`, {
             method: 'GET',
         });
 
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         for (let i = 0; i < petNames.length; i++) {
             const petName = petNames[i]
 
-            const response = await fetch(`http://localhost:3306/api/file/findFile?email=${email}&nameAnimal=${petName}`, {
+            const response = await fetch(`${URL_DOMAIN}api/file/findFile?email=${email}&nameAnimal=${petName}`, {
                 method: 'GET',
             });
 
@@ -85,7 +85,7 @@ openDeleteModal = (email, petName) => {
 
 deletePetItem = async (email, petName) => {
     try {
-        const response = await fetch(`http://localhost:3306/api/file/delete?email=${email}&petName=${petName}`, {
+        const response = await fetch(`${URL_DOMAIN}api/file/delete?email=${email}&petName=${petName}`, {
             method: 'DELETE',
         });
 

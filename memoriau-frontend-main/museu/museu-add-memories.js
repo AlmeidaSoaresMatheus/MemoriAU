@@ -17,7 +17,7 @@ document.getElementById('saveMemory').addEventListener('click', async function(e
         formData.append('description', description);
         formData.append('image', inputFile.files[0]);
 
-        const response = await fetch('http://localhost:3306/api/file/uploadImage', {
+        const response = await fetch(`${URL_DOMAIN}api/file/uploadImage`, {
             method: 'POST',
             body: formData
         });

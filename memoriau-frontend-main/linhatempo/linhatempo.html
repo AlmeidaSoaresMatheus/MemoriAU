@@ -183,7 +183,7 @@
                 const gallery = document.getElementById('listaImagens');
                 gallery.innerHTML = '';
 
-                const response = await fetch(`http://localhost:3306/api/file/findFileRecord?email=${email}`, {
+                const response = await fetch(`${URL_DOMAIN}api/file/findFileRecord?email=${email}`, {
                     method: 'GET',
                 });
 
@@ -209,7 +209,7 @@
                     `;
                     petButton.appendChild(button);
 
-                    const timelineResponse = await fetch(`http://localhost:3306/api/timeline/searchTimeline?email=${email}&nameAnimal=${petName}`, {
+                    const timelineResponse = await fetch(`${URL_DOMAIN}api/timeline/searchTimeline?email=${email}&nameAnimal=${petName}`, {
                         method: 'GET',
                     });
 
@@ -280,5 +280,8 @@
             }
         }
     </script>
+
+    <script src="../assets/config.js"></script>
+
 </body>
 </html>
