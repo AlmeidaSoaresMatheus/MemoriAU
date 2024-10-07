@@ -22,6 +22,10 @@ router.post('/file/uploadImage', multer.single('image'), apiS3Controller.upload)
 router.post('/file/uploadprofilePetImage', multer.single('image'), apiS3Controller.uploadprofilePetImage);
 router.get('/timeline/searchTimeline', apiTimeline.findFilesAndRecords);
 router.delete('/file/delete', apiS3Controller.delete)
+router.get('/recoverPassword', apiUsersController.recoverPassword);
+router.post('/resetPassword', apiUsersController.resetPassword);
+
+
 module.exports = router;
 
 //ROTAS FRONTEND
