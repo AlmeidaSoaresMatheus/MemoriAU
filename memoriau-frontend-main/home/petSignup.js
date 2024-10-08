@@ -31,7 +31,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
         formData.append('petName', petName);
         formData.append('image', inputFile.files[0]);
 
-        const responsePetImage = await fetch(`${URL_DOMAIN}/api/file/uploadprofilePetImage`, {
+        const responsePetImage = await fetch(`${URL_DOMAIN}api/file/uploadprofilePetImage`, {
             method: 'POST',
             body: formData
         });
