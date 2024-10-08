@@ -1,1 +1,1 @@
-const URL_DOMAIN='http://ec2-15-229-69-173.sa-east-1.compute.amazonaws.com:80/';
+const URL_DOMAIN='http://ec2-15-229-69-173.sa-east-1.compute.amazonaws.com:3000/';
