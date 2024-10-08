@@ -1,1 +1,1 @@
-const URL_DOMAIN='http://ec2-18-228-206-184.sa-east-1.compute.amazonaws.com:3306/';
+const URL_DOMAIN='http://localhost:3000/';
