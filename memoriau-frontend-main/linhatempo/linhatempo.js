@@ -2,11 +2,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
         const email = localStorage.getItem('Login');
         const gallery = document.getElementById('gallery');
+        const token = localStorage.getItem('authToken');
         gallery.innerHTML = '';
-
         const response = await fetch(`${URL_DOMAIN}api/file/findFileRecord?email=${email}`, {
             method: 'GET',
+            headers: {
+                'Authorization': token
+            }
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         const data = await response.json();
 
@@ -32,7 +39,14 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             const response = await fetch(`${URL_DOMAIN}api/timeline/searchTimeline?email=${email}&nameAnimal=${petName}`, {
                 method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
             });
+
+            if (response.status === 401 || response.status === 403) {
+                checkToken();
+            }
 
             const timelineData = await response.json();
 

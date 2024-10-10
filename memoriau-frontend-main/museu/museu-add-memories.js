@@ -9,6 +9,7 @@ document.getElementById('saveMemory').addEventListener('click', async function(e
 
     try {
         const formData = new FormData();
+        const token = localStorage.getItem('authToken');
   
         // Adicione os dados do formulário ao objeto FormData
         formData.append('email', email);
@@ -19,8 +20,15 @@ document.getElementById('saveMemory').addEventListener('click', async function(e
 
         const response = await fetch(`${URL_DOMAIN}api/file/uploadImage`, {
             method: 'POST',
+            headers: {
+                'Authorization': token
+            },
             body: formData
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         if (!response.ok) {
             throw new Error('Failed to register memory');

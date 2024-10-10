@@ -2,12 +2,21 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     try {
         const email = localStorage.getItem('Login');
+        const token = localStorage.getItem('authToken');
+
         var carousel = document.getElementById("imagePetName");
         carousel.innerHTML = '';
 
         const response = await fetch(`${URL_DOMAIN}api/pets/find?email=${email}`, {
             method: 'GET',
+            headers: {
+                'Authorization': token
+            }
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         const data = await response.json();
 

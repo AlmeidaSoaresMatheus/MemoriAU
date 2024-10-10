@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,10 +51,12 @@
         }
 
         #title p {
-    margin: 20px 0 30px; /* aumenta o espaço abaixo do texto */
-    font-size: 1.7em; /* aumenta o tamanho da fonte */
-    color: #F9A830;
-}
+            margin: 20px 0 30px;
+            /* aumenta o espaço abaixo do texto */
+            font-size: 1.7em;
+            /* aumenta o tamanho da fonte */
+            color: #F9A830;
+        }
 
         #title h3 {
             margin: 0;
@@ -147,45 +150,61 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <div class="logo">
             <a href="../home/home.html">
-            <img src="../assets/images/memoriAU.png" alt="MemoriAU">
-        </a>
+                <img src="../assets/images/memoriAU.png" alt="MemoriAU">
+            </a>
         </div>
         <nav>
             <ul>
                 <li><a href="../home/home.html" class="active">Home</a></li>
                 <li><a href="#">Perfil</a></li>
-                <li><a href="../login/login.html">Sair</a></li>
+                <li><a href="../login/login.html" id="logout">Sair</a></li>
             </ul>
         </nav>
     </header>
-
+    <div id="overlay" style="display: none;">
+        <div style="color: rgb(108, 19, 19); font-size: 24px; text-align: center; margin-top: 10%;">
+            Será necessário que você realize o login novamente.
+        </div>
+    </div>
     <div id="title">
         <h3>Escolha seu pet para expandir a linha do tempo:</h3>
         <p>"Lembrar dos bons momentos com seu pet é como reviver a alegria."</p>
     </div>
-    
+
     <div id="petButton">
         <!-- Botões de escolha de pet entram aqui dinamicamente -->
     </div>
-    
+
     <div id="listaImagens">
         <!-- Memórias dos pets serão carregadas aqui dinamicamente -->
     </div>
+
+    <script src="../home/home-get-pets.js"></script>
     
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
+        document.addEventListener('DOMContentLoaded', async function () {
             try {
                 const email = localStorage.getItem('Login');
                 const gallery = document.getElementById('listaImagens');
+                const token = localStorage.getItem('authToken');
+
                 gallery.innerHTML = '';
 
                 const response = await fetch(`${URL_DOMAIN}api/file/findFileRecord?email=${email}`, {
                     method: 'GET',
+                    headers: {
+                        'Authorization': token
+                    }
                 });
+
+                if (response.status === 401 || response.status === 403) {
+                    checkToken();
+                }
 
                 const data = await response.json();
 
@@ -211,6 +230,9 @@
 
                     const timelineResponse = await fetch(`${URL_DOMAIN}api/timeline/searchTimeline?email=${email}&nameAnimal=${petName}`, {
                         method: 'GET',
+                        headers: {
+                            'Authorization': token
+                        }
                     });
 
                     const timelineData = await timelineResponse.json();
@@ -284,4 +306,5 @@
     <script src="../assets/config.js"></script>
 
 </body>
+
 </html>

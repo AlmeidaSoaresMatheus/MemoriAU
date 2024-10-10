@@ -28,8 +28,12 @@
         </nav>
     </header>
     <main>
-        <section class="mypets-carousel">
-            <section class="pets-section">
+        <div id="overlay" style="display: none;">
+            <div style="color: red; font-size: 24px; text-align: center; margin-top: 10%;">
+                Será necessário que você realize o login novamente.
+            </div>
+        </div>
+        <section class="pets-section">
                 <h2>Meus Pets</h2>
                 <div class="add-pet" id="addPetButton">
                     <div class="add-icon">
@@ -348,5 +352,11 @@
     <script src="../assets/config.js"></script>
     <script src="petSignup.js"></script>
     <script src="home-get-pets.js"></script>
+    
+    <div id="overlay" style="display: none;">
+        <div class="message">
+            Será necessário que você realize o login novamente.
+        </div>
+    </div>
 </body>
 </html>

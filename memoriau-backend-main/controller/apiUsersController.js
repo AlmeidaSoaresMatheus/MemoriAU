@@ -1,6 +1,6 @@
 const userService = require('../service/apiUserService');
-require('dotenv').config({path:'variaveis.env'});
-const nodemailer = require('nodemailer');
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
 
 module.exports = {
     findAll: async (req, res) => {
@@ -67,7 +67,18 @@ module.exports = {
                 return res.status(400).json({ error: 'credenciais incorretas.' });
             }
 
-            res.status(201).json(verifyLogin);
+            const token = jwt.sign(
+                { email: verifyLogin.email, name: verifyLogin.name }, 
+                process.env.SESSION_SECRET, 
+                { expiresIn: '1h' }
+            );
+
+            res.status(201).json({
+                token,
+                email: verifyLogin.email,
+                name: verifyLogin.name
+            });
+        
         } catch (error) {
             console.error('Erro ao verificar credenciais:', error);
             res.status(500).json({ error: 'Erro ao verificar as credenciais.' });
@@ -125,5 +136,14 @@ module.exports = {
             console.error('Erro ao alterar a senha:', error);
             res.status(500).json({ error: 'Erro ao alterar a senha.' });
         }
-    }
+    }, 
+
+    logout: (req, res) => {
+        req.session.destroy(err => {
+            if (err) {
+                return res.status(500).json({ error: 'Erro ao sair.' });
+            }
+            res.redirect('/login');
+        });
+    },
 };

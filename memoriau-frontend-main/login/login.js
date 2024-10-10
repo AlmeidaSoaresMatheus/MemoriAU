@@ -1,4 +1,4 @@
-document.getElementById('user-login-form').addEventListener('submit', async function(event) {
+document.getElementById('user-login-form').addEventListener('submit', async function (event) {
     event.preventDefault(); // Previne o envio padrão do formulário
 
     const formData = new FormData(this);
@@ -14,20 +14,17 @@ document.getElementById('user-login-form').addEventListener('submit', async func
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type
-            }, 
-            body: requestBody 
+            },
+            body: requestBody
         });
 
         if (!response.ok) {
             throw new Error('Failed to find user');
-            // flagLoginError()
         }
-        else {
-            const newUser = await response.json();
-            // addUserToList(newUser);
-            goToHome(newUser) 
-            this.reset(); // Limpa o formulário após o envio bem-sucedido
-        }
+
+        const data = await response.json();
+        goToHome(data);        
+        this.reset();
     } catch (error) {
         console.error('Error:', error);
         flagLoginError()
@@ -43,16 +40,17 @@ function flagLoginError() {
     parentDiv.replaceChild(listItem, flag);
 }
 
-function goToHome(user) {
-    window.location.href = "../home/home.html"; 
-    localStorage.setItem('Login', user.email);
-    localStorage.setItem('Name', user.name);
+function goToHome(data) {
+    window.location.href = "../home/home.html";
+    localStorage.setItem('authToken', data.token);
+    localStorage.setItem('Login', data.email);
+    localStorage.setItem('Name', data.name);
 }
 
-document.getElementById('signup').addEventListener('click', function() {
+document.getElementById('signup').addEventListener('click', function () {
     const delay = 2000;
 
-    setTimeout(function() {
+    setTimeout(function () {
         window.location.href = '../signup/signup.html';
     }, delay);
 });

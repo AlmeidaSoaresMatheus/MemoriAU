@@ -10,6 +10,7 @@ document.getElementById('savePet').addEventListener('click', async function(even
     const inputFile = document.getElementById('petImage');
 
     try {
+        const token = localStorage.getItem('authToken');
         const requestBody = new URLSearchParams();
         requestBody.append('email', email);
         requestBody.append('name', petName);
@@ -17,14 +18,18 @@ document.getElementById('savePet').addEventListener('click', async function(even
         requestBody.append('sex', sex);
         requestBody.append('birth', birth);
         requestBody.append('death', death);
-
         const response = await fetch(`${URL_DOMAIN}api/pets`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': token
             }, 
             body: requestBody // Adjusted request body
         });
+        
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         const formData = new FormData();
         formData.append('email', email);
@@ -33,8 +38,15 @@ document.getElementById('savePet').addEventListener('click', async function(even
 
         const responsePetImage = await fetch(`${URL_DOMAIN}api/file/uploadprofilePetImage`, {
             method: 'POST',
+            headers: {
+                'Authorization': token
+            }, 
             body: formData
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         if (!response.ok) {
             throw new Error('Failed to register animal');

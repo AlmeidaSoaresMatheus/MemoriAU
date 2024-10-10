@@ -13,6 +13,8 @@ document.getElementById('petForm').addEventListener('submit', async function(eve
     try {
         const requestBody = new URLSearchParams();
         const nameLogin = localStorage.getItem('Login');
+        const token = localStorage.getItem('authToken');
+        
         requestBody.append('nameLogin', nameLogin);
         requestBody.append('name', name);
         requestBody.append('breed', breed);
@@ -26,10 +28,15 @@ document.getElementById('petForm').addEventListener('submit', async function(eve
         const response = await fetch(`${URL_DOMAIN}api/pets`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded' // Adjusted Content-Type
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': token
             }, 
             body: requestBody // Adjusted request body
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         if (!response.ok) {
             throw new Error('Failed to register animal');

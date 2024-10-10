@@ -61,3 +61,16 @@ button {
     font-size: 1em; /* Tamanho da fonte do texto */
     margin: 5px 0; /* Espaço acima e abaixo do texto */
 }
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

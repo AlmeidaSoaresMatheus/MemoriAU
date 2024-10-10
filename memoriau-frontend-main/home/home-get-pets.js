@@ -1,13 +1,22 @@
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
 
     try {
         const email = localStorage.getItem('Login');
+        const token = localStorage.getItem('authToken');
+
         var carousel = document.getElementById("petsCarousel");
         carousel.innerHTML = '';
 
         const response = await fetch(`${URL_DOMAIN}api/pets/find?email=${email}`, {
             method: 'GET',
+            headers: {
+                'Authorization': token
+            }
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         const data = await response.json();
 
@@ -23,44 +32,51 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             const response = await fetch(`${URL_DOMAIN}api/file/findFile?email=${email}&nameAnimal=${petName}`, {
                 method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
             });
 
-            const images = await response.json();
-                images.forEach(img => {
-                    if (img.data.trim() !== "") {
-                        const card = document.createElement('div');
-                        const keyParts = img.key.split('/');
-                        if (keyParts[2] !== "profilePet") {
-                            return;
-                        }
-                        const petName = keyParts[1];
+            if (response.status === 401 || response.status === 403) {
+                checkToken();
+            }
 
-                        card.id = `item-${petName}`;
-                        card.className = 'carousel-item-pet';
-                        card.innerHTML = `
+            const images = await response.json();
+            images.forEach(img => {
+                if (img.data.trim() !== "") {
+                    const card = document.createElement('div');
+                    const keyParts = img.key.split('/');
+                    if (keyParts[2] !== "profilePet") {
+                        return;
+                    }
+                    const petName = keyParts[1];
+
+                    card.id = `item-${petName}`;
+                    card.className = 'carousel-item-pet';
+                    card.innerHTML = `
                             <img src="data:image/jpeg;base64,${img.data}">
                             <div class="card-body">
                                 <h5 class="card-title">${petName}</h5>
                             </div>
                         `;
 
-                        var deleteBtn = document.createElement("button");
-                        deleteBtn.className = "delete-btn";
-                        deleteBtn.id = `${petInfo.name}-delete-btn`; // Corrigido de 'petInfo.name' para 'petName'
-                        deleteBtn.innerText = "x";
-                        deleteBtn.onclick = function(event) { 
-                            event.stopPropagation(); 
-                            openDeleteModal(email, petName); // Adicionado para abrir o modal de exclusão
-                        };
-                        card.appendChild(deleteBtn);
+                    var deleteBtn = document.createElement("button");
+                    deleteBtn.className = "delete-btn";
+                    deleteBtn.id = `${petInfo.name}-delete-btn`; // Corrigido de 'petInfo.name' para 'petName'
+                    deleteBtn.innerText = "x";
+                    deleteBtn.onclick = function (event) {
+                        event.stopPropagation();
+                        openDeleteModal(email, petName); // Adicionado para abrir o modal de exclusão
+                    };
+                    card.appendChild(deleteBtn);
 
-                        carousel.appendChild(card);
-                    }
-                });
+                    carousel.appendChild(card);
+                }
+            });
         }
     } catch (error) {
         console.error('Error:', error);
-    } 
+    }
 
 });
 
@@ -70,13 +86,13 @@ openDeleteModal = (email, petName) => {
     const cancelBtn = document.getElementById('cancelDeleteBtn');
 
     // Adiciona evento de clique ao botão 'Sim' no modal
-    confirmBtn.onclick = function() {
+    confirmBtn.onclick = function () {
         deletePetItem(email, petName); // Chama a função de exclusão se o usuário confirmar
         deleteModal.style.display = 'none'; // Fecha o modal
     };
 
     // Adiciona evento de clique ao botão 'Cancelar' no modal
-    cancelBtn.onclick = function() {
+    cancelBtn.onclick = function () {
         deleteModal.style.display = 'none'; // Fecha o modal sem excluir o animal de estimação
     };
 
@@ -84,10 +100,19 @@ openDeleteModal = (email, petName) => {
 };
 
 deletePetItem = async (email, petName) => {
+    const token = localStorage.getItem('authToken');
+
     try {
         const response = await fetch(`${URL_DOMAIN}api/file/delete?email=${email}&petName=${petName}`, {
             method: 'DELETE',
+            headers: {
+                'Authorization': token
+            }
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         if (!response.ok) {
             throw new Error('Failed to delete pet');
@@ -101,3 +126,15 @@ deletePetItem = async (email, petName) => {
         alert('Failed to delete pet');
     }
 };
+
+function checkToken() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'flex';
+
+    document.body.style.pointerEvents = 'none';
+    document.body.style.opacity = '0.3';
+
+    setTimeout(function () {
+        window.location.href = '/login';
+    }, 4000);
+}

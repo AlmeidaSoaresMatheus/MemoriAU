@@ -23,7 +23,7 @@ document.getElementById('resetPasswordForm').addEventListener('submit', async fu
         requestBody.append('token',  urlParams.get('token'));
         requestBody.append('newPassword', newPassword);
        
-        const response = await fetch( `${URL_DOMAIN}api/resetPassword`, {
+        const response = await fetch( `${URL_DOMAIN}api/users/resetPassword`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

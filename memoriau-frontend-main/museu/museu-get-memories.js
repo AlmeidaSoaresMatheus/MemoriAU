@@ -3,11 +3,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     try {
         const email = localStorage.getItem('Login');
         const gallery = document.getElementById('gallery');
+        const token = localStorage.getItem('authToken');
         gallery.innerHTML = '';
 
         const response = await fetch(`${URL_DOMAIN}api/file/findFileRecord?email=${email}`, {
             method: 'GET',
+            headers: {
+                'Authorization': token
+            }
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         const data = await response.json();
 
@@ -23,7 +31,14 @@ document.addEventListener('DOMContentLoaded', async function() {
 
             const response = await fetch(`${URL_DOMAIN}api/file/findFile?email=${email}&nameAnimal=${petName}`, {
                 method: 'GET',
+                headers: {
+                    'Authorization': token
+                }
             });
+
+            if (response.status === 401 || response.status === 403) {
+                checkToken();
+            }
 
             const images = await response.json();
                 images.forEach(img => {
@@ -71,9 +86,18 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 deletePetItem = async (email, petName, description) => {
     try {
+        const token = localStorage.getItem('authToken');
+
         const response = await fetch(`${URL_DOMAIN}api/file/delete?email=${email}&petName=${petName}&description=${description}`, {
             method: 'DELETE',
+            headers: {
+                'Authorization': token
+            }
         });
+
+        if (response.status === 401 || response.status === 403) {
+            checkToken();
+        }
 
         if (!response.ok) {
             throw new Error('Failed to delete pet');
