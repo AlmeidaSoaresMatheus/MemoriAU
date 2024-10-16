@@ -95,7 +95,7 @@ function displayTimeLine(petName, petNames) {
 
     if (timelineToShow.length > 0) {
         for (let i = 0; i < timelineToShow.length; i++) {
-            timelineToShow[i].style.display = 'block'; // oculta todas as linhas do tempo
+            timelineToShow[i].style.display = 'flex'; // oculta todas as linhas do tempo
         }
     }
 }

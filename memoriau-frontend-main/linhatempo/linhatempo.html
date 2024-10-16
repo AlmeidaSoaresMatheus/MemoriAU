@@ -101,9 +101,9 @@
         }
 
         .card {
-            width: 80%;
-            max-width: 300px;
+            width: 35%;
             margin: 20px 0;
+            max-height: 150px;
             border: 2px solid #F9A830;
             border-radius: 10px;
             background-color: #fff8e1;
@@ -115,17 +115,25 @@
 
         .card img {
             width: 100%;
+            max-width: 150px;
             height: auto;
-            border-bottom: 1px solid #F9A830;
-            margin-bottom: 10px;
-            border-radius: 10px 10px 0 0;
+            border-radius: 10px 0px 0px 10px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: row;
         }
 
         .card-body {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 0px 10px 10px 0px;
             padding: 10px;
         }
 
         .card-title {
+            padding-left: 10px;
+            text-align: center;
             color: #F9A830;
             font-size: 1.2em;
             margin: 10px 0;
@@ -133,7 +141,8 @@
         }
 
         .card-text {
-            font-size: 1em;
+            font-size: 0.8em;
+            padding-top: 15%;
             margin: 5px 0;
         }
 
@@ -297,7 +306,7 @@
 
             if (timelineToShow.length > 0) {
                 for (let i = 0; i < timelineToShow.length; i++) {
-                    timelineToShow[i].style.display = 'block'; // exibe todas as linhas do tempo do pet selecionado
+                    timelineToShow[i].style.display = 'flex'; // exibe todas as linhas do tempo do pet selecionado
                 }
             }
         }
