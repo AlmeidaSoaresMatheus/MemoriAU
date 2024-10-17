@@ -54,4 +54,21 @@ module.exports = {
             });
         });
     },
+
+    updateFileRecord: (newFilePath, nameAnimal, email, date, newDescription, oldDescription, shareOnFeed, showOnTimeline) => {
+        return new Promise((resolve, reject) => {
+          const sql = `
+            UPDATE file 
+            SET nameFile = ?, descriptionFile = ?, date = ?, shareOnFeed = ?, showOnTimeline = ? 
+            WHERE email = ? AND nameAnimal = ? AND descriptionFile = ?`;
+          
+          db.query(sql, [newFilePath, newDescription, date, shareOnFeed, showOnTimeline, email, nameAnimal, oldDescription], (error, results) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(results);
+          });
+        });
+      },
 };

@@ -28,7 +28,10 @@ router.get('/file/findFileRecord', authMiddleware, apiS3Controller.findFileRecor
 router.post('/file/uploadImage', authMiddleware, multer.single('image'), apiS3Controller.upload);
 router.delete('/file/delete', authMiddleware, apiS3Controller.delete)
 router.post('/file/uploadprofilePetImage', authMiddleware, multer.single('image'), apiS3Controller.uploadprofilePetImage);
-router.get('/timeline/searchTimeline', apiTimeline.findFilesAndRecords);
+router.get('/timeline/searchTimeline', authMiddleware,  apiTimeline.findFilesAndRecords);
+router.put('/pets/:idAnimal', authMiddleware, apiPetsController.edit);
+router.put('/file/editMemory', authMiddleware, multer.single('image'), apiS3Controller.editMemory);
+
 
 module.exports = router;
 

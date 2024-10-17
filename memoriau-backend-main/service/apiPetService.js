@@ -14,12 +14,12 @@ module.exports = {
         });
     }, 
 
-    create: (email, name, type, sex, birth, death) => {
+    create: (email, name, type, sex, birth, death, isAlive) => {
         return new Promise((resolve, reject) => {
     
-            const sql = 'INSERT INTO animal (email, name, type, sex, birth, death) VALUES (?, ?, ?, ?, ?, ?)';
+            const sql = 'INSERT INTO animal (email, name, type, sex, birth, death, isAlive) VALUES (?, ?, ?, ?, ?, ?, ?)';
             
-            db.query(sql, [email, name, type, sex, birth, death], (error, result) => {
+            db.query(sql, [email, name, type, sex, birth, death, isAlive], (error, result) => {
                 if (error) {
                     reject(error);
                     return;
@@ -27,7 +27,7 @@ module.exports = {
     
                 const petId = result.insertId;
     
-                const newPet = {idAnimal: petId, email, name, type, sex, birth, death};
+                const newPet = {idAnimal: petId, email, name, type, sex, birth, death, isAlive};
     
                 resolve(newPet);
             });
@@ -61,4 +61,24 @@ module.exports = {
             });
         });
     }, 
+
+    update: (idAnimal, email, name, type, sex, birth, death, isAlive) => {
+        return new Promise((resolve, reject) => {
+            const sql = 'UPDATE animal SET email = ?, name = ?, type = ?, sex = ?, birth = ?, death = ?, isAlive = ? WHERE idAnimal = ?';
+            db.query(sql, [email, name, type, sex, birth, death, isAlive, idAnimal], (error, result) => {
+                if (error) {
+                    reject(error);
+                    return;
+                }
+    
+                if (result.affectedRows === 0) {
+                    reject(new Error('Nenhum pet foi atualizado.'));
+                    return;
+                }
+    
+                const updatedPet = { idAnimal, email, name, type, sex, birth, death, isAlive};
+                resolve(updatedPet);
+            });
+        });
+    },
 };

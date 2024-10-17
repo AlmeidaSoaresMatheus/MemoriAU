@@ -143,6 +143,45 @@ module.exports = {
     }
   },
 
+  editMemory: async (req, res) => {
+    const { email, petName, description, newDescription, date, shareOnFeed, showOnTimeline } = req.body;
+
+    if (!email || !petName || !description || !date || !newDescription || !shareOnFeed || !showOnTimeline) {
+      return res.status(400).send('Nao foram fornecidos todos os campos obrigatórios.');
+    }
+
+    try {
+      const oldFilePath = `${email}/${petName}/${description}`;
+      console.log(oldFilePath)
+      const fileExists = await checkFolderExists(oldFilePath);
+
+      if (!fileExists) {
+        return res.status(404).json({ error: 'Memória não encontrada.' });
+      }
+
+      await deleteObject(oldFilePath);
+
+      const newFilePath = `${email}/${petName}/${newDescription}/${date}_${path.basename(req.file.originalname)}`;
+      const params = {
+        Bucket: process.env.S3_BUCKET,
+        Key: newFilePath,
+        Body: req.file.buffer,
+        ContentType: req.file.mimetype,
+      };
+
+      await s3.upload(params).promise();
+
+      await s3Service.updateFileRecord(
+        newFilePath, petName, email, date, newDescription, description, shareOnFeed, showOnTimeline
+      );
+
+      res.status(200).send('Memória atualizada com sucesso');
+    } catch (error) {
+      console.error('Erro ao editar a memória:', error);
+      res.status(500).json({ error: 'Erro ao editar a memória.' });
+    }
+  },
+
   //cadastrar imagem de "perfil" do pet
   uploadprofilePetImage: async (req, res) => {
     const { email, petName } = req.body;
