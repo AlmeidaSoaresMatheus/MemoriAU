@@ -25,7 +25,7 @@ router.get('/pets', authMiddleware, apiPetsController.findAll);
 router.get('/pets/find', authMiddleware, apiPetsController.find);
 router.get('/file/findFile', authMiddleware, apiS3Controller.findFiles);
 router.get('/file/findFileRecord', authMiddleware, apiS3Controller.findFileRecord);
-router.post('/file/uploadImage', authMiddleware, multer.single('image'), apiS3Controller.upload);
+router.post('/file/upload', authMiddleware, multer.single('image'), apiS3Controller.upload);
 router.delete('/file/delete', authMiddleware, apiS3Controller.delete)
 router.post('/file/uploadprofilePetImage', authMiddleware, multer.single('image'), apiS3Controller.uploadprofilePetImage);
 router.get('/timeline/searchTimeline', authMiddleware,  apiTimeline.findFilesAndRecords);

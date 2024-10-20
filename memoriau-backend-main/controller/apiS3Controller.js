@@ -5,6 +5,7 @@ const path = require('path');
 const { format } = require('date-fns');
 const querystring = require('querystring');
 
+const MAX_VIDEO_SIZE = 50 * 1024 * 1024; // 50MB
 
 module.exports = {
   findFiles: async (req, res) => {
@@ -49,42 +50,47 @@ module.exports = {
     }
   },
   
-  //memories
   upload: async (req, res) => {
-    const { email, petName, date, description} = req.body;
+    const { email, petName, date, description, shareOnFeed, showOnTimeline} = req.body;
 
     if (!req.file || !email || !petName || !description) {
-      return res.status(400).send('Nao foram fornecidos todos os campos.');
+      return res.status(400).send('Não foram fornecidos todos os campos.');
     }
-    
+
+    const isVideo = req.file.mimetype.startsWith('video');
+
+    if (isVideo && req.file.size > MAX_VIDEO_SIZE) {
+      return res.status(400).send(`O vídeo excede o tamanho máximo de ${MAX_VIDEO_SIZE / (1024 * 1024)} MB.`);
+    }
+
     try {
       const userFolderExists = await checkFolderExists(email);
-      
+
       if (!userFolderExists) {
         await createFolder(email);
       }
-  
+
       const petFolderExists = await checkFolderExists(`${email}/${petName}`);
-  
+
       if (!petFolderExists) {
         await createFolder(`${email}/${petName}`);
       }
-  
+
       const params = {
         Bucket: process.env.S3_BUCKET,
         Key: `${email}/${petName}/${description}/${date}_${path.basename(req.file.originalname)}`,
         Body: req.file.buffer,
         ContentType: req.file.mimetype,
       };
-  
+
       await s3.upload(params).promise();
 
-      const newFile = await s3Service.addFileRecord(params['Key'], petName, email, date, description);
-  
+      await s3Service.addFileRecord(params['Key'], petName, email, date, description, shareOnFeed, showOnTimeline);
+
       res.status(200).send('Arquivo criado com sucesso');
     } catch (err) {
       console.error(err);
-      res.status(500).send('Erro ao enviar imagem');
+      res.status(500).send('Erro ao enviar arquivo');
     }
   },
 
@@ -150,6 +156,12 @@ module.exports = {
       return res.status(400).send('Nao foram fornecidos todos os campos obrigatórios.');
     }
 
+    const isVideo = req.file.mimetype.startsWith('video');
+
+    if (isVideo && req.file.size > MAX_VIDEO_SIZE) {
+      return res.status(400).send(`O vídeo excede o tamanho máximo de ${MAX_VIDEO_SIZE / (1024 * 1024)} MB.`);
+    }
+
     try {
       const oldFilePath = `${email}/${petName}/${description}`;
       console.log(oldFilePath)
@@ -157,7 +169,7 @@ module.exports = {
 
       if (!fileExists) {
         return res.status(404).json({ error: 'Memória não encontrada.' });
-      }
+      } 
 
       await deleteObject(oldFilePath);
 
@@ -188,6 +200,12 @@ module.exports = {
 
     if (!req.file || !email || !petName) {
       return res.status(400).send('Nao foram fornecidos todos os campos.');
+    }
+
+    const isVideo = req.file.mimetype.startsWith('video');
+
+    if (isVideo) {
+      return res.status(400).send('Vídeos não são permitidos como imagem de perfil.');
     }
       
     try {

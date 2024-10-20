@@ -2,18 +2,18 @@ const { findAll, deleteMemory } = require('../controller/apiS3Controller');
 const db = require('../db');
 
 module.exports = {
-    addFileRecord: (nameFile, nameAnimal, email, date, description) => {
+    addFileRecord: (nameFile, nameAnimal, email, date, description, shareOnFeed, showOnTimeline) => {
         return new Promise((resolve, reject) => {
-            const sql = 'INSERT INTO file (nameFile, nameAnimal, email, date, descriptionFile) VALUES (?, ?, ?, ?, ?)';
+            const sql = 'INSERT INTO file (nameFile, nameAnimal, email, date, descriptionFile, shareOnFeed, showOnTimeline) VALUES (?, ?, ?, ?, ?, ?, ?)';
         
-            db.query(sql, [nameFile, nameAnimal, email, date, description], (error, result) => {
+            db.query(sql, [nameFile, nameAnimal, email, date, description, shareOnFeed, showOnTimeline], (error, result) => {
                 if (error) {
                     reject(error);
                     return;
                 }
 
                 const fileId = result.insertId;
-                const newFile = {idFile: fileId, nameFile, nameAnimal, email, date, description};
+                const newFile = {idFile: fileId, nameFile, nameAnimal, email, date, description, shareOnFeed, showOnTimeline};
                 resolve(newFile);
             });
         });
