@@ -146,4 +146,30 @@ module.exports = {
             res.redirect('/login');
         });
     },
+
+    update: async (req, res) => {
+        try {
+            const {email, name, password } = req.body;
+
+            if (!email || !name || !password) {
+                return res.status(400).json({ error: 'Todos os campos devem ser preenchidos.' });
+            }
+
+            const findUser = await userService.find(email);
+
+            if (findUser.length === 0) {
+                return res.status(404).json({ error: 'Usuário não encontrado.' });
+            }
+
+            const updatedUser = await userService.update(email, name, password);
+
+            res.status(200).json({
+                message: 'Usuário atualizado com sucesso.',
+                updatedUser
+            });
+        } catch (error) {
+            console.error('Erro ao atualizar o usuário:', error);
+            res.status(500).json({ error: 'Erro ao atualizar o usuário.' });
+        }
+    }
 };

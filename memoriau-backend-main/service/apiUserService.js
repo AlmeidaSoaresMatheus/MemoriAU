@@ -177,4 +177,34 @@ module.exports = {
             });
         });
     },
+
+    update: (email, name, password) => {
+        return new Promise((resolve, reject) => {
+            const saltRounds = 10;
+    
+            bcrypt.hash(password, saltRounds, (err, hashedPassword) => {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+    
+                const sql = 'UPDATE user SET name = ?, password = ? WHERE email = ?';
+    
+                db.query(sql, [name, hashedPassword, email], (error, result) => {
+                    if (error) {
+                        reject(error);
+                        return;
+                    }
+    
+                    if (result.affectedRows === 0) {
+                        reject(new Error('Usuário não encontrado'));
+                        return;
+                    }
+    
+                    // Certifique-se de retornar o newEmail corretamente
+                    resolve({ email, name });
+                });
+            });
+        });
+    }
 };

@@ -31,7 +31,7 @@ router.post('/file/uploadprofilePetImage', authMiddleware, multer.single('image'
 router.get('/timeline/searchTimeline', authMiddleware,  apiTimeline.findFilesAndRecords);
 router.put('/pets/:idAnimal', authMiddleware, apiPetsController.edit);
 router.put('/file/editMemory', authMiddleware, multer.single('image'), apiS3Controller.editMemory);
-
+router.put('/users/update', authMiddleware, apiUsersController.update);
 
 module.exports = router;
 
